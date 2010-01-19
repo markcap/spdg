@@ -11,6 +11,7 @@
     Posted By: <%=a.user.profile.name%>
 <%end%>
 
+<%= link_to "Call Derek", "tel:1-913-710-5896"%>
 <% if logged_in? && current_user.admin?%>
     <%= link_to "New Post", new_article_path %>
 <%end%>
