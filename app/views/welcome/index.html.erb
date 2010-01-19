@@ -1,4 +1,16 @@
 
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<%if logged_in? && current_user.profile.nil?%>
+    Please take a minute to fill out your user information. This information will not be available to outside users and
+    will only be used internally.<br><br>
+    
+    <%= render "profiles/form", :p => Profile.new%>
+<%end%>
+<% @articles.each do |a|%>
+    <h2><%= a.title %></h2>
+    <p><%= a.body%></p>
+    Posted By: <%=a.user.profile.name%>
+<%end%>
 
+<% if logged_in? && current_user.admin?%>
+    <%= link_to "New Post", new_article_path %>
+<%end%>

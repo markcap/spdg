@@ -1,0 +1,21 @@
+<% title "Reports" %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Info</th>
+    <th>Project</th>
+  </tr>
+  <% for report in @reports %>
+    <tr>
+      <td><%=h report.title %></td>
+      <td><%=h report.info %></td>
+      <td><%=h report.project_id %></td>
+      <td><%= link_to "Show", report %></td>
+      <td><%= link_to "Edit", edit_report_path(report) %></td>
+      <td><%= link_to "Destroy", report, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Report", new_report_path %></p>

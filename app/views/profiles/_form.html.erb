@@ -1,28 +1,25 @@
 <%= error_messages_for :profile %>
-<% form_for @profile do |f| %>
+
+<% form_for p do |f| %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
   <p>
     <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.text_area :address %>
   </p>
   <p>
-    <%= f.label :institution %><br />
+    <%= f.label "Institution/Program" %><br />
     <%= f.text_field :institution %>
   </p>
   <p>
-    <%= f.label :phone %><br />
+    <%= f.label "Phone Number" %><br />
     <%= f.text_field :phone %>
   </p>
   <p>
     <%= f.label :email %><br />
     <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

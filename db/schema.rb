@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100119152612) do
+ActiveRecord::Schema.define(:version => 20100119171727) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -26,6 +26,24 @@ ActiveRecord::Schema.define(:version => 20100119152612) do
     t.string   "phone"
     t.string   "email"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.text     "info"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "contact_number"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.string   "title"
+    t.text     "info"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20100119152612) do
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
+    t.integer  "admin",                     :limit => 1
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

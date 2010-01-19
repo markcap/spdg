@@ -1,0 +1,25 @@
+<% title "Projects" %>
+
+<table>
+  <tr>
+    <th>Info</th>
+    <th>Contact Name</th>
+    <th>Contact Email</th>
+    <th>Contact Number</th>
+    <th>Website</th>
+  </tr>
+  <% for project in @projects %>
+    <tr>
+      <td><%=h project.info %></td>
+      <td><%=h project.contact_name %></td>
+      <td><%=h project.contact_email %></td>
+      <td><%=h project.contact_number %></td>
+      <td><%=h project.website %></td>
+      <td><%= link_to "Show", project %></td>
+      <td><%= link_to "Edit", edit_project_path(project) %></td>
+      <td><%= link_to "Destroy", project, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Project", new_project_path %></p>
