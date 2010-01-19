@@ -1,0 +1,32 @@
+<% title "Profile" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @profile.name %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%=h @profile.address %>
+</p>
+<p>
+  <strong>Institution:</strong>
+  <%=h @profile.institution %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%=h @profile.phone %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%=h @profile.email %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @profile.user_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_profile_path(@profile) %> |
+  <%= link_to "Destroy", @profile, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", profiles_path %>
+</p>
