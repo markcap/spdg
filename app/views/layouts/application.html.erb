@@ -3,11 +3,13 @@
 <html>
   <head>
     <title><%= h(yield(:title) || "SPDG Kansas") %></title>
-    <!-- <%= stylesheet_link_tag 'application' %> -->
+    <%= stylesheet_link_tag 'spdg' %>
 
     <link rel="stylesheet" href="http://grant.spdgkansas.org/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="http://grant.spdgkansas.org/stylesheets/blueprint/print.css" type="text/css" media="print">	
     <!--[if lt IE 8]><link rel="stylesheet" href="http://grant.spdgkansas.org/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    
+    <%= javascript_include_tag 'fckeditor/fckeditor' %>
 
     <%= yield(:head) %>
   </head>

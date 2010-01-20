@@ -1,0 +1,7 @@
+.text_editor textarea {
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 500px;
+	width: 500px;
+}
