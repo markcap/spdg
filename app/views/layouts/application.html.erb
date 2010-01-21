@@ -14,18 +14,71 @@
     <%= yield(:head) %>
   </head>
   <body>
+    
     <div class="container">
-      <div class="span-4">
-        sidebar
+      
+      <div id="logo" class="span-4">
+      <%= link_to image_tag("/images/spgd-logo.png"), root_path%>
       </div>
-      <div class="span-16">
+      
+      <div class="menu span-20 last">
+        
+        <div class="login">
+          <%if logged_in?%>
+            Logged in as <%=current_user.login%>
+            <br>
+            <%= link_to "Logout", logout_path%> | 
+            <%= link_to "Info", profile_path(current_user.profile)%>
+          <%else%>
+            
+            <div id="login_form">
+              <% form_tag session_path do -%>
+                Username: &nbsp;
+                <%= text_field_tag 'login', @login %>&nbsp;&nbsp;
+
+                Password: &nbsp;
+                <%= password_field_tag 'password', nil %>
+                <br>
+                Remember me
+                <%= check_box_tag 'remember_me', '1', @remember_me %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= submit_tag 'Log in' %>
+              <% end -%>
+            </div>
+              <div id="login_start">
+                Reistered Users: <a href="#" class="login_link">Log In</a>
+              </div>
+            
+          <%end%>
+        </div>
+        
+        <div class="left">
+          <%= image_tag("/images/menu_left_edge.png")%>
+        </div>
+        <ul>
+          <li class="span-3">
+            Goals
+          </li>
+          <li class="span-3">
+            Projects
+          </li>
+          <li class="span-3">
+            Goods
+          </li>
+        </ul>
+      </div>
+      
+      <div id="spacer" class="span-24">
+      </div>
+      
+      <div id="content" class="span-19 prepend-1">
         <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <%- end -%>
         
         <%= yield %>
       </div>
-      <div class="span-4 last">
+      <div id="sidebar" class="span-4 last">
         sidebar
       </div>
       

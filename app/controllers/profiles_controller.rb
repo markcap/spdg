@@ -13,6 +13,7 @@ class ProfilesController < ApplicationController
   
   def create
     @profile = Profile.new(params[:profile])
+    @profile.user = current_user
     if @profile.save
       flash[:notice] = "Thank you for your information."
       redirect_to root_path

@@ -1,14 +1,85 @@
+/*.container {
+	padding-left: 40px;
+	background-image: url(../images/bg.jpg);
+	background-repeat: repeat-y;
+}*/
+
+.container{
+		font-size: 13px;
+}
+
+#logo{
+}
+.left {
+	float: left;
+/*	margin: 0;
+	height: 0px;*/
+}
+.menu {
+	background-image: url(../images/menu_background.png);
+	background-repeat: repeat-x;
+	margin-top: 99px;
+}
+
+.menu ul {
+	list-style-type: none;
+	min-height: 25px;
+	padding: 0px;
+	margin: 0;
+}
+
+.menu ul li{
+	display: inline;
+	height: 20px;
+	padding: 5px 10px 5px 0px;
+	text-align: center;
+	min-width: 60px;
+	font-size: 13px;
+	color: black;
+}
+
+.menu ul li:hover{
+	cursor: pointer;
+	background-image: url(../images/menu_background_hover.png);
+	background-repeat: repeat-x;
+	color: black;
+
+}
+
+.login {
+	float: right;
+	margin-top: -90px;
+	padding-right: 10px;
+	font-size: 12px;
+}
+
+.login input{
+	width: 80px;
+}
+
+
+#spacer {
+	margin-top: -5px;
+	height: 3px;
+	background-color : #4487c9;
+	margin-bottom: 20px;
+}
+
 #flash_notice, #flash_error {
   padding: 5px 8px;
   margin: 10px 0;
 }
 
 #flash_notice {
+	padding: 1px 5px 5px 30px;
+	background: url('/images/icons/accept.png') no-repeat 3px 3px;
   background-color: #CFC;
   border: solid 1px #6C6;
 }
 
 #flash_error {
+	padding: 1px 5px 5px 30px;
+	background: url('/images/icons/exclamation.png') no-repeat 3px 3px;
   background-color: #FCC;
   border: solid 1px #C66;
 }
