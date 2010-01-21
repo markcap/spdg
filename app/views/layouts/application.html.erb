@@ -59,12 +59,22 @@
           <li class="span-3">
             Goals
           </li>
+          <a href="/admin">
+            <div class="clickable_div">
           <li class="span-3">
             Projects
           </li>
-          <li class="span-3">
-            Goods
-          </li>
+            </div>
+          </a>
+          <% if logged_in? && current_user.admin?%>
+          <a href="/admin">
+            <div id="clickable_div">
+              <li class="span-3">
+                Admin
+              </li>
+            </div>
+          </a>
+          <%end%>
         </ul>
       </div>
       

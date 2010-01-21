@@ -8,6 +8,11 @@
 		font-size: 13px;
 }
 
+.container input{
+		min-height: 16px;
+		padding: 5px 5px;
+}
+
 #logo{
 }
 .left {
@@ -35,7 +40,7 @@
 	text-align: center;
 	min-width: 60px;
 	font-size: 13px;
-	color: black;
+	color: white;
 }
 
 .menu ul li:hover{
@@ -63,6 +68,10 @@
 	height: 3px;
 	background-color : #4487c9;
 	margin-bottom: 20px;
+}
+
+.clickable_div{
+	text-decoration: none;
 }
 
 #flash_notice, #flash_error {

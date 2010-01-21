@@ -4,14 +4,14 @@
 
   <p>
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :size => 70 %>
   </p>
   
   <div class="text_editor">
       <div id="<%= fckeditor_div_id('article', 'body') %>">
-          <%= fckeditor_textarea( "article", "body", :width => 550, :height => 500 ) %>
+          <%= fckeditor_textarea( "article", "body", :width => 650, :height => 500 ) %>
       </div>
   </div>
- 
+ <br>
   <p><%= f.submit "Submit" %></p>
 <% end %>
