@@ -4,8 +4,12 @@
 	background-repeat: repeat-y;
 }*/
 
+body {
+
+}
 .container{
-		font-size: 13px;
+		font-size: 14px;
+		font-family:Georgia,serif;
 }
 
 .container input{
@@ -13,8 +17,6 @@
 		padding: 5px 5px;
 }
 
-#logo{
-}
 .left {
 	float: left;
 /*	margin: 0;
@@ -43,13 +45,24 @@
 	color: white;
 }
 
-.menu ul li:hover{
+.menu ul li:hover, .menu ul li.current_tab{
 	cursor: pointer;
 	background-image: url(../images/menu_background_hover.png);
 	background-repeat: repeat-x;
 	color: black;
 
 }
+
+.menu ul li a{
+	text-decoration: none;
+	color: white;
+}
+
+.menu ul li:hover a, .menu ul li.current_tab a{
+	text-decoration: none;
+	color: black;
+}
+
 
 .login {
 	float: right;
@@ -60,18 +73,28 @@
 
 .login input{
 	width: 80px;
+	font-size: 11px;
+	padding: 0;
 }
 
-
+.news_title {
+	font-size: 22px;
+	font-weight: bold;
+}
 #spacer {
-	margin-top: -5px;
+	margin-top: -8px;
 	height: 3px;
 	background-color : #4487c9;
 	margin-bottom: 20px;
 }
 
-.clickable_div{
-	text-decoration: none;
+#taskbar {
+margin-top: 30px;
+background-color: #dce3f3;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border: 1px solid #000;
+padding: 10px;
 }
 
 #flash_notice, #flash_error {
@@ -132,4 +155,19 @@
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
+}
+
+.admin_box_title {
+	padding: 5px;
+	background-color: #8a191b;
+	text-align: center;
+	color: white;
+}
+
+.admin_box_content {
+	min-height: 170px;
+	border: 1px solid #8a191b;
+	padding: 15px;
+	font-size: 13px;
+	line-height: 20px;
 }

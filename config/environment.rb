@@ -10,6 +10,7 @@ Rails::Initializer.run do |config|
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
   config.gem 'ruby-openid', :lib => 'openid'
   config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com'
+  config.gem "mdarby-restful_acl", :lib => 'restful_acl_controller', :source => "http://gems.github.com"
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

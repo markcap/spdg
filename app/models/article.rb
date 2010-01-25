@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
   belongs_to :user
+  named_scope :by_date, :order => 'created_at DESC'
   
   def self.is_indexable_by(user, parent = nil)
     return true

@@ -10,7 +10,8 @@
     <br><br>
 <%end%>
 <% @articles.each do |a|%>
-    <h2><%= a.title %></h2>
+    <div class="news_title"><%= a.title %></div>
+    <i><%=nice_date(a.created_at)%> | <%=a.user.profile.name%></i><br>
     <p><%= a.body%></p>
-    Posted By: <%=a.user.profile.name%>
+    <hr width="10">
 <%end%>

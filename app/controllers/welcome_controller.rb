@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
+  $menu_tab = 'none'
+  
   def index
-    @articles = Article.all
+    @articles = Article.by_date
   end
   
   def forgot_password
