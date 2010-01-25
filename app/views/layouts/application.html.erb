@@ -63,8 +63,8 @@
           <li class="span-3 <%if $menu_tab=='goals'%> current_tab <%end%>" onclick="location.href='#';">
             Goals
           </li>
-          <li class="span-3 <%if $menu_tab=='projects'%> current_tab <%end%>" onclick="location.href='#';">
-            Projects
+          <li class="span-3 <%if $menu_tab=='projects'%> current_tab <%end%>" onclick="location.href='<%= projects_path %>';">
+            <%= link_to 'Projects', projects_path%>
           </li>
           <% if logged_in? && current_user.admin?%>
             <li class="span-3 <%if $menu_tab=='admin'%>current_tab<%end%>" onclick="location.href='<%= admin_path %>';">
@@ -78,7 +78,7 @@
       </div>
       
       
-      <div id="content" class="<%if @no_sidebar%>span-23<%else%>span-16<%end%> prepend-1 append-1">
+      <div id="content" class="<%if @sidebar%>span-16<%else%>span-23<%end%> prepend-1 append-1">
         <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <%- end -%>
@@ -86,11 +86,16 @@
         <%= yield %>
       </div>
       
-      <%unless @no_sidebar%>
-        <div id="taskbar" class="span-5 last">
-          - Project #1 <br>
-          - Project #2
-        </div>
+      <%if @sidebar%>
+        <%if logged_in?%>
+          <div id="taskbar" class="span-5 last">
+            Your Projects: <br>
+            - Project #1 <br>
+            - Project #2<br><br>
+            Your Upcoming Surveys:<br>
+            - Survey #1 (due 1/10/10)
+          </div>
+        <%end%>
       <%end%>
       
     </div>

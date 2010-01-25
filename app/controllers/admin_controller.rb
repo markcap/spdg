@@ -2,11 +2,15 @@ class AdminController < ApplicationController
   
   before_filter :login_required
   before_filter :has_permission?
-
   
   $menu_tab = 'admin'
+  
   def index
-    @no_sidebar = true
+
+  end
+  
+  def invite
+    @user = User.new
   end
 
 end

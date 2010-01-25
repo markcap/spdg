@@ -1,25 +1,14 @@
-<% title "Projects" %>
+<div class="news_title">Projects in SPDG Kansas </div> <br><br>
 
-<table>
-  <tr>
-    <th>Info</th>
-    <th>Contact Name</th>
-    <th>Contact Email</th>
-    <th>Contact Number</th>
-    <th>Website</th>
-  </tr>
-  <% for project in @projects %>
-    <tr>
-      <td><%=h project.info %></td>
-      <td><%=h project.contact_name %></td>
-      <td><%=h project.contact_email %></td>
-      <td><%=h project.contact_number %></td>
-      <td><%=h project.website %></td>
-      <td><%= link_to "Show", project %></td>
-      <td><%= link_to "Edit", edit_project_path(project) %></td>
-      <td><%= link_to "Destroy", project, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-
-<p><%= link_to "New Project", new_project_path %></p>
+<%@projects.each do |p|%>
+    <b><%= link_to p.name, p.website, :target => "new"%></b>
+    <br><br>
+    <%= p.info%>
+    <br><br>
+    Contact information:<br>
+    <%= p.contact_name%><br>
+    <%= p.contact_number%><br>
+    <%= p.contact_email%><br><br>
+    <hr><br><br>
+    
+<%end%>

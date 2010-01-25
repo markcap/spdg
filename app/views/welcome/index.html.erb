@@ -11,7 +11,13 @@
 <%end%>
 <% @articles.each do |a|%>
     <div class="news_title"><%= a.title %></div>
-    <i><%=nice_date(a.created_at)%> | <%=a.user.profile.name%></i><br>
+    <i><%=nice_date(a.created_at)%> | <%=a.user.profile.name%></i>
+        <%if logged_in? && current_user.admin?%>
+            <%=spaces(5)%> <%=link_to image_tag("../images/icons/edit.gif"), edit_article_path(a)%>
+            <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), article_path(a), 
+                            :confirm => 'Are you sure?', :method => :delete%>
+        <%end%>
+        <br>
     <p><%= a.body%></p>
     <hr width="10">
 <%end%>

@@ -5,4 +5,12 @@ module ApplicationHelper
     return d.strftime("%B %e, %Y")
   end
   
+  def spaces(s)
+    string = ""
+    s.times do |e|
+      string += "&nbsp;"
+    end
+    return string
+  end
+  
 end

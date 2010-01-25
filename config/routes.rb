@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :articles
   
   map.resources :users
-
+  
   map.resource :session
 
   map.root :controller => 'welcome'
@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.forgot_password '/forgot_password', :controller => 'welcome', :action => 'forgot_password'
 
   map.admin '/admin', :controller => 'admin', :action => 'index'
+  map.invite '/admin/invite', :controller => 'admin', :action => 'invite'
   
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

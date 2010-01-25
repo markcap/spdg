@@ -1,32 +1,20 @@
-<% title "Profile" %>
+<h2> User Information </h2>
 
-<p>
-  <strong>Name:</strong>
-  <%=h @profile.name %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%=h @profile.address %>
-</p>
-<p>
-  <strong>Institution:</strong>
-  <%=h @profile.institution %>
-</p>
-<p>
-  <strong>Phone:</strong>
-  <%=h @profile.phone %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%=h @profile.email %>
-</p>
-<p>
-  <strong>User:</strong>
-  <%=h @profile.user_id %>
-</p>
 
+<%=h @profile.name %>
+<br>
+<%=h @profile.institution %>
+<br>
+<%=h @profile.address %>
+<br>
+<%=h @profile.phone %>
+<br>
+<%=h @profile.email %>
+<br>
+
+<%if updatable(@profile)%>
 <p>
-  <%= link_to "Edit", edit_profile_path(@profile) %> |
-  <%= link_to "Destroy", @profile, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", profiles_path %>
+    <br>
+  <%= link_to "Edit", edit_profile_path(@profile) %>
 </p>
+<%end%>

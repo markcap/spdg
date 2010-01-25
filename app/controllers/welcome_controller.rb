@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   
   def index
     @articles = Article.by_date
+    @sidebar = true
   end
   
   def forgot_password
