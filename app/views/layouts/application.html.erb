@@ -60,7 +60,7 @@
           <%= image_tag("/images/menu_left_edge.png")%>
         </div>
         <ul>
-          <li class="span-3 <%if $menu_tab=='goals'%> current_tab <%end%>" onclick="location.href='#';">
+          <li class="span-3 <%if $menu_tab=='goals'%> current_tab <%end%>" onclick="location.href='<%=goals_path%>';">
             Goals
           </li>
           <li class="span-3 <%if $menu_tab=='projects'%> current_tab <%end%>" onclick="location.href='<%= projects_path %>';">

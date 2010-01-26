@@ -1,14 +1,28 @@
 <div class="news_title">Projects in SPDG Kansas </div> <br><br>
 
-<%@projects.each do |p|%>
-    <b><%= link_to p.name, p.website, :target => "new"%></b>
-    <br><br>
-    <%= p.info%>
-    <br><br>
-    Contact information:<br>
-    <%= p.contact_name%><br>
-    <%= p.contact_number%><br>
-    <%= p.contact_email%><br><br>
-    <hr><br><br>
-    
-<%end%>
+<div class="span-20">
+    <%@projects.each do |p|%>
+        <div id="project_box">
+            <div id="project_header">
+                <b><%= link_to p.name, p.website, :target => "new"%></b>
+                <%if updatable(p)%>
+                    <div class="right">
+                    <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p)%>
+                    <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), 
+                                    :confirm => 'Are you sure?', :method => :delete%>
+                    </div>
+                <%end%>
+            </div>
+            <div id="project_body">
+                <br>
+                <%= p.info%>
+                <br><br>
+                Contact information:<br>
+                <%= p.contact_name%><br>
+                <%= p.contact_number%><br>
+                <%= p.contact_email%><br><br>
+            </div>
+        </div>    
+        <hr><br>
+    <%end%>
+</div>

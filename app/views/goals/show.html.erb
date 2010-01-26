@@ -1,0 +1,12 @@
+<% title "Goal" %>
+
+<p>
+  <strong>Body:</strong>
+  <%=h @goal.body %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_goal_path(@goal) %> |
+  <%= link_to "Destroy", @goal, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", goals_path %>
+</p>

@@ -1,0 +1,11 @@
+<h3> SPDG Goals </h3>
+
+<%= error_messages_for :goal %>
+<% form_for @goal do |f| %>
+<div class="text_editor">
+     <div id="<%= fckeditor_div_id('goal', 'body') %>">
+         <%= fckeditor_textarea( "goal", "body", :width => 650, :height => 500 ) %>
+     </div>
+ </div>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
