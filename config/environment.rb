@@ -51,5 +51,5 @@ end
 # }
 
 ExceptionNotifier.exception_recipients = %w(mark.desuu@gmail.com)
-ExceptionNotifier.sender_address = %("Application Error" <mark.desuu@gmail.com>)  
+ExceptionNotifier.sender_address = %("Application Error" <welcome@spdgkansas.org>)  
 ExceptionNotifier.email_prefix = "[spdg] "
