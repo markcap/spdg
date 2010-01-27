@@ -98,6 +98,13 @@
         <%- end -%>
         
         <%= yield %>
+        
+        <div id="footer" class=" span-22 last">
+            <br>
+          	&copy; <%=Time.now.year%> Kansas State Personnel Development Grant <%= spaces(10)%> <br>
+          	Question or Comment? <%=link_to "Contact Us", "#"%>.
+          	<br><br>
+        </div>
       </div>
       
       <%if @sidebar%>
