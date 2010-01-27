@@ -97,7 +97,7 @@ FCKConfig.TemplateReplaceCheckbox = true ;
 FCKConfig.ToolbarLocation = 'In' ;
 
 FCKConfig.ToolbarSets["Default"] = [
-	['Source','DocProps','-','Save','NewPage','Preview','-','Templates'],
+	['Source','DocProps','-','NewPage','Preview','-','Templates'],
 	['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
 	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
 	['Form','Checkbox','Radio','TextField','Textarea','Select','Button','ImageButton','HiddenField'],
@@ -114,8 +114,19 @@ FCKConfig.ToolbarSets["Default"] = [
 ] ;
 
 FCKConfig.ToolbarSets["Basic"] = [
-	['Bold','Italic','-','OrderedList','UnorderedList','-','Link','Unlink','-','About']
-] ;
+	['Source','Preview'],
+	['Cut','Copy','Paste','PasteText','PasteWord'],
+	['SpellCheck', 'Undo','Redo','Find','RemoveFormat'],
+	['Form','Checkbox','Radio','TextField','Textarea','Select','HiddenField'],
+	'/',
+	['Bold','Italic','Underline','StrikeThrough'],
+	['Outdent','Indent','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
+	['OrderedList','UnorderedList','Templates'],
+	['Link', 'Image','Table','Rule','Smiley','SpecialChar'],
+	'/',
+	['Style','FontFormat','FontName','FontSize'],
+	['TextColor','BGColor']
+	] ;
 
 FCKConfig.EnterMode = 'p' ;			// p | div | br
 FCKConfig.ShiftEnterMode = 'br' ;	// p | div | br
