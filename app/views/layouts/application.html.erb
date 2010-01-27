@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<%=APP_CONFIG[:domain]%>/stylesheets/blueprint/print.css" type="text/css" media="print">	
     <!--[if lt IE 8]><link rel="stylesheet" href="<%=APP_CONFIG[:domain]%>stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     
-    <%= javascript_include_tag 'fckeditor/fckeditor' %>
+    <%=javascript_include_tag "jquery", "application"%>
 
     <%= yield(:head) %>
   </head>
@@ -18,8 +18,14 @@
     <div class="container">
       
       <div id="logo" class="span-4">
-      <%= link_to image_tag("/images/spdg-logo.png"), root_path%>
+        <div class="logo-top">
+          <%= link_to image_tag("/images/logo-top.png"), root_path%>
+        </div>
+        <div class="logo-bottom">
+          <%= link_to image_tag("/images/logo-bottom.png"), root_path%>
+        </div>
       </div>
+      
       
       <div class="menu span-20 last">
         
@@ -78,7 +84,15 @@
       </div>
       
       
-      <div id="content" class="<%if @sidebar%>span-16<%else%>span-23<%end%> prepend-1 append-1">
+      <div id="content" class="<%if @sidebar%>span-16<%else%>span-22<%end%> prepend-1 append-1">
+        
+        <div class="slogan-top">
+          	<i>&ldquo;Continuing Progress Towards One Goal</i>
+        </div>
+        <div class="slogan-bottom">
+          <i>For a Unified Kansas Education&rdquo;</i>
+        </div>
+        
         <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <%- end -%>

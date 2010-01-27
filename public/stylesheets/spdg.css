@@ -31,6 +31,7 @@ body {
 }
 
 .menu ul {
+
 	list-style-type: none;
 	min-height: 25px;
 	padding: 0px;
@@ -65,11 +66,40 @@ body {
 	color: black;
 }
 
+#logo {
+	margin-top: 7px;
 
+}
+.logo-bottom {
+	margin-top: -30px;
+	margin-left: 2px;
+	padding-left: 20px;
+}
+
+.logo-top {
+	padding-left: 20px;
+}
+
+.slogan-top {
+	margin-top: -145px;
+	margin-left: 110px;
+	color: #a5b2d2;
+	font-size: 22px;
+	position: absolute;
+}
+
+.slogan-bottom {
+		margin-top: -115px;
+	margin-left: 115px;
+	color: #a5b2d2;
+	font-size: 22px;
+	position: absolute;
+
+}
 .login {
 	float: right;
 	margin-top: -90px;
-	padding-right: 10px;
+	padding-right: 17px;
 	font-size: 12px;
 }
 
@@ -100,14 +130,18 @@ padding: 10px;
 }
 
 #project_box{
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 5px;
+	background: #dce3f3;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-topleft: 10px;
+	-webkit-border-radius-topleft: 10px;
+	-webkit-border-radius-topright: 10px;
 	border: 1px solid #000;
+	padding-top:10px;
 }
 
 #project_header {
 	background: #dce3f3;
-	padding: 10px 30px 10px 30px;
+	padding: 0px 30px 10px 30px;
 	font-size: 17px;
 }
 
@@ -117,6 +151,7 @@ padding: 10px;
 
 #project_body {
 	padding: 0px 30px 0 30px;
+	background:white;
 }
 #flash_notice, #flash_error {
   padding: 5px 8px;

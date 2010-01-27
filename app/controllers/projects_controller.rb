@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  
+  $menu_tab = 'projects'
   def index
     @projects = Project.find(:all)
   end

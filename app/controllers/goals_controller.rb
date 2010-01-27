@@ -1,4 +1,6 @@
 class GoalsController < ApplicationController
+  
+  $menu_tab = 'goals'
   def index
     @goals = Goal.find(:first)
   end
