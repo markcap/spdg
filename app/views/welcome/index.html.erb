@@ -1,10 +1,5 @@
 
-<%if logged_in? && current_user.profile.nil?%>
-    Please take a minute to fill out your user information. This information will not be available to outside users and
-    will only be used internally.<br><br>
-    
-    <%= render "profiles/form", :p => Profile.new%>
-<%end%>
+
 <% if logged_in? && current_user.admin?%>
     <%= link_to "Add New Post", new_article_path %>
     <br><br>
