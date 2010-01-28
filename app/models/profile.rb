@@ -10,15 +10,15 @@ class Profile < ActiveRecord::Base
   end
 
   def is_readable_by(user, parent = nil)
-    self.user.eql?(user) or user.admin?
+    user != nil
   end
 
   def self.is_creatable_by(user, parent = nil)
-    self.user.eql?(user) or user.admin?
+    user != nil
   end
   
   def self.is_indexable_by(user, parent = nil)
-    self.user.eql?(user) or user.admin?
+    user != nil
   end
   
 end
