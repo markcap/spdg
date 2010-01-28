@@ -24,7 +24,7 @@ class AdminController < ApplicationController
       @profile.user = @user
       @profile.email = @user.email
       @profile.save
-      flash[:notice] = "Created user " + @user.email.to_s " and sent an invite email."
+      flash[:notice] = "Created user " + @user.email.to_s + " and sent an invite email."
       @user.forgot_password
       @user.save
       UserNotifier.deliver_invite(@user)
