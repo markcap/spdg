@@ -12,11 +12,23 @@ body {
 		font-family:Georgia,serif;
 }
 
-.container input{
+.container input[type=text], input[type=password]{
 		min-height: 16px;
 		padding: 5px 5px;
+		width: 160px;
 }
 
+.container input[type=text].big, input[type=password].big{
+		min-height: 16px;
+		padding: 5px 5px;
+		width: 360px;
+}
+
+
+#content {
+	margin-top: 20px;
+	min-height: 400px;
+}
 .menu {
 	background-image: url(../images/menu_background.png);
 	background-repeat: repeat-x;
@@ -74,7 +86,7 @@ body {
 }
 
 .slogan-top {
-	margin-top: -145px;
+	margin-top: -165px;
 	margin-left: 110px;
 	color: #a5b2d2;
 	font-size: 22px;
@@ -82,7 +94,7 @@ body {
 }
 
 .slogan-bottom {
-		margin-top: -115px;
+	margin-top: -135px;
 	margin-left: 115px;
 	color: #a5b2d2;
 	font-size: 22px;
@@ -96,7 +108,7 @@ body {
 	font-size: 12px;
 }
 
-.login input{
+.login input[type="text"], .login input[type="password"] {
 	width: 80px;
 	font-size: 11px;
 	padding: 0;

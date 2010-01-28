@@ -22,6 +22,11 @@ module ApplicationHelper
     return string
   end
   
+  def fname(profile)
+    name = ""
+    name = profile.firstname.to_s + " " + profile.lastname.to_s
+    return name
+  end
   
   
 end

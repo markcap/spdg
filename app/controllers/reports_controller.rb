@@ -1,4 +1,8 @@
 class ReportsController < ApplicationController
+  
+  before_filter :login_required
+  before_filter :has_permission?
+  
   def index
     @reports = Report.find(:all)
   end

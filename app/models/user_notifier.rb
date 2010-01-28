@@ -11,10 +11,16 @@ class UserNotifier < ActionMailer::Base
     @subject    += 'Your password has been reset'
   end
   
+  def invite(user)
+    setup_email(user)
+    @subject    += 'Welcome to the new SPDG Kansas website.'
+    @body[:url]  = "#{APP_CONFIG[:domain]}/users/reset_password/#{user.password_reset_code}" 
+  end
+  
   protected
   def setup_email(user)
     @recipients  = "#{user.email}"
-    @from        = "welcome@spdgkansas.org"
+    @from        = "helper@spdgkansas.org"
     @subject     = ""
     @sent_on     = Time.now
     @body[:user] = user

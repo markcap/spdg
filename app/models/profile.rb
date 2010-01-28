@@ -14,11 +14,11 @@ class Profile < ActiveRecord::Base
   end
 
   def self.is_creatable_by(user, parent = nil)
-     user != nil
+    self.user.eql?(user) or user.admin?
   end
   
   def self.is_indexable_by(user, parent = nil)
-    true 
+    self.user.eql?(user) or user.admin?
   end
   
 end

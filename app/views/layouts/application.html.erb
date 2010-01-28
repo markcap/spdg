@@ -35,7 +35,7 @@
             <br>
             <%= link_to "Logout", logout_path%> | 
             <%if !current_user.profile.nil?%>
-              <%= link_to "Info", profile_path(current_user.profile)%>
+              <%= link_to "Account", profile_path(current_user.profile)%>
             <%else%>
               <%= link_to "Create Profile", new_profile_path %>
             <%end%>
@@ -56,7 +56,8 @@
               <% end -%>
             </div>
               <div id="login_start">
-                Registered Users: <a href="#" class="login_link">Log In</a>
+                Registered Users: <%=spaces(3)%><button type="button" class="login_link">Log In</button><br>
+                <%=link_to "Forgot Password?", forgot_password_path%>
               </div>
             
           <%end%>
@@ -99,12 +100,6 @@
         
         <%= yield %>
         
-        <div id="footer" class=" span-22 last">
-            <br>
-          	&copy; <%=Time.now.year%> Kansas State Personnel Development Grant <%= spaces(10)%> <br>
-          	Question or Comment? <%=link_to "Contact Us", "#"%>.
-          	<br><br>
-        </div>
       </div>
       
       <%if @sidebar%>
@@ -118,8 +113,14 @@
           </div>
         <%end%>
       <%end%>
-      
+    
+    <div id="footer" class=" span-22 last">
+        <br>
+      	&copy; <%=Time.now.year%> Kansas State Personnel Development Grant <%= spaces(10)%> <br>
+      	Question or Comment? <%=link_to "Contact Us", "#"%>.
+      	<br><br>
     </div>
+  </div>
   </div>
   </body>
 </html>

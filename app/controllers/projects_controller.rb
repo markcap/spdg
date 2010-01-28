@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
   
+  before_filter :login_required
+  before_filter :has_permission?
+  
   $menu_tab = 'projects'
   def index
     @projects = Project.find(:all)

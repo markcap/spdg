@@ -2,14 +2,37 @@
 
 <% @user.password = @user.password_confirmation = nil %>
 
-<%= error_messages_for :user %>
-<% form_for :user, :url => users_path do |f| -%>
+<%= error_messages_for :user, :header_message => " ", :message => "We had some problems creating your account:" %>
 
-    <p><%= label_tag 'email' %><br/>
+<% form_for :user, :url => {:action => 'send_invite'} do |f| -%>
+
+    <p><%= label_tag 'email' %> <%=spaces(4)%> (this will also be their user name.)<br/>
     <%= f.text_field :email %></p>
-
-    <p><%= label_tag 'login' %><br/>
-    <%= f.text_field :login %></p>
+    
+    <div class="span-5">
+      <p>
+        <%= label_tag "First Name" %><br />
+        <%= text_field :profile, :firstname %>
+      </p>
+     </div>
+     <div class="span-5 append-12 last">
+         <p>
+           <%= label_tag "Last Name" %><br />
+           <%= text_field :profile,  :lastname %>
+         </p>
+     </div>
+      <p>
+        <%= label_tag :address %><br />
+        <%= text_area :profile, :address, :cols => "45", :rows => "6" %>
+      </p>
+      <p>
+        <%= label_tag "Institution/Program" %><br />
+        <%= text_field :profile, :institution, :class => "big" %>
+      </p>
+      <p>
+        <%= label_tag "Phone Number" %><br />
+        <%= text_field :profile, :phone %>
+      </p>
 
     <p><%= submit_tag 'Submit' %></p>
     

@@ -1,0 +1,19 @@
+<div id="general_item">
+  <%= f.label :Login %><br />
+  <%= f.text_field :login %>
+</div>
+<div id="general_item">
+  <%= f.label "Registered Email" %><br />
+  <%= f.text_field :email %>
+</div>
+<br>
+<br>
+<div id="general_item">
+  <%= f.label :"New Password" %><span class="small"> &nbsp;&nbsp;(Leave blank for no change.)</span><br />
+  <%= f.password_field :password %>
+</div>
+<div id="general_item">
+  <%= f.label "Confirm Password" %><br />
+  <%= f.password_field :password_confirmation %>
+</div>
+

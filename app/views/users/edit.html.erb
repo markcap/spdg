@@ -1,0 +1,15 @@
+<h3>Edit Account Information</h3><br>
+
+<%= error_messages_for :user, :header_message => " ", :message => "The following problems prevented your information from being saved:" %>
+
+<% form_for(@user) do |f| %>
+
+	<%= render :partial => "form", :locals => { :f => f } %>
+
+  <br>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+  
+  <%=link_to "<< Back to Account", profile_path(@user.profile)%>
+<% end %>

@@ -1,20 +1,41 @@
-<h2> User Information </h2>
+<div class="span-8 append-1">
+    <h2> User Information </h2>
 
+    <%=h fname(@profile) %>
+    <br>
+    <%=h @profile.institution %>
+    <br>
+    <%=h @profile.address %>
+    <br>
+    <%=h @profile.phone %>
+    <br>
+    <%=h @profile.email %>
+    <br>
 
-<%=h @profile.name %>
-<br>
-<%=h @profile.institution %>
-<br>
-<%=h @profile.address %>
-<br>
-<%=h @profile.phone %>
-<br>
-<%=h @profile.email %>
-<br>
+    <%if updatable(@profile)%>
+    <p>
+        <br>
+      <%= link_to "Edit", edit_profile_path(@profile) %>
+    </p>
+    <%end%>
+</div>
 
 <%if updatable(@profile)%>
-<p>
-    <br>
-  <%= link_to "Edit", edit_profile_path(@profile) %>
-</p>
+    <div class="span-10 append-1 last">
+        <h2> Account Information</h2>
+        <div class="span-4">
+            Username: <br>
+            Registered E-mail:<br>
+            Password:
+        </div>
+        <div class="span-6 last">
+            <%=@profile.user.login%> <br>
+            <%=@profile.user.email%> <br>
+            Hidden
+        </div>
+        <br><br><br><br>
+        
+        <%=link_to "Edit", edit_user_path(@profile.user)%> <br>
+    </div>
 <%end%>
+    

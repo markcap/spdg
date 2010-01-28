@@ -1,4 +1,8 @@
 class ProfilesController < ApplicationController
+  
+  before_filter :login_required
+  before_filter :has_permission?
+  
   def index
     @profiles = Profile.find(:all)
   end
