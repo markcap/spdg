@@ -15,8 +15,9 @@ class AdminController < ApplicationController
   
   def send_invite
     @user = User.new(params[:user])
-    @user.password = "holyfuck"
-    @user.password_confirmation = "holyfuck"
+    random_pass = Digest::SHA1.hexdigest("--#{Time.now.to_s}--")[0,8]
+    @user.password = random_pass
+    @user.password_confirmation = random_pass
     @user.login = @user.email
     success = @user && @user.save
     if success && @user.errors.empty?

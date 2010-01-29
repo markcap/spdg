@@ -15,3 +15,9 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+ActionMailer::Base.smtp_settings = {
+  :address  => "smtp.ku.edu",
+  :port  => 25,
+  :domain  => "www.ku.edu"
+}

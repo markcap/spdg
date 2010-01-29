@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = "We couldn't set up that account, sorry.  Please try again."
       render :action => 'new'
     end
   end
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
         current_user.password_confirmation = params[:password_confirmation]
         current_user.password = params[:password]
         current_user.password_reset_code = nil
-        flash[:notice] = current_user.save ? "Your password has been reset!" : "Your password was not reset."
+        flash[:notice] = current_user.save ? "Your password has been changed!" : "Your password was not reset."
         redirect_to(root_path) 
       else
         flash[:error] = "Your passwords did not match."

@@ -6,9 +6,9 @@
 
 <% form_for :user, :url => {:action => 'send_invite'} do |f| -%>
 
-    <p><%= label_tag 'email' %> <%=spaces(4)%> (this will also be their user name.)<br/>
+    <p><%= label_tag 'email' %> <%=spaces(4)%> (This will also be their user name. Required.)<br/>
     <%= f.text_field :email %></p>
-    
+    <b>The following information is optional:</b><br><br>
     <div class="span-5">
       <p>
         <%= label_tag "First Name" %><br />

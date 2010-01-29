@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find(params[:id])
     if @profile.update_attributes(params[:profile])
-      flash[:notice] = "Successfully updated profile."
+      flash[:notice] = "Successfully updated information."
       redirect_to @profile
     else
       render :action => 'edit'

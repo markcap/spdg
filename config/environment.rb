@@ -44,12 +44,6 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-# ActionMailer::Base.smtp_settings = {
-#   :address  => "smtp.ku.edu",
-#   :port  => 25,
-#   :domain  => "www.ku.edu"
-# }
-
 ExceptionNotifier.exception_recipients = %w(mark.desuu@gmail.com)
 ExceptionNotifier.sender_address = %("Application Error" <welcome@spdgkansas.org>)  
 ExceptionNotifier.email_prefix = "[spdg] "
