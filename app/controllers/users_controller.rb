@@ -52,8 +52,22 @@ class UsersController < ApplicationController
         current_user.password_confirmation = params[:password_confirmation]
         current_user.password = params[:password]
         current_user.password_reset_code = nil
-        flash[:notice] = current_user.save ? "Your password has been changed!" : "Your password was not reset."
-        redirect_to(root_path) 
+        #This next part is for when a user logs in for the first time. Sends them to some introduction stuff.
+        if current_user.first_login == nil
+          current_user.first_login = 1
+          if current_user.save
+            flash[:notice] = "Thank you for signing up for SPDGKansas.org. Please take some time to
+            verify that your information on file is correct. You can change this any time by click the Account link at the
+            top-right part of your page."
+            redirect_to(profile_path(current_user.profile))
+          else
+            flash[:notice] = "We had a problem accessing your account. We will be addressing this problem shortly."
+            redirect_to(root_path) 
+          end
+        else 
+          flash[:notice] = current_user.save ? "Your password has been reset!" : "Your password was not reset."
+          redirect_to(root_path) 
+        end
       else
         flash[:error] = "Your passwords did not match."
       end  

@@ -20,6 +20,8 @@ class SessionsController < ApplicationController
       handle_remember_cookie! new_cookie_flag
       redirect_back_or_default('/')
       flash[:notice] = "Logged in successfully"
+      user.last_login = Time.now
+      user.save
     else
       note_failed_signin
       @login       = params[:login]

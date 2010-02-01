@@ -1,7 +1,7 @@
 <div class="span-8 append-1">
     <h2> User Information </h2>
     
-    <%= (@profile.firstname.empty? || @profile.firstname.empty?) ? "" : "#{fname(@profile)} <br>"%>
+    <%= (@profile.firstname.empty? && @profile.lastname.empty?) ? "" : "#{fname(@profile)} <br>"%>
     <%= @profile.institution.empty? ? "" : "#{@profile.institution} <br>"%>
     <%= @profile.address.empty? ? "" : "#{@profile.address} <br>"%>
     <%= @profile.phone.empty? ? "" : "#{@profile.phone} <br>"%>
