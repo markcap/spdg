@@ -26,7 +26,7 @@ body {
 
 
 #content {
-	margin-top: 20px;
+	margin-top: 10px;
 	min-height: 400px;
 }
 .menu {
@@ -86,7 +86,7 @@ body {
 }
 
 .slogan-top {
-	margin-top: -165px;
+	margin-top: -155px;
 	margin-left: 110px;
 	color: #a5b2d2;
 	font-size: 22px;
@@ -94,7 +94,7 @@ body {
 }
 
 .slogan-bottom {
-	margin-top: -135px;
+	margin-top: -125px;
 	margin-left: 115px;
 	color: #a5b2d2;
 	font-size: 22px;
@@ -159,6 +159,23 @@ padding: 10px;
 	background:white;
 }
 
+#project-list {
+	list-style: none;
+}
+
+.admin-project-header {
+	height: 20px;
+	background-color: blue;
+	border: 1px solid black;
+	cursor: move;
+}
+
+.admin-project-body {
+	padding:15px;
+	border: 1px solid;
+	margin-bottom: 20px;
+}
+
 #footer {
   text-align: center;
 	font-size: 11px;
@@ -178,6 +195,103 @@ padding: 10px;
 	font-size: 13px;
 	line-height: 20px;
 }
+
+.my_project_body {
+	border: 2px solid #aabdd9;
+	min-height: 280px;
+	padding: 20px;
+}
+
+/********************* Project Tabs ***********************/
+
+#projects_tabs {
+}
+
+#project_tabs ul{
+		list-style-type: none;
+		padding: 0px;
+		margin: 0;
+}
+
+#project_tabs ul li {
+	background-image:url(../images/project-tabs/styleOp_s_back.gif);
+	background-repeat:repeat-x;
+	float:left;
+	cursor:pointer;
+	display: block;
+	text-align: center;
+	font-size: 13px;
+	color: white;
+}
+
+#project_tabs ul li a{
+	text-decoration: none;
+	color: white;
+}
+
+#project_tabs ul li.selected a{
+	text-decoration: none;
+	color: black;
+}
+
+#project_tabs ul li .left-tab-border{
+	height: 33px;
+	width:9px;
+	float:left;
+	background-color:#FFFFFF;
+	background-image:url(../images/project-tabs/styleOp_s_left.gif);
+}
+
+#project_tabs ul li .right-tab-border{
+	height: 33px;
+	width:9px;
+	float:right;
+	background-color:#FFFFFF;
+	background-image:url(../images/project-tabs/styleOp_s_right.gif);
+}
+
+#project_tabs ul li .tab-content{
+	min-width:113px;
+	float: left;
+	text-align: center;
+	padding-top: 13px;
+}
+
+#project_tabs ul li.selected {
+	background-color:#FFFFFF;
+	background-image:url(../images/project-tabs/styleOp_n_back.gif);
+	background-repeat:repeat-x;
+	float:left;
+	cursor:pointer;
+	display: block;
+	text-align: center;
+	font-size: 13px;
+	color: black;
+}
+
+#project_tabs ul li.selected .left-tab-border{
+	height: 33px;
+	width:7px;
+	float:left;
+	background-color:#FFFFFF;
+	background-image:url(../images/project-tabs/styleOp_n_left.gif);
+}
+
+#project_tabs ul li.selected .right-tab-border{
+	height: 33px;
+	width:7px;
+	float:right;
+	background-color:#FFFFFF;
+	background-image:url(../images/project-tabs/styleOp_n_right.gif);
+}
+
+#project_tabs ul li.selected .tab-content{
+	min-width:113px;
+	float: left;
+	text-align: center;
+	padding-top: 13px;
+}
+
 /**********************************************************************************************************************/
 
 #flash_notice, #flash_error {

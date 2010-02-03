@@ -1,28 +1,7 @@
-<% title "Project" %>
+<h3><%=@project.name%></h3>
 
-<p>
-  <strong>Info:</strong>
-  <%=h @project.info %>
-</p>
-<p>
-  <strong>Contact Name:</strong>
-  <%=h @project.contact_name %>
-</p>
-<p>
-  <strong>Contact Email:</strong>
-  <%=h @project.contact_email %>
-</p>
-<p>
-  <strong>Contact Number:</strong>
-  <%=h @project.contact_number %>
-</p>
-<p>
-  <strong>Website:</strong>
-  <%=h @project.website %>
-</p>
+<%= render "tabs"%>
 
-<p>
-  <%= link_to "Edit", edit_project_path(@project) %> |
-  <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", projects_path %>
-</p>
+<div class="span-20 my_project_body">
+    stufffff
+</div>

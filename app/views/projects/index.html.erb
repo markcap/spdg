@@ -5,13 +5,6 @@
         <div id="project_box">
             <div id="project_header">
                 <b><%= link_to p.name, p.website, :target => "new"%></b>
-                <%if logged_in? && updatable(p)%>
-                    <div class="right">
-                    <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p)%>
-                    <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), 
-                                    :confirm => 'Are you sure?', :method => :delete%>
-                    </div>
-                <%end%>
             </div>
             <div id="project_body">
                 <br>

@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   
   before_filter :login_required
-  before_filter :has_permission?
+  before_filter :is_admin?
   
   $menu_tab = 'admin'
   
@@ -34,9 +34,20 @@ class AdminController < ApplicationController
       flash[:error]  = "You have entered an invalid email address. Please try again."
       redirect_to invite_path
     end
-    
-
-
   end
 
+  def manage_projects
+    @projects = Project.all(:order => "position ASC")
+  end
+  
+  def prioritize_projects
+    if current_user.admin?
+    projects = Project.all
+    projects.each do |project|
+      project.position = params['project'].index(project.id.to_s) + 1
+      project.save
+    end
+    render :nothing => true
+  end
+  end
 end

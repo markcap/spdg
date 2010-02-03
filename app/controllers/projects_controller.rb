@@ -3,12 +3,15 @@ class ProjectsController < ApplicationController
   before_filter :login_required
   before_filter :has_permission?
   
-  $menu_tab = 'projects'
+  $menu_tab = 'My Project'
+  
   def index
-    @projects = Project.find(:all)
+    $menu_tab = 'projects'
+    @projects = Project.find(:all, :order => 'position ASC')
   end
   
   def show
+    @project_tab = "home"
     @project = Project.find(params[:id])
   end
   
@@ -45,5 +48,10 @@ class ProjectsController < ApplicationController
     @project.destroy
     flash[:notice] = "Successfully destroyed project."
     redirect_to projects_url
+  end
+  
+  def information
+    @project_tab = "information"
+    @project = Project.find(params[:id])
   end
 end

@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   include AuthenticatedSystem
   
+  def is_admin?
+    unless current_user.admin?
+      redirect_to root_path
+    end
+  end
+  
 end

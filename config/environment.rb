@@ -44,6 +44,3 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-ExceptionNotifier.exception_recipients = %w(mark.desuu@gmail.com)
-ExceptionNotifier.sender_address = %("Application Error" <welcome@spdgkansas.org>)  
-ExceptionNotifier.email_prefix = "[spdg] "

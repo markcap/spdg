@@ -26,3 +26,7 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+ExceptionNotifier.exception_recipients = %w(mark.desuu@gmail.com)
+ExceptionNotifier.sender_address = %("Application Error" <welcome@spdgkansas.org>)  
+ExceptionNotifier.email_prefix = "[spdg] "
