@@ -1,7 +1,8 @@
 class GoalsController < ApplicationController
   
-  $menu_tab = 'goals'
+
   def index
+    $menu_tab = 'goals'
     @goals = Goal.find(:first)
   end
   
@@ -24,6 +25,7 @@ class GoalsController < ApplicationController
   end
   
   def edit
+    $menu_tab = 'admin'
     @goal = Goal.find(params[:id])
   end
   

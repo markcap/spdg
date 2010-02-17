@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
   before_filter :login_required
   before_filter :has_permission?
   
-  $menu_tab = 'my home'
   
   def index
     $menu_tab = 'projects'
@@ -11,11 +10,13 @@ class ProjectsController < ApplicationController
   end
   
   def show
+    $menu_tab = 'my home'
     @project_tab = "home"
     @project = Project.find(params[:id])
   end
   
   def new
+    $menu_tab = 'admin'
     @project = Project.new
   end
   
@@ -86,11 +87,13 @@ class ProjectsController < ApplicationController
   end
   
   def current_survey
+    $menu_tab = 'my home'
     @project_tab = "current_survey"
     @project = Project.find(params[:id])
   end
   
   def past_surveys
+    $menu_tab = 'my home'
     @project_tab = "past_surveys"
     @project = Project.find(params[:id])
     @surveys = @project.surveys

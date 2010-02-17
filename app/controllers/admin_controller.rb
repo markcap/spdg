@@ -3,13 +3,14 @@ class AdminController < ApplicationController
   before_filter :login_required
   before_filter :is_admin?
   
-  $menu_tab = 'admin'
+
   
   def index
-
+    $menu_tab = 'admin'
   end
   
   def invite
+    $menu_tab = 'admin'
     @user = User.new
   end
   
@@ -37,6 +38,7 @@ class AdminController < ApplicationController
   end
 
   def manage_projects
+    $menu_tab = 'admin'
     @projects = Project.all(:order => "position ASC")
   end
   

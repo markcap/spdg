@@ -1,5 +1,6 @@
 class SurveysController < ApplicationController
   def index
+    $menu_tab = 'admin'
     @surveys = Survey.find(:all, :order => 'ends_on ASC')
   end
   
@@ -8,6 +9,7 @@ class SurveysController < ApplicationController
   end
   
   def new
+    $menu_tab = 'admin'
     @survey = Survey.new
   end
   
@@ -24,6 +26,7 @@ class SurveysController < ApplicationController
   end
   
   def edit
+    $menu_tab = 'admin'
     @survey = Survey.find(params[:id])
   end
   
