@@ -51,6 +51,7 @@ class ProjectsController < ApplicationController
   end
   
   def information
+    $menu_tab = 'my home'
     @project_tab = "information"
     @project = Project.find(params[:id])
     @contact = Contact.new
