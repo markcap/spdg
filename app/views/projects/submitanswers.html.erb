@@ -1,0 +1,11 @@
+<h3><%=@project.name%></h3>
+
+<%= render "tabs"%>
+
+<div class="span-20 my_project_body">
+    Thank you for submitting your answers. The survey has been updated and you can continue to make changes to it through
+    <%= nice_date(@survey.ends_on)%>.<br><br>
+    
+    Your survey is currently <b><%=@survey.completion%>%</b> complete.<br><br>
+    <%=link_to "Edit Survey", "#"%> <%= spaces(2)%> <%= link_to "Project Home", project_path(@survey.project)%>
+</div>

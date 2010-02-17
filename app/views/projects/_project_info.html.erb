@@ -1,0 +1,24 @@
+
+<h3><%=link_to p.name, project_path(p) -%></h3>
+ <%= p.info%>
+ <% if !p.contacts.empty?%>
+     <br><br><hr>
+     Contact information:<br><br>
+ <%end%>
+ <% p.contacts.each_with_index do |contact, index|%>
+     <%if ((index + 1) < p.contacts.size) && ((index + 1) % 3 != 0)%>
+         <div class="contact_float">
+     <%else%>
+         <div class="contact">
+     <%end%>
+     <%= contact.name.empty? ? "" : "#{contact.name} <br>"%>
+     <%= contact.title.empty? ? "" : "#{contact.title} <br>"%>
+     <%= contact.address.empty? ? "" : "#{line_break(contact.address)} <br>"%>
+     <%= contact.email.empty? ? "" : "#{contact.email} <br>"%>
+     <%= contact.phone.empty? ? "" : "#{contact.phone} <br>"%>
+     <%= link_to "Edit", edit_contact_path(contact)%> <%=spaces(2)%>
+     <%= link_to "Delete", contact_path(contact), :confirm => 'Are you sure?', :method => :delete%>
+
+     </div>   
+ <%end%>
+<br>

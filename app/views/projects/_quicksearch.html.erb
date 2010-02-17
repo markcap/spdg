@@ -1,0 +1,19 @@
+<ul class="autocomplete_list">
+  <% @project = Project.find(params[:project_id])%>
+  <% iteration = 0..19%>
+  <% iteration.each do |i| -%>
+
+	<% name = @new_names[i]%>
+	<% unless name.nil?%>
+	
+    <li class="autocomplete_item" onClick="window.location = '<%= add_user_commit_project_path(@project, :user_id => name.id, :change => 'add') %>'">
+		
+		<b><%= name.lastname.to_s + ", " + name.firstname.to_s %></b><br>
+		
+		<span class="small">
+		<b>Email: </b><%= name.email%></span>
+			
+	</li>
+	<% end %>
+  <% end -%>
+</ul>

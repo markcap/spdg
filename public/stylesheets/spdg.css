@@ -76,9 +76,10 @@ body {
 
 }
 .logo-bottom {
-	margin-top: -30px;
+	margin-top: 75px;
 	margin-left: 2px;
 	padding-left: 20px;
+		position: absolute;
 }
 
 .logo-top {
@@ -132,6 +133,18 @@ background-color: #dce3f3;
 -webkit-border-radius: 5px;
 border: 1px solid #000;
 padding: 10px;
+min-height: 125px;
+}
+
+#projects_taskbar {
+	width: 25%;
+	background-color: #dce3f3;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #000;
+	padding: 10px;
+	min-height: 125px;
+	float:right;
 }
 
 #project_box{
@@ -155,7 +168,7 @@ padding: 10px;
 }
 
 #project_body {
-	padding: 0px 30px 0 30px;
+	padding: 0px 30px 30px 30px;
 	background:white;
 }
 
@@ -202,6 +215,60 @@ padding: 10px;
 	padding: 20px;
 }
 
+.small_form {
+	font-size: 11px;
+}
+
+.small_form input[type="text"]{
+	width: 120px;
+}
+
+.small_form textarea{
+	width: 290px;
+	height: 70px;
+}
+
+.small_red {
+	color: red;
+	font-size: 10px;
+}
+
+.contact_float {
+	height: 150px;
+	float:left;
+	width: 30%;
+	margin-right: 10px;
+}
+.contact{
+	height: 150px;
+}
+
+.survey_box { 
+	margin-bottom: 10px;
+	padding: 15px;
+}
+.complete {
+	background-color: #CFC;
+	border: 2px solid #54c06e;
+}
+
+.incomplete {
+	border: 2px solid #c55d7d;
+	background-color: #f8b7cb;
+}
+
+#survey_form {
+	
+}
+#survey_form input, textarea, select{
+	font-size: 13px;
+}
+#survey_form input[type="text"].name{
+	width: 400px;
+}
+#survey_form input[type="text"].date{
+	width: 200px;
+}
 /********************* Project Tabs ***********************/
 
 #projects_tabs {
@@ -292,6 +359,14 @@ padding: 10px;
 	padding-top: 13px;
 }
 
+select{
+	font-size: 12px;
+	padding: 2px;
+}
+
+textarea{ 
+	padding: 5px;
+	}
 /**********************************************************************************************************************/
 
 #flash_notice, #flash_error {

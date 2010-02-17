@@ -80,3 +80,14 @@ body {
   font-size: 12px;
   list-style: disc;
 }
+
+#fivehundred_error_box {
+	padding: 20px;
+	width: 60%;
+}
+
+.fivehundred_error_title {
+	font-weight: bold;
+	font-size: 15px;
+	color: #7c6b52;
+}

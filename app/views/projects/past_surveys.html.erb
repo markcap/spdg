@@ -1,0 +1,10 @@
+<h3><%=@project.name%></h3>
+
+<%= render "tabs"%>
+
+<div class="span-20 my_project_body">
+    <b> Past Surveys in chronological order:</b><br><br>
+    <% @surveys.each do |s|%>
+        <%=link_to s.name, survey_path(s)%><br>
+    <%end%>
+</div>

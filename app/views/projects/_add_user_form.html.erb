@@ -1,0 +1,6 @@
+<b> Add User</b><br><br>
+    Search by name: <br>
+    <%= text_field_with_auto_complete :profile, :lastname, {}, {:url=>{:action=>'auto_complete_for_profile_lastname', :project_id => @project.id}} %> <br><br>
+
+    Search by email: <br>
+    <%= text_field_with_auto_complete :profile, :email, {}, {:url=>{:action=>'auto_complete_for_profile_email', :project_id => @project.id}} %> 

@@ -1,0 +1,35 @@
+<div class="span-10 small_form">
+<%= error_messages_for :contact %>
+<% form_for @contact do |f| %>
+
+    <span class="small_red">(*) Required </span><br><br>
+
+    <div class="span-4">
+        <%= f.label :name %><span class="small_red"> *</span><br />
+        <%= f.text_field :name %>
+    </div>
+    <div class="span-4 last">
+        <b> Title or Position</b><br />
+        <%= f.text_field :title %>
+    </div>
+    <div class="span-8 last">
+        <%= f.label :address %><br />
+        <%= f.text_area :address %>
+    </div>
+    <div class="span-4">
+        <%= f.label :phone %><br />
+        <%= f.text_field :phone %>
+    </div>
+    <div class="span-4 last">
+        <%= f.label :email %><br />
+        <%= f.text_field :email %>
+    </div>
+    <%= f.hidden_field :project_id, :value => params[:id]%>
+    <div class="span-4 last">
+      <br><br>
+      <%= f.submit "Submit" %>
+     </div>
+     
+<% end %>
+</div>
+

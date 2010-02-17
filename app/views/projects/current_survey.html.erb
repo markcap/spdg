@@ -1,0 +1,16 @@
+<h3><%=@project.name%></h3>
+
+<%= render "tabs"%>
+
+<div class="span-20 my_project_body">
+    <% if @project.active_surveys.size > 1 && params[:survey_id].nil?%>
+        You currently have <%= @project.active_surveys.size%> outstanding surveys.<br><br>
+        <%@project.active_surveys.each do |s|%>
+            <%= link_to s.name, current_survey_project_path(@project, :survey_id => s.id)%> (<%=s.completion%>% completed)<br>
+        <%end%>
+    <%elsif @project.active_surveys.size > 1 && !params[:survey_id].nil?%>
+        <%= render :partial => 'surveys/survey', :locals => {:survey => Survey.find(params[:survey_id].to_i)}%>
+    <%else%>
+        <%= render :partial => 'surveys/survey', :locals => {:survey => @project.active_surveys.first}%>
+    <%end%>
+</div>

@@ -9,11 +9,17 @@
                     :confirm => 'Are you sure?', :method => :delete%>
     </div>
 
-    <%= @project.info%>
-    <br><br><hr>
-    Contact information:<br>
-    <%= @project.contact_name%><br>
-    <%= @project.contact_number%><br>
-    <%= @project.contact_email%><br><br>
-    Users in Project: <%=@project.users.count%>
+    <%= render :partial => 'project_info', :locals => {:p => @project}%>
+    
+    <%if updatable(@project)%>
+    <br>
+
+            <%= link_to "Add Contact", new_project_contact_path(@project), :class => 'add_contact_link' %>
+            <div id="add_contact_form" style="display:none;">
+                <b> Add Contact</b> <br>
+                <%= render 'contacts/form'%>
+            </div>
+
+    <%end%>
+        
 </div>

@@ -1,0 +1,31 @@
+
+
+
+<h3>  <%=h @survey.name %></h3>
+
+<p>
+  <strong>Project:</strong>
+  <%=h @survey.project.name%>
+</p>
+
+<p>
+  <strong>Started On:</strong>
+  <%=h nice_date(@survey.starts_on) %>
+</p>
+<p>
+  <strong>Ended On:</strong>
+  <%=h nice_date(@survey.ends_on) %>
+</p>
+
+<%@survey.questions.each do |q|%>
+    <b><%=q.content%></b><br><br>
+    <%= q.answer.content%><br><br>
+<%end%>
+
+<%if current_user.admin?%>
+    <p>
+      <%= link_to "Edit", edit_survey_path(@survey) %> |
+      <%= link_to "Delete", @survey, :confirm => 'Are you sure?', :method => :delete %> |
+      <%= link_to "Back to Surveys", surveys_path %>
+    </p>
+<%end%>

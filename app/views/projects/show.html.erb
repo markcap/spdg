@@ -1,7 +1,35 @@
+<%= javascript_include_tag :defaults %>
+
 <h3><%=@project.name%></h3>
 
 <%= render "tabs"%>
 
 <div class="span-20 my_project_body">
-    stufffff
+    <div id="projects_taskbar">
+    User List: <br><br>
+    <%@project.users.each do |u|%>
+        <%=u.email%>
+        <% if !u.profile.nil?%>
+            <br>
+            (<%= u.profile.firstname.to_s%> <%= u.profile.lastname.to_s%>)
+            <% if current_user.admin?%>
+                <br>
+                <%= link_to 'Remove', add_user_commit_project_path(@project, :user_id => u.id, :change => 'delete') %><br>
+            <%end%>
+        <%end%>
+        <br>
+    <%end%>
+    
+    <%if current_user.admin?%>
+
+        <div class="span-10">
+            <%= link_to "Add user to this project", add_user_project_path(@project), :class => 'add_user_link' %>
+            <div id="add_user_form" style="display:none;">
+                <%= render 'add_user_form'%>
+            </div>
+        </div>
+    <%end%>
+    
+    </div>
+
 </div>

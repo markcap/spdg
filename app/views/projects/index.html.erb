@@ -8,13 +8,10 @@
             </div>
             <div id="project_body">
                 <br>
-                <%= p.info%>
-                <br><br><hr>
-                Contact information:<br>
-                <%= p.contact_name%><br>
-                <%= p.contact_number%><br>
-                <%= p.contact_email%><br><br>
+                <%= render :partial => 'public_project_info', :locals => {:p => p}%>
+                            <br>
             </div>
+
         </div>    
         <br>
     <%end%>

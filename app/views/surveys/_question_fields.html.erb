@@ -1,0 +1,8 @@
+<p class="fields">
+  <%= f.label :content, "Question" %> <%=spaces(3)%> <%= f.select :question_type, Question::QUESTION_TYPES%> <%=spaces(3)%> 
+  <%= link_to image_tag("/images/icons/help.png"), question_type_help_path, :popup => ['new_win', 'height=700,width=700,scrollbar="yes"']%><%=spaces(3)%> 
+  <%= link_to_remove_fields "Remove", f %><br />
+  <%= f.text_area :content, :rows => 2, :cols => 90 %><br />
+  
+</p>
+

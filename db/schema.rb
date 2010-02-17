@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100201202222) do
+ActiveRecord::Schema.define(:version => 20100215190510) do
+
+  create_table "answers", :force => true do |t|
+    t.text     "content"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -17,6 +24,17 @@ ActiveRecord::Schema.define(:version => 20100201202222) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "email"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
   end
 
   create_table "goals", :force => true do |t|
@@ -39,9 +57,6 @@ ActiveRecord::Schema.define(:version => 20100201202222) do
 
   create_table "projects", :force => true do |t|
     t.text     "info"
-    t.string   "contact_name"
-    t.string   "contact_email"
-    t.string   "contact_number"
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -49,9 +64,22 @@ ActiveRecord::Schema.define(:version => 20100201202222) do
     t.integer  "position"
   end
 
+  create_table "projects_contacts", :id => false, :force => true do |t|
+    t.integer "project_id"
+    t.integer "contact_id"
+  end
+
   create_table "projects_users", :id => false, :force => true do |t|
     t.integer "project_id"
     t.integer "user_id"
+  end
+
+  create_table "questions", :force => true do |t|
+    t.text     "content"
+    t.integer  "survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "question_type"
   end
 
   create_table "reports", :force => true do |t|
@@ -71,6 +99,17 @@ ActiveRecord::Schema.define(:version => 20100201202222) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "surveys", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "starts_on"
+    t.datetime "ends_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "completion"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40

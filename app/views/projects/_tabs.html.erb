@@ -12,14 +12,16 @@
             <div class="tab-content"><%= link_to 'Information', information_project_path(@project)%></div>
             <div class="right-tab-border">&nbsp;</div>
         </li>
-        <li <% if @project_tab=="current_survey"%> class="selected" <%end%> 
-        onclick="location.href='<%=projects_path%>';">
-            <div class="left-tab-border">&nbsp;</div>
-            <div class="tab-content">Current Survey</div>
-            <div class="right-tab-border">&nbsp;</div>
-        </li>
+        <%if !@project.active_surveys.empty?%>
+            <li <% if @project_tab=="current_survey"%> class="selected" <%end%> 
+            onclick="location.href='<%=current_survey_project_path(@project)%>';">
+                <div class="left-tab-border">&nbsp;</div>
+                <div class="tab-content"><%=link_to 'Current Survey', current_survey_project_path(@project)%></div>
+                <div class="right-tab-border">&nbsp;</div>
+            </li>
+        <%end%>
         <li <% if @project_tab=="past_surveys"%> class="selected" <%end%> 
-        onclick="location.href='<%=projects_path%>';">
+        onclick="location.href='<%=past_surveys_project_path(@project)%>';">
             <div class="left-tab-border">&nbsp;</div>
             <div class="tab-content">Past Surveys</div>
             <div class="right-tab-border">&nbsp;</div>

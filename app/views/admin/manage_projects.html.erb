@@ -12,14 +12,8 @@
                                 :confirm => 'Are you sure?', :method => :delete%>
                 </div>
                     
-                <h3><%=link_to p.name, project_path(p) -%></h3>
-                <%= p.info%>
-                <br><br><hr>
-                Contact information:<br>
-                <%= p.contact_name%><br>
-                <%= p.contact_number%><br>
-                <%= p.contact_email%><br><br>
-                Users in Project: <%=p.users.count%>
+                <%= render :partial => 'projects/project_info', :locals => {:p => p}%>
+                <br>
             </div>
           </li>
         <% end %>

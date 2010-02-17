@@ -1,0 +1,21 @@
+<p><%= link_to "New Survey", new_survey_path %></p>
+
+<%@surveys.each do |s|%>
+    <%if !s.completion.nil? && s.completion < 100%>
+        <div class="survey_box incomplete">
+    <%else%>
+        <div class="survey_box complete">
+    <%end%>
+        <div class="right">
+            <%=link_to image_tag("../images/icons/edit.gif"), edit_survey_path(s)%>
+            <%=spaces(5)%>
+            <%=link_to image_tag("../images/icons/delete.gif"), survey_path(s),
+             :confirm => 'Are you sure you want to delete this survey?', :method => :delete%>
+        </div>
+        <b><%= link_to s.name, survey_path(s)%></b><br><br>
+        
+        Project: <%=s.project.name%><br>
+        Due Date: <%= nice_date(s.ends_on)%><br>
+        Status: <b><%=s.completion%>%</b> Complete
+    </div>
+<%end%>
