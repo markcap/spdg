@@ -1,5 +1,6 @@
 
 <h3><%= survey.name%></h3>
+(You can go back and update this survey at any time until <%=nice_date(survey.ends_on)%>.)<br><br>
 
 <%form_tag submitanswers_project_path(@project) do %>
     <% survey.questions.each_with_index do |q, index|%>
@@ -16,5 +17,5 @@
             <%= text_field :answer_hash, "#{q.answer.id}", :style => 'width:630px', :value => q.answer.content%><br><br>
         <%end%>
     <%end%>
-    <%= submit_tag "Submit" %>
+    <%= submit_tag "Save" %>
 <%end %>

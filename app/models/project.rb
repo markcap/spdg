@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   has_many :contacts
   has_many :surveys
   
+  
   def self.is_indexable_by(user, parent = nil)
     return true
   end
@@ -12,7 +13,7 @@ class Project < ActiveRecord::Base
   end
 
   def is_updatable_by(user, parent = nil)
-    user.admin?
+    self.users.include?(user) || user.admin?
   end
 
   def is_deletable_by(user, parent = nil)
@@ -20,7 +21,7 @@ class Project < ActiveRecord::Base
   end
 
   def is_readable_by(user, parent = nil)
-    return true
+    self.users.include?(user) || user.admin?
   end
   
   def active_surveys

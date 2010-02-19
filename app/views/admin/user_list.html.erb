@@ -1,0 +1,37 @@
+<h3> List of Users </h3>
+
+<b>Admins:</b><br><br>
+<% @admins.each do |u|%>
+    <% if !u.profile.firstname.nil? || !u.profile.firstname.nil?%>
+        <b><%= u.profile.lastname%>, <%=u.profile.firstname%></b><br>
+    <%end%>
+    <%=u.email%><br>
+    Login: <%= u.login%><br>
+    Projects: 
+    <% u.projects.each do |p|%>
+        <%= link_to p.name, project_path(p)%>
+        <% unless p.id == u.projects.last.id%>
+            ,
+        <%end%>
+    <%end%>
+    <br>
+    <span class="small"><%=link_to "Remove Admin", :action => 'change_admin', :change => 'remove', :user_id => u.id%></span><br><br>
+<%end%>
+<hr>
+<b>Normal Users:</b><br><br>
+<%@users.each do |u|%>
+    <% if !u.profile.firstname.nil? || !u.profile.firstname.nil?%>
+        <b><%= u.profile.lastname%>, <%=u.profile.firstname%></b><br>
+    <%end%>
+    <%=u.email%><br>
+    Login: <%= u.login%><br>
+    Projects: 
+    <% u.projects.each do |p|%>
+        <%= link_to p.name, project_path(p)%>
+        <% unless p.id == u.projects.last.id%>
+            ,
+        <%end%>
+    <%end%>
+    <br>
+    <span class="small"><%=link_to "Make Admin", :action => 'change_admin', :change => 'add', :user_id => u.id%></span><br><br>
+<%end%>

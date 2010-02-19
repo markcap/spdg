@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   
-  before_filter :login_required
-  before_filter :has_permission?
+  before_filter :login_required, :except => :index
+  before_filter :has_permission?, :except => :index
   
   
   def index
@@ -87,9 +87,18 @@ class ProjectsController < ApplicationController
   end
   
   def current_survey
+    
     $menu_tab = 'my home'
     @project_tab = "current_survey"
     @project = Project.find(params[:id])
+    
+    #This is basically permissions for this method
+    if !params[:survey_id].nil?
+      survey = Survey.find(params[:survey_id].to_i)
+      if survey.project != @project || survey.ends_on < Time.now
+        redirect_to error_url
+      end
+    end
   end
   
   def past_surveys

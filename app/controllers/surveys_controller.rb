@@ -1,4 +1,8 @@
 class SurveysController < ApplicationController
+  
+  before_filter :login_required
+  before_filter :has_permission?
+  
   def index
     $menu_tab = 'admin'
     @surveys = Survey.find(:all, :order => 'ends_on ASC')

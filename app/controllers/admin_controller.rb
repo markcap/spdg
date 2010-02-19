@@ -44,12 +44,33 @@ class AdminController < ApplicationController
   
   def prioritize_projects
     if current_user.admin?
-    projects = Project.all
-    projects.each do |project|
-      project.position = params['project'].index(project.id.to_s) + 1
-      project.save
+      projects = Project.all
+      projects.each do |project|
+        project.position = params['project'].index(project.id.to_s) + 1
+        project.save
+      end
+      render :nothing => true
     end
-    render :nothing => true
   end
+  
+  def user_list
+    @admins = User.is_admin.sort_by {|x| x.profile['lastname']}
+    @users = User.is_not_admin.sort_by {|x| x.profile['lastname']}
   end
+  
+  def change_admin
+    @user = User.find(params[:user_id])
+    if params[:change] == "remove"
+      @user.admin = 0
+      flash[:notice] = "User removed as an admin."
+    else
+      @user.admin = 1
+      flash[:notice] = "User added as an admin."
+    end
+    
+    if @user.save
+      redirect_to user_list_path
+    end    
+  end
+  
 end

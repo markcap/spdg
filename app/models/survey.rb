@@ -8,4 +8,25 @@ class Survey < ActiveRecord::Base
   named_scope :complete, :conditions => ['completion = ?', 100], :order => 'ends_on DESC'
   named_scope :incomplete, :conditions => ['completion < ?', 100], :order => 'ends_on DESC'
   named_scope :active, :conditions => ['ends_on > ?', Time.now], :order => 'ends_on DESC'
+  
+    
+  def self.is_indexable_by(user, parent = nil)
+    user.admin?
+  end
+
+  def self.is_creatable_by(user, parent = nil)
+    user.admin?
+  end
+
+  def is_updatable_by(user, parent = nil)
+    self.project.users.include?(user) || user.admin?
+  end
+
+  def is_deletable_by(user, parent = nil)
+    user.admin?
+  end
+
+  def is_readable_by(user, parent = nil)
+    self.project.users.include?(user) || user.admin?
+  end
 end

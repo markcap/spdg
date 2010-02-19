@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   validates_length_of       :email,    :within => 6..100 #r@a.wk
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
+  
+  named_scope :is_admin, :conditions => ['admin = ?', 1]
+  named_scope :is_not_admin, :conditions => ['admin = ? OR admin IS ?', 0, nil]
 
   
 

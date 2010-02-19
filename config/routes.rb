@@ -35,6 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   map.invite '/admin/invite', :controller => 'admin', :action => 'invite'
   map.manage_projects '/admin/manage_projects', :controller => 'admin', :action => 'manage_projects'
   map.prioritize_projects '/admin/prioritize_projects', :controller => 'admin', :action => 'prioritize_projects'
+  map.user_list '/admin/user_list', :controller => 'admin', :action => 'user_list'
   map.question_type_help '/question_type_help', :controller => 'surveys', :action => 'question_type_help'
   
   map.connect ':controller/:action/:id'
