@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100215190510) do
+ActiveRecord::Schema.define(:version => 20100223201713) do
 
   create_table "answers", :force => true do |t|
     t.text     "content"
@@ -99,6 +99,16 @@ ActiveRecord::Schema.define(:version => 20100215190510) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "survey_files", :force => true do |t|
+    t.integer  "survey_id"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+  end
 
   create_table "surveys", :force => true do |t|
     t.string   "name"

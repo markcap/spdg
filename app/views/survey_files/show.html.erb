@@ -1,0 +1,16 @@
+<% title "Survey File" %>
+
+<p>
+  <strong>Survey:</strong>
+  <%=h @survey_file.survey_id %>
+</p>
+<p>
+  <strong>Comment:</strong>
+  <%=h @survey_file.comment %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_survey_file_path(@survey_file) %> |
+  <%= link_to "Destroy", @survey_file, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", survey_files_path %>
+</p>

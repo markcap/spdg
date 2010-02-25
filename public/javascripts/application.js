@@ -29,5 +29,13 @@ jQuery(document).ready(function() {
 				jQuery(".add_user_link").hide();
 				return false;
 			});
+			
+			jQuery("#attachment_form").hide();
+			jQuery(".add_attachment_link").click(function()
+				{
+					jQuery("#attachment_form").fadeIn(500);
+					jQuery(".add_attachment_link").hide();
+					return false;
+				});
 });
 

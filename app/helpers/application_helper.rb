@@ -14,6 +14,20 @@ module ApplicationHelper
     return d.strftime("%B %e, %Y")
   end
   
+  def brief_date(d)
+    return d.strftime("%m/%d/%y")
+  end
+  
+  def print_days_remaining(d)
+    if d == 0
+      return "Today"
+    elsif d == 1
+      return "1 Day"
+    else
+      return d.to_s + " Days"
+    end
+  end
+  
   def spaces(s) # to insert a defined number of spaces into html
     string = ""
     s.times do |e|

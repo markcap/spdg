@@ -1,6 +1,10 @@
 
 <h3><%=link_to p.name, project_path(p) -%></h3>
  <%= p.info%>
+ <% if !p.website.nil? && !p.website.blank?%>
+     <br><br>
+     Official Website: <%=spaces(2)%><%= link_to p.website, p.website%><br>
+ <%end%>
  <% if !p.contacts.empty?%>
      <br><br><hr>
      Contact information:<br><br>
@@ -12,7 +16,7 @@
          <div class="contact">
      <%end%>
      <%= contact.name.empty? ? "" : "#{contact.name} <br>"%>
-     <%= contact.title.empty? ? "" : "#{contact.title} <br>"%>
+     <i><%= contact.title.empty? ? "" : "#{contact.title} <br>"%></i>
      <%= contact.address.empty? ? "" : "#{line_break(contact.address)} <br>"%>
      <%= contact.email.empty? ? "" : "#{contact.email} <br>"%>
      <%= contact.phone.empty? ? "" : "#{contact.phone} <br>"%>

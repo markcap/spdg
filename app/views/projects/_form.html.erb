@@ -1,16 +1,17 @@
+<%= javascript_include_tag 'fckeditor/fckeditor' %>
 <%= error_messages_for :project %>
 <% form_for @project do |f| %>
   <p>
     <b>Project Name</b><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :style => "width: 400px;" %>
   </p>
-  <p>
-    <b>Summary</b><br />
-    <%= f.text_area :info, :cols => 70, :rows => 12 %>
-  </p>
-  <p>
+  <div class="text_editor">
+        <div id="<%= fckeditor_div_id('project', 'info') %>">
+            <%= fckeditor_textarea( "project", "info", :width => 600, :height => 350, :toolbarSet => "Project" ) %>
+        </div>
+    </div>
     <%= f.label :website %><br />
-    <%= f.text_field :website %>
+    <%= f.text_field :website, :style => "width: 400px;" %>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

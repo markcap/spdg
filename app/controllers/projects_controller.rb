@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
     $menu_tab = 'my home'
     @project_tab = "home"
     @project = Project.find(params[:id])
+    @active_surveys = @project.active_surveys
+    @last_survey = @project.surveys.inactive.first
   end
   
   def new
@@ -105,7 +107,7 @@ class ProjectsController < ApplicationController
     $menu_tab = 'my home'
     @project_tab = "past_surveys"
     @project = Project.find(params[:id])
-    @surveys = @project.surveys
+    @surveys = @project.surveys.inactive
   end
   
   def submitanswers
@@ -117,6 +119,21 @@ class ProjectsController < ApplicationController
       answer.save
       @survey =  answer.question.survey
     end
+    
+    #There's a better way to do this but time's a-ticking
+    if !params[:survey_file1][:document].nil?
+      @survey_file = SurveyFile.new(params[:survey_file1])
+      @survey_file.save
+    end
+    if !params[:survey_file2][:document].nil?
+      @survey_file = SurveyFile.new(params[:survey_file2])
+      @survey_file.save
+    end
+    if !params[:survey_file3][:document].nil?
+      @survey_file = SurveyFile.new(params[:survey_file3])
+      @survey_file.save
+    end
+    
   end
   
   def auto_complete_for_profile_lastname

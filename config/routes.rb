@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :survey_files,
+    :member => [:download]
+
   map.resources :questions
 
   map.resources :surveys

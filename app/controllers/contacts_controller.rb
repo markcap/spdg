@@ -44,4 +44,8 @@ class ContactsController < ApplicationController
     flash[:notice] = "Successfully destroyed contact."
     redirect_to information_project_path(@project)
   end
+  
+  def email
+    @contact = Contact.find(params[:contact_id])
+  end
 end

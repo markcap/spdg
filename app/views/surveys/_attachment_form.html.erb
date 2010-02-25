@@ -1,0 +1,22 @@
+
+Attach any files here. If you need more than 3 files attached, you can attach more after you save:<br><br>
+<div class="span-8">
+File:<br>
+<%= file_field :survey_file1, :document%><br><br>
+ File:<br>
+<%= file_field :survey_file2, :document%><br><br>
+ File:<br>
+<%= file_field :survey_file3, :document%><br><br>
+</div>
+<div class="span-12 last">
+    Comment:<br>
+    <%= text_field :survey_file1, :comment, :style => "width: 320px"%><br>
+    Comment:<br>
+    <%= text_field :survey_file2, :comment, :style => "width: 320px"%><br>
+    Comment:<br>
+    <%= text_field :survey_file3, :comment, :style => "width: 320px"%><br>
+    <br>
+</div>
+<%= hidden_field :survey_file1, :survey_id, :value => survey.id%>
+<%= hidden_field :survey_file2, :survey_id, :value => survey.id%>
+<%= hidden_field :survey_file3, :survey_id, :value => survey.id%>

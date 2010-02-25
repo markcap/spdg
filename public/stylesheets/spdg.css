@@ -7,12 +7,21 @@
 body {
 
 }
+
+body a{
+	text-decoration: none;
+}
+
+body a:hover{
+	text-decoration: underline;
+	color: blue;
+}
 .container{
 		font-size: 14px;
 		font-family:Georgia,serif;
 }
 
-.container input[type=text], input[type=password]{
+.container input[type=text], input[type=password], input[type=file]{
 		min-height: 16px;
 		padding: 5px 5px;
 		width: 160px;
@@ -133,7 +142,7 @@ background-color: #dce3f3;
 -webkit-border-radius: 5px;
 border: 1px solid #000;
 padding: 10px;
-min-height: 125px;
+min-height: 85px;
 }
 
 #projects_taskbar {
@@ -269,6 +278,28 @@ min-height: 125px;
 #survey_form input[type="text"].date{
 	width: 200px;
 }
+
+.completion_bar {
+	margin: 5px 0 5px 0;
+	min-width: 22px;
+	background-color: #cecdcd;
+	width: 200px;
+}
+
+.green {
+	color: #54c06e;
+	font-weight: bold;
+}
+
+.red {
+	color: #c55d7d;
+	font-weight: bold;
+}
+
+#answer {
+	padding-left: 20px;
+}
+
 /********************* Project Tabs ***********************/
 
 #projects_tabs {
@@ -367,6 +398,10 @@ select{
 textarea{ 
 	padding: 5px;
 	}
+	
+tr:hover {
+	background-color: #d4e0ef;
+}
 /**********************************************************************************************************************/
 
 #flash_notice, #flash_error {

@@ -1,25 +1,48 @@
 
-
-
 <h3>  <%=h @survey.name %></h3>
 
-<p>
-  <strong>Project:</strong>
-  <%=h @survey.project.name%>
-</p>
+<table style="width: 600px">
+    <tr>
+        <td width="110px"><strong>Project:</strong></td>
+        <td><%=h @survey.project.name%></td>
+    </tr>
+    <tr>
+      <td><strong>Started On:</strong></td>
+      <td><%=h brief_date(@survey.starts_on) %></td>
+    </tr>
+    <tr>
+      <td><strong>Ended On:</strong></td>
+      <td><%=h brief_date(@survey.ends_on) %></td>
+    </tr>
+    <tr>
+      <td><strong>Attached Files:</strong></td>
+      <td><%=h @survey.survey_files.count %></td>
+    </tr>
+    <tr>
+      <td><strong>Completion:</strong></td>
+      <td><%= render :partial => 'completion_bar', :locals => {:s => @survey}%></td>
+    </tr>
+</table>
 
-<p>
-  <strong>Started On:</strong>
-  <%=h nice_date(@survey.starts_on) %>
-</p>
-<p>
-  <strong>Ended On:</strong>
-  <%=h nice_date(@survey.ends_on) %>
-</p>
-
+<hr>
 <%@survey.questions.each do |q|%>
     <b><%=q.content%></b><br><br>
-    <%= q.answer.content%><br><br>
+    <div id="answer">
+        <%= q.answer.content%><br><br>
+    </div>
+<%end%>
+
+<%if !@survey.survey_files.empty?%>
+    <hr>
+    Attached Files: <br><br>
+    <% @survey.survey_files.each do |sf|%>
+        <%= link_to image_tag("/images/icons/folder.gif"), sf.document.url%><%=spaces(2)%>
+        <%= link_to sf.document_file_name, sf.document.url%><%=spaces(2)%>
+        <% if !sf.comment.nil? && !sf.comment.blank?%>    
+            <br><%= sf.comment%>
+        <%end%>
+        <br><br>
+    <%end%>
 <%end%>
 
 <%if current_user.admin?%>

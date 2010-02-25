@@ -6,5 +6,6 @@
     <b> Past Surveys in chronological order:</b><br><br>
     <% @surveys.each do |s|%>
         <%=link_to s.name, survey_path(s)%><br>
+        Completed <%= brief_date(s.ends_on)%><br><br>
     <%end%>
 </div>

@@ -1,0 +1,19 @@
+<% title "Survey Files" %>
+
+<table>
+  <tr>
+    <th>Survey</th>
+    <th>Comment</th>
+  </tr>
+  <% for survey_file in @survey_files %>
+    <tr>
+      <td><%=h survey_file.survey_id %></td>
+      <td><%=h survey_file.comment %></td>
+      <td><%= link_to "Show", survey_file %></td>
+      <td><%= link_to "Edit", edit_survey_file_path(survey_file) %></td>
+      <td><%= link_to "Destroy", survey_file, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Survey File", new_survey_file_path %></p>

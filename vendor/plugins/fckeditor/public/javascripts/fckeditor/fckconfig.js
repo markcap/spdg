@@ -127,6 +127,15 @@ FCKConfig.ToolbarSets["Basic"] = [
 	['Style','FontFormat','FontName','FontSize'],
 	['TextColor','BGColor']
 	] ;
+	
+FCKConfig.ToolbarSets["Project"] = [
+	['Preview'],
+	['Undo','Redo'],
+	['Bold','Italic','Underline','StrikeThrough'],
+	['Outdent','Indent','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
+	['OrderedList','UnorderedList'],
+	['Link','SpecialChar']
+	] ;
 
 FCKConfig.EnterMode = 'p' ;			// p | div | br
 FCKConfig.ShiftEnterMode = 'br' ;	// p | div | br

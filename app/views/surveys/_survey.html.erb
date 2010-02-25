@@ -2,7 +2,7 @@
 <h3><%= survey.name%></h3>
 (You can go back and update this survey at any time until <%=nice_date(survey.ends_on)%>.)<br><br>
 
-<%form_tag submitanswers_project_path(@project) do %>
+<%form_tag submitanswers_project_path(@project), :multipart => true do %>
     <% survey.questions.each_with_index do |q, index|%>
         <b><%= q.content%></b> <br>
         <% if q.question_type == 2 %>
@@ -17,5 +17,29 @@
             <%= text_field :answer_hash, "#{q.answer.id}", :style => 'width:630px', :value => q.answer.content%><br><br>
         <%end%>
     <%end%>
+    
+    <hr>
+    <%if !survey.survey_files.empty?%>
+        Attached Files: <br><br>
+        <% survey.survey_files.each do |sf|%>
+            <%= link_to image_tag("/images/icons/folder.gif"), sf.document.url%><%=spaces(2)%>
+            <%= link_to sf.document_file_name, sf.document.url%><%=spaces(2)%>
+            <span class="small">
+            (<%= link_to "Remove", survey_file_path(sf), :confirm => 'Are you sure you want to remove this?', :method => :delete%>)
+            </span>
+            <% if !sf.comment.nil? && !sf.comment.blank?%>
+                
+                <br><%= sf.comment%>
+            <%end%>
+            <br><br>
+        <%end%>
+    <%end%>
+    
+    
+    <%= link_to "Add Attachment", '#', :class => 'add_attachment_link' %><br><br>
+    <div id="attachment_form">  
+        <%= render :partial => 'surveys/attachment_form', :locals => {:survey => survey}%>
+    </div>
+    
     <%= submit_tag "Save" %>
 <%end %>

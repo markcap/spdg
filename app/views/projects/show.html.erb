@@ -4,7 +4,8 @@
 
 <%= render "tabs"%>
 
-<div class="span-20 my_project_body">
+<div class="span-20 my_project_body">    
+    
     <div id="projects_taskbar">
     User List: <br><br>
     <%@project.users.each do |u|%>
@@ -18,19 +19,45 @@
             <%end%>
             <br>
         <%end%>
-        <br>
     <%end%>
-    
-    <%if current_user.admin?%>
 
-        <div class="span-10">
-            <%= link_to "Add user to this project", add_user_project_path(@project), :class => 'add_user_link' %>
-            <div id="add_user_form" style="display:none;">
-                <%= render 'add_user_form'%>
-            </div>
+    <div class="span-10">
+        <%= link_to "Add user to this project", add_user_project_path(@project), :class => 'add_user_link' %>
+        <div id="add_user_form" style="display:none;">
+            <%= render 'add_user_form'%>
         </div>
-    <%end%>
+    </div>
     
     </div>
+    
+    <% if !@active_surveys.empty?%>
+        You have <%=@active_surveys.size%> active surveys: <br><br>
+        <% @active_surveys.each do |s|%>
+            <%= link_to s.name, current_survey_project_path(@project, :survey_id => s.id)%><br>
+            
+            <% if s.completion < 100 %>
+                <div class="completion_bar">
+                    <div class="incomplete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% </div>
+                </div>
+                <span class="red"> Incomplete</span>
+            <%else%>
+                <div class="completion_bar">
+                    <div class="complete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% </div>
+                </div>
+                <span class="green"> Complete!</span>
+            <%end%>            
+            <br>
+            Due: <%=brief_date(s.ends_on)%> <%=spaces(2)%> ( <%= print_days_remaining(s.days_remaining) %>. )<br><br>
+        <%end%>
+    <%else%>
+        You have no active surveys at this time.
+    <%end%>
+    <br>
+    
+    <% if !@last_survey.nil?%>
+        Your last completed survey:<br>
+        <%= link_to @last_survey.name, survey_path(@last_survey) %>
+    <%end%>
+    
 
 </div>
