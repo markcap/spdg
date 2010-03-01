@@ -1,5 +1,6 @@
 <%=javascript_include_tag "sortable_list", "jquery-ui"%>
 <div class="span-21">
+    <%= spaces(14)%><%= link_to "New Project", new_project_path %><br><br>
     <ul id="project-list">
         <% @projects.each do |p| %>
           <li id="project_<%= p.id -%>">

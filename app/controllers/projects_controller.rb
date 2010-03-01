@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     if @project.save
       flash[:notice] = "Successfully created project."
-      redirect_to @project
+      redirect_to manage_projects_path
     else
       render :action => 'new'
     end
