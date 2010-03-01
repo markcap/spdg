@@ -113,7 +113,7 @@
         <%if logged_in?%>
           <div id="taskbar" class="span-5 last">
             Your Alerts:<br><br>
-              None.
+              <span class="red"> Welcome to SPDGKansas.net!</span>
           </div>
         <%end%>
       <%end%>
@@ -121,7 +121,7 @@
     <div id="footer" class=" span-22 last">
         <br>
       	&copy; <%=Time.now.year%> Kansas State Personnel Development Grant <%= spaces(10)%> <br>
-      	Question or Comment? <%=link_to "Contact Us", "#"%>.
+      	Question or Comment? <%=link_to "Contact Us", "mailto:help@spdgkansas.net"%>.
       	<br><br>
     </div>
   </div>

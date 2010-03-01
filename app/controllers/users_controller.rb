@@ -42,6 +42,15 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  def destroy
+    @user = User.find(params[:id])
+    if current_user.admin?
+      @user.destroy
+      flash[:notice] = "User Deleted."
+      redirect_to user_list_path
+    end
+  end
     
   def reset_password
     @user = User.find_by_password_reset_code(params[:id])
