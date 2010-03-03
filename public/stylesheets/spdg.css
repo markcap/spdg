@@ -8,7 +8,7 @@ body {
 
 }
 
-body a{
+body a, a:visited{
 	text-decoration: none;
 }
 

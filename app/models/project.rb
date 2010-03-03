@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   has_many :contacts
   has_many :surveys
   
+  validates_presence_of       :name
+  
   
   def self.is_indexable_by(user, parent = nil)
     return true

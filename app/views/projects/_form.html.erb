@@ -7,11 +7,12 @@
   </p>
   <div class="text_editor">
         <div id="<%= fckeditor_div_id('project', 'info') %>">
-            <%= fckeditor_textarea( "project", "info", :width => 600, :height => 350, :toolbarSet => "Project" ) %>
+            <%= fckeditor_textarea( "project", "info", :width => 600, :height => 350, :toolbarSet => "Project" ) %><br /><br />
         </div>
     </div>
     <%= f.label :website %><br />
     <%= f.text_field :website, :style => "width: 400px;" %>
   </p>
+  <br /><br />
   <p><%= f.submit "Submit" %></p>
 <% end %>
