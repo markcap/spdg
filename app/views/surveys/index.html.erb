@@ -14,7 +14,11 @@
         </div>
         <b><%= link_to s.name, survey_path(s)%></b><br><br>
         
-        Project: <%=s.project.name.to_s%><br>
+        <%if !s.project.nil?%>
+            Project: <%=s.project.name.to_s%><br>
+        <%else%>
+            Project: None <br>
+        <%end%>
         Due Date: <%= nice_date(s.ends_on)%><br>
         Status: <b><%=s.completion%>%</b> Complete
     </div>
