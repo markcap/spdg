@@ -1,6 +1,10 @@
 class ArticlesController < ApplicationController
+  
+  before_filter :login_required, :except => [:index]
+  before_filter :has_permission?, :except => [:index]
+  
   def index
-    @articles = Article.find(:all)
+    redirect_to root_path
   end
   
   def show

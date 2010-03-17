@@ -1,0 +1,5 @@
+<%form_for @resource_header, :url => {:controller => 'admin', :action => 'update_resource_header', :id => @resource_header.id}  do |f| %>
+    Header Name: <br>
+    <%= f.text_field :description%><br><br>
+    <%= f.submit "Submit"%>
+<%end%>

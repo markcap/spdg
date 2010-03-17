@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100223201713) do
+ActiveRecord::Schema.define(:version => 20100310202236) do
 
   create_table "answers", :force => true do |t|
     t.text     "content"
@@ -90,6 +90,27 @@ ActiveRecord::Schema.define(:version => 20100223201713) do
     t.datetime "updated_at"
   end
 
+  create_table "resource_headers", :force => true do |t|
+    t.text     "description"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources", :force => true do |t|
+    t.text     "description"
+    t.integer  "position"
+    t.integer  "resource_header_id"
+    t.integer  "user_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.text     "subtext"
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -135,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20100223201713) do
     t.string   "password_reset_code"
     t.integer  "first_login",               :limit => 1
     t.date     "last_login"
+    t.integer  "survey_view_type"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

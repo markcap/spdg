@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
+  validates_length_of       :password, :within => 6..40, :if => :password_required?
   validates_uniqueness_of   :login
   validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
@@ -96,6 +97,10 @@ class User < ActiveRecord::Base
 
   def recently_forgot_password?
     @forgotten_password
+  end
+  
+  def iz_admin?
+    return (self.admin == 1)
   end
 
   protected

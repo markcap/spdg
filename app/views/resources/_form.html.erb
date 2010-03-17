@@ -1,0 +1,30 @@
+<%= error_messages_for :resource %>
+<% form_for @resource, :html => { :multipart => true } do |f| %>
+  <p>
+     <%= f.label :resource_header_id, "Header"%><br />
+     <%= f.select :resource_header_id, ResourceHeader.all.map {|r| [r.description, r.id]} %>
+  </p>
+  
+  <p>
+    <%= f.label :description%><br />
+    <%= f.text_field :description, :style => 'width: 250px;' %>
+  </p>
+
+  <p>
+    <%= f.label :url, 'URL' %>( Include http:// )<br />
+    <%= f.text_field :url, :style => 'width: 250px;'%>
+  </p>
+  <b>or</b><br><br>
+  
+  <p>
+    <%= f.label :document %><br />
+    <%= f.file_field :document, :style => 'width: 250px;'%>
+  </p>
+  
+  <p>
+    <%= f.label :subtext%><br />
+    <%= f.text_field :subtext, :style => 'width: 250px;' %>
+  </p>
+  
+  <p><%= f.submit "Submit" %></p>
+<% end %>

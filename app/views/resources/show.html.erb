@@ -1,0 +1,28 @@
+<% title "Resource" %>
+
+<p>
+  <strong>Description:</strong>
+  <%=h @resource.description %>
+</p>
+<p>
+  <strong>Position:</strong>
+  <%=h @resource.position %>
+</p>
+<p>
+  <strong>Resource Header:</strong>
+  <%=h @resource.resource_header_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @resource.user_id %>
+</p>
+<p>
+  <strong>Url:</strong>
+  <%=h @resource.url %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_resource_path(@resource) %> |
+  <%= link_to "Destroy", @resource, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", resources_path %>
+</p>

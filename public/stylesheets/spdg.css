@@ -300,6 +300,49 @@ min-height: 85px;
 	padding-left: 20px;
 }
 
+.pagination .current{
+	background-color: blue;
+	color: white;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+#header-list{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.resource-list{
+	margin-left: 20px;
+	padding: 0;
+	list-style: none;
+}
+
+.resource-list li{
+	margin-bottom: 10px;
+}
+
+.smaller {
+	font-size: 12px;
+}
+
+
+.subtext {
+	margin-left: 24px;
+}
+
+.subtext-admin {
+	margin-left: 92px;
+}
+
+.add_resource_form, .add_resource_link {
+	margin-left: 20px;
+}
+
+.resource-header, .resource-handle {
+	cursor: move;
+}
 /********************* Project Tabs ***********************/
 
 #projects_tabs {

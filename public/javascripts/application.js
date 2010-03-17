@@ -30,11 +30,27 @@ jQuery(document).ready(function() {
 				return false;
 			});
 			
-			jQuery("#attachment_form").hide();
-			jQuery(".add_attachment_link").click(function()
+		jQuery("#attachment_form").hide();
+		jQuery(".add_attachment_link").click(function()
+			{
+				jQuery("#attachment_form").fadeIn(500);
+				jQuery(".add_attachment_link").hide();
+				return false;
+			});
+		
+		jQuery("#add_header_form").hide();
+		jQuery(".add_header_link").click(function()
+			{
+				jQuery("#add_header_form").fadeIn(500);
+				jQuery(".add_header_link").hide();
+				return false;
+			});
+			
+			jQuery(".add_resource_form").hide();
+			jQuery(".add_resource_link").click(function()
 				{
-					jQuery("#attachment_form").fadeIn(500);
-					jQuery(".add_attachment_link").hide();
+					number = jQuery(this).attr('number');
+					jQuery("#add_resource_form_" + number).fadeIn(500);
 					return false;
 				});
 });

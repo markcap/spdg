@@ -2,9 +2,7 @@ class AdminController < ApplicationController
   
   before_filter :login_required
   before_filter :is_admin?
-  
-
-  
+   
   def index
     $menu_tab = 'admin'
   end
@@ -73,4 +71,63 @@ class AdminController < ApplicationController
     end    
   end
   
+  def manage_resources
+    @resource_header = ResourceHeader.new
+    @resource = Resource.new
+    @headers = ResourceHeader.by_position
+  end
+  
+  def create_resource_header
+    @resource_header = ResourceHeader.new(params[:resource_header])
+    ResourceHeader.arrange_headers
+    @resource_header.position = 1
+    @resource_header.save
+    flash[:notice] = "Successfully added header."
+    redirect_to manage_resources_path
+  end
+  
+  def update_header_position
+    if current_user.admin?
+      headers = ResourceHeader.all
+      headers.each do |header|
+        header.position = params['header'].index(header.id.to_s) + 1
+        header.save
+      end
+      render :nothing => true
+    end
+  end
+  
+  def delete_header
+    rh = ResourceHeader.find(params[:id])
+    resources = Resource.find_by_resource_header_id(rh.id)
+    resources.each do |r|
+      r.destroy
+    end
+    rh.destroy
+    flash[:error] = "Header deleted."
+    redirect_to manage_resources_path
+  end
+  
+  def edit_resource_header
+    @resource_header = ResourceHeader.find(params[:id])
+  end
+  
+  def update_resource_header
+    @resource_header = ResourceHeader.find(params[:id])
+    @resource_header.update_attributes(params[:resource_header])
+    flash[:notice] = "Successfully updated resource."
+    redirect_to manage_resources_path
+  end
+  
+  def update_resource_position
+    if current_user.admin?
+      test_resource = Resource.find(params['resource'].first.to_i)
+      resources = Resource.find_all_by_resource_header_id(test_resource.resource_header_id)
+      resources.each do |resource|
+        resource.position = params['resource'].index(resource.id.to_s) + 1
+        resource.save
+      end
+      render :nothing => true
+    end
+  end
 end

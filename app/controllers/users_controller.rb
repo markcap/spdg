@@ -62,20 +62,20 @@ class UsersController < ApplicationController
         current_user.password = params[:password]
         current_user.password_reset_code = nil
         #This next part is for when a user logs in for the first time. Sends them to some introduction stuff.
-        if current_user.first_login == nil
-          current_user.first_login = 1
-          if current_user.save
+        if current_user.save
+          if current_user.first_login == nil
+            current_user.first_login = 1
             flash[:notice] = "Thank you for signing up for SPDGKansas.org. Please take some time to
             verify that your information on file is correct. You can change this any time by click the Account link at the
             top-right part of your page."
             redirect_to(profile_path(current_user.profile))
           else
-            flash[:notice] = "We had a problem accessing your account. We will be addressing this problem shortly."
-            redirect_to(root_path) 
+            flash[:notice] = "Your password has been reset!" 
           end
         else 
-          flash[:notice] = current_user.save ? "Your password has been reset!" : "Your password was not reset."
-          redirect_to(root_path) 
+          flash[:notice] = "Your password was not reset. Please make sure that your password is at least 6 characters long."
+          redirect_back_or_default('/')
+          self.current_user = nil
         end
       else
         flash[:error] = "Your passwords did not match."
@@ -87,4 +87,13 @@ class UsersController < ApplicationController
       redirect_to(root_path) 
     end
   
+    def change_view_type
+      @user = current_user
+      @user.survey_view_type = params[:type].to_i
+      if @user.save
+        redirect_to surveys_path
+      else
+        flash[:notice] = "Unable to change to that view."
+      end
+    end
 end

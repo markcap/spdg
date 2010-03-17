@@ -21,7 +21,7 @@ $(document).ready(function() {
         axis: 'y', 
         dropOnEmpty:false, 
         handle: '.admin-project-header', 
-        cursor: 'crosshair',
+        cursor: 'move',
         items: 'li',
         opacity: 0.4,
         scroll: true,
@@ -34,4 +34,40 @@ $(document).ready(function() {
           }
         })
 
+   $('#header-list').sortable(
+      {
+        axis: 'y', 
+        dropOnEmpty:false, 
+        handle: '.resource-header', 
+        cursor: 'move',
+        items: 'li',
+        opacity: 0.4,
+        scroll: true,
+        update: function(){
+          $.ajax({
+              type: 'post', 
+              data: $('#header-list').sortable('serialize') + '&id=<%=@header.id-%>', 
+              dataType: 'script',
+              url: '/admin/update_header_position'})
+          }
+        })
+
+	   $('.resource-list').sortable(
+	      {
+	        axis: 'y', 
+	        dropOnEmpty:false, 
+	        handle: '.resource-handle', 
+	        cursor: 'move',
+	        items: 'li',
+	        opacity: 0.4,
+	        scroll: true,
+	        update: function(){
+	          $.ajax({
+	              type: 'post', 
+	              data: $(this).sortable('serialize') + '&header_id=<%=h.id-%>', 
+	              dataType: 'script',
+	              url: '/admin/update_resource_position'})
+	          }
+	        })
+		
 });

@@ -1,4 +1,13 @@
-<p><%= link_to "New Survey", new_survey_path %></p>
+<%= link_to "New Survey", new_survey_path %><%= spaces(18)%>
+View Styles: <%= spaces(4)%>
+<%= link_to "Default View", change_view_type_user_path(current_user, :type => 0)%><%= spaces(4)%>|<%= spaces(4)%>
+<%= link_to "All Surveys", change_view_type_user_path(current_user, :type => 1)%><%= spaces(4)%>|<%= spaces(4)%>
+<%= link_to "Incomplete Only", change_view_type_user_path(current_user, :type => 2)%>
+<br><br>
+
+<% unless current_user.survey_view_type == 1%>
+    <%= will_paginate @surveys %>
+<%end%>	
 
 <%@surveys.each do |s|%>
     <%if !s.completion.nil? && s.completion < 100%>

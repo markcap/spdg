@@ -75,6 +75,11 @@
           <li class="span-3 <%if $menu_tab=='projects'%> current_tab <%end%>" onclick="location.href='<%= projects_path %>';">
             <%= link_to 'Projects', projects_path%>
           </li>
+          
+          <li class="span-3 <%if $menu_tab=='resources'%> current_tab <%end%>" onclick="location.href='<%= resources_path %>';">
+            <%= link_to 'Resources', resources_path%>
+          </li>
+          
           <% if logged_in? && !current_user.projects.empty?%>
             <%my_project = current_user.projects.first%>
             <li class="span-3 <%if $menu_tab=='my home'%>current_tab<%end%>" onclick="location.href='<%= project_path(my_project) %>';">

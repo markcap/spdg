@@ -4,3 +4,9 @@ tmp/**/*
 features/**/*
 config/database.yml
 db/*.sqlite3
+media/*
+spec/*
+test/*
+public/blank_iframe.html
+public/images/icons/Rakefile
+tmp/restart.txt
