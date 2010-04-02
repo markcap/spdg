@@ -10,11 +10,19 @@
  <%end%>
  <% p.contacts.each_with_index do |contact, index|%>
      <%if ((index + 1) < p.contacts.size) && ((index + 1) % 3 != 0)%>
-         <div class="span-5 append-1">
+        <%if p.contacts.size > 3 %>
+          <div class="contact_float">
+        <%else%>
+          <div class="span-5 append-1">
+        <%end%>
      <%else%>
-         <div class="nothing">
+        <%if p.contacts.size > 3 %>
+          <div class="contact">
+        <%else%>
+          <div class="nothing">
+        <%end%>
      <%end%>
-     <%= contact.name.empty? ? "" : "#{contact.name} <br>"%>
+     <%= contact.name.empty? ? "" : "<b>#{contact.name} </b><br>"%>
      <i><%= contact.title.empty? ? "" : "#{contact.title} <br>"%></i>
      <%= contact.email.empty? ? "" : "#{contact.email} <br>"%>
      <%= contact.phone.empty? ? "" : "#{contact.phone} <br>"%>

@@ -23,7 +23,7 @@
         <li <% if @project_tab=="past_surveys"%> class="selected" <%end%> 
         onclick="location.href='<%=past_surveys_project_path(@project)%>';">
             <div class="left-tab-border">&nbsp;</div>
-            <div class="tab-content">Past Surveys</div>
+            <div class="tab-content"><%= link_to "Past Surveys", past_surveys_project_path(@project)%></div>
             <div class="right-tab-border">&nbsp;</div>
         </li>
     </ul>

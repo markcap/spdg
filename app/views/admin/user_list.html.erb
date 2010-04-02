@@ -2,17 +2,24 @@
 
 <b>Admins:</b><br><br>
 <% @admins.each do |u|%>
-    <% if !u.profile.firstname.nil? || !u.profile.firstname.nil?%>
+    <% if !u.profile.firstname.nil? && !u.profile.firstname.nil? && !u.profile.firstname.blank? && !u.profile.firstname.blank?%>
         <b><%= u.profile.lastname%>, <%=u.profile.firstname%></b><br>
     <%end%>
     <%=u.email%><br>
-    Login: <%= u.login%><br>
-    Projects: 
+    <b>Login:</b> <%= u.login%><br>
+    <b>Projects:</b> 
     <% u.projects.each do |p|%>
         <%= link_to p.name, project_path(p)%>
         <% unless p.id == u.projects.last.id%>
             ,
         <%end%>
+    <%end%>
+    <br>
+    <b>Last Login:</b>
+    <%if !u.last_login.nil?%>
+        <%=brief_date(u.last_login)%>
+    <%else%>
+        Never.
     <%end%>
     <br>
     <span class="small">
@@ -23,12 +30,12 @@
 <hr>
 <b>Normal Users:</b><br><br>
 <%@users.each do |u|%>
-    <% if !u.profile.firstname.nil? || !u.profile.firstname.nil?%>
+    <% if !u.profile.firstname.nil? && !u.profile.firstname.nil? && !u.profile.firstname.blank? && !u.profile.firstname.blank?%>
         <b><%= u.profile.lastname%>, <%=u.profile.firstname%></b><br>
     <%end%>
     <%=u.email%><br>
-    Login: <%= u.login%><br>
-    Projects: 
+    <b>Login:</b> <%= u.login%><br>
+    <b>Projects: </b>
     <% u.projects.each do |p|%>
         <%= link_to p.name, project_path(p)%>
         <% unless p.id == u.projects.last.id%>
@@ -36,6 +43,14 @@
         <%end%>
     <%end%>
     <br>
+    <b>Last Login:</b>
+    <%if !u.last_login.nil?%>
+        <%=brief_date(u.last_login)%>
+    <%else%>
+        Never.
+    <%end%>
+    <br>
+    
     <span class="small"><%=link_to "Make Admin", :action => 'change_admin', :change => 'add', :user_id => u.id%>
         | 
         <%=link_to "Delete User",  user_path(u), :confirm => 'Are you sure? This cannot be undone.', :method => :delete%>

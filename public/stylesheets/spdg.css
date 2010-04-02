@@ -81,18 +81,24 @@ body a:hover{
 }
 
 #logo {
-	margin-top: 7px;
+	margin-top: 5px;
 
 }
 .logo-bottom {
-	margin-top: 75px;
-	margin-left: 2px;
+	margin-top: 95px;
+	margin-left: 33px;
 	padding-left: 20px;
-		position: absolute;
+	position: absolute;
+}
+
+.logo-bottom a, .logo-bottom a:hover {
+	font-size: 15px;
+	color: #1f58a7;
+	text-decoration: none;
 }
 
 .logo-top {
-	padding-left: 20px;
+	padding-left: 5px;
 }
 
 .slogan-top {
@@ -247,9 +253,11 @@ min-height: 85px;
 	float:left;
 	width: 30%;
 	margin-right: 10px;
+	margin-bottom: 20px;
 }
 .contact{
 	height: 150px;
+		margin-bottom: 20px;
 }
 
 .survey_box { 
@@ -319,7 +327,13 @@ min-height: 85px;
 	list-style: none;
 }
 
-.resource-list li{
+.public-resource-list{
+	padding: 0;
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+.resource-list li, .public-resource-list li{
 	margin-bottom: 10px;
 }
 

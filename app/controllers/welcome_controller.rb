@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
   $menu_tab = 'none'
   
   def index
-    @articles = Article.by_date
+    @articles = Article.by_edit
     @sidebar = true
   end
   

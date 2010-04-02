@@ -31,7 +31,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     if @contact.update_attributes(params[:contact])
       flash[:notice] = "Successfully updated contact."
-      redirect_to @contact
+      redirect_to information_project_path(@contact.project)
     else
       render :action => 'edit'
     end

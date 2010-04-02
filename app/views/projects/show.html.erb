@@ -10,15 +10,15 @@
     User List: <br><br>
     <%@project.users.each do |u|%>
         <%=u.email%>
-        <% if !u.profile.nil?%>
+        <% if (!u.profile.lastname.nil? && !u.profile.lastname.empty?) || (!u.profile.lastname.nil? && !u.profile.lastname.empty?)%>
             <br>
             (<%= u.profile.firstname.to_s%> <%= u.profile.lastname.to_s%>)
-            <% if current_user.admin?%>
+        <%end%>
+        <% if current_user.admin?%>
                 <br>
                 <%= link_to 'Remove', add_user_commit_project_path(@project, :user_id => u.id, :change => 'delete') %><br>
-            <%end%>
-            <br>
         <%end%>
+            <br>
     <%end%>
 
     <div class="span-10">

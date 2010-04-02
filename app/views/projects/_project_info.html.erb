@@ -10,17 +10,25 @@
      Contact information:<br><br>
  <%end%>
  <% p.contacts.each_with_index do |contact, index|%>
-     <%if ((index + 1) < p.contacts.size) && ((index + 1) % 3 != 0)%>
-         <div class="contact_float">
-     <%else%>
-         <div class="contact">
-     <%end%>
-     <%= contact.name.empty? ? "" : "#{contact.name} <br>"%>
+ <%if ((index + 1) < p.contacts.size) && ((index + 1) % 3 != 0)%>
+    <%if p.contacts.size > 3 %>
+      <div class="contact_float">
+    <%else%>
+      <div class="span-5 append-1">
+    <%end%>
+ <%else%>
+    <%if p.contacts.size > 3 %>
+      <div class="contact">
+    <%else%>
+      <div class="nothing">
+    <%end%>
+ <%end%>
+     <%= contact.name.empty? ? "" : "<b>#{contact.name}</b> <br>"%>
      <i><%= contact.title.empty? ? "" : "#{contact.title} <br>"%></i>
      <%= contact.address.empty? ? "" : "#{line_break(contact.address)} <br>"%>
      <%= contact.email.empty? ? "" : "#{contact.email} <br>"%>
      <%= contact.phone.empty? ? "" : "#{contact.phone} <br>"%>
-     <%= link_to "Edit", edit_contact_path(contact)%> <%=spaces(2)%>
+     <%= link_to "Edit", edit_contact_path(contact, :project_id => params[:id])%> <%=spaces(2)%>
      <%= link_to "Delete", contact_path(contact), :confirm => 'Are you sure?', :method => :delete%>
 
      </div>   

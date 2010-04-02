@@ -12,7 +12,7 @@
     <%if updatable(@project)%>
     <br>
 
-            <%= link_to "Add Contact", new_project_contact_path(@project), :class => 'add_contact_link' %>
+            <%= link_to "Add Contact", new_project_contact_path(@project, :project_id => params[:id]), :class => 'add_contact_link' %>
             <div id="add_contact_form" style="display:none;">
                 <b> Add Contact</b> <br>
                 <%= render 'contacts/form'%>

@@ -8,7 +8,7 @@
         <div class="resource-body">
             <% resources = Resource.find_all_by_resource_header_id(h.id, :order => 'position ASC')%>
             <% if !resources.empty?%>
-                <ul class="resource-list">
+                <ul class="public-resource-list">
                 <%resources.each do |r|%>
                     <li id="resource_<%= r.id -%>">
                     <% if r.url.nil? || r.url.blank?%>
