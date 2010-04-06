@@ -193,7 +193,7 @@ class AdminController < ApplicationController
     end
     gh.destroy
     flash[:error] = "Goal deleted."
-    redirect_to manage_resources_path
+    redirect_to manage_projects_path
   end
   
   def edit_goal_header

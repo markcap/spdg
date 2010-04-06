@@ -14,7 +14,7 @@
     <%= f.text_field :website, :style => "width: 400px;" %><br />
     
     <%= f.label :goal_header_id, 'Goal' %><br />
-     <%= f.select :goal_header_id, GoalHeader.all.map {|p| [p.description, p.id]}, :prompt => 'Select...' %>
+     <%= f.select :goal_header_id, GoalHeader.all.map {|p| [p.description, p.id]}, :prompt => 'Select...', :include_blank => true %>
   </p>
   <br /><br />
   <p><%= f.submit "Submit" %></p>

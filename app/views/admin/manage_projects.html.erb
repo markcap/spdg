@@ -57,10 +57,11 @@
                </div>
                <div class="admin-project-body">
                    <div class="right">
-                      <%=link_to image_tag("../images/icons/arrow_up.png"), 
-                                 move_project_path(:direction => "up", :id => p.id), :title => "Move Up"%>
-                       <%=spaces(5)%> <%=link_to image_tag("../images/icons/arrow_down.png"), 
-                                         move_project_path(:direction => "down", :id => p.id), :title => "Move Down"%>
+                       <%=spaces(3)%> <%=link_to_remote(image_tag("../images/icons/arrow_up.png"), 
+                       :update => "full_page", :url => move_project_path(:direction => "up", :id => p.id), :title => "Move Up")%>
+                       <%=spaces(5)%> <%=link_to_remote(image_tag("../images/icons/arrow_down.png"), 
+                       :update => "full_page", :url => move_project_path(:direction => "down", :id => p.id), 
+                       :title => "Move Down")%>
                        <%=spaces(5)%> <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p), :title => "Edit"%>
                        <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), :title => "Delete", 
                        :confirm => 'Are you sure?', :method => :delete%>
