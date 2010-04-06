@@ -21,4 +21,20 @@
             <%end%>
         <%end%>
     <%end%>
+    <%if !@other_projects.empty?%>
+        <h4><%=spaces(2)%>Other Projects</h4>
+        <% @other_projects.each do |p|%>
+            <div id="project_box">
+                <div id="project_header">
+                    <b><%= link_to p.name, p.website, :target => "new"%></b>
+                </div>
+                <div id="project_body">
+                    <br>
+                    <%= render :partial => 'public_project_info', :locals => {:p => p}%>
+                    <br>
+                </div>
+            </div>    
+            <br>
+        <%end%>
+    <%end%>
 </div>

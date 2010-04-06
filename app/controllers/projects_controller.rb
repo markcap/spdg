@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   def index
     $menu_tab = 'projects'
     @goals = GoalHeader.find(:all, :order => 'position ASC')
+    @other_projects = Project.no_goal
   end
   
   def show
