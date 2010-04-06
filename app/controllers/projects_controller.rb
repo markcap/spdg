@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   
   def index
     $menu_tab = 'projects'
-    @projects = Project.find(:all, :order => 'position ASC')
+    @goals = GoalHeader.find(:all, :order => 'position ASC')
   end
   
   def show
@@ -24,6 +24,9 @@ class ProjectsController < ApplicationController
   
   def create
     @project = Project.new(params[:project])
+    if @project.goal_header_id.nil?
+      @project.goal_header_id = 0
+    end
     if @project.save
       flash[:notice] = "Successfully created project."
       redirect_to manage_projects_path

@@ -1,11 +1,11 @@
 jQuery(document).ready(function() {
 	if (document.referrer.indexOf('spdg') == -1 || document.referrer.indexOf('spdg') == null) {
-		jQuery(".logo-top").hide();
+		// jQuery(".logo-top").hide();
 		jQuery(".slogan-top").hide();
 		jQuery(".slogan-bottom").hide();		
-		jQuery(".logo-top").delay(0).fadeIn(1500);
-		jQuery(".slogan-top").delay(1200).fadeIn(600);
-		jQuery(".slogan-bottom").delay(1900).fadeIn(600);
+		// jQuery(".logo-top").delay(0).fadeIn(1500);
+		jQuery(".slogan-top").delay(600).fadeIn(600);
+		jQuery(".slogan-bottom").delay(1300).fadeIn(600);
 	}
 
 	
@@ -53,5 +53,12 @@ jQuery(document).ready(function() {
 					jQuery("#add_resource_form_" + number).fadeIn(500);
 					return false;
 				});
+				
+				jQuery(".add_goal_link").click(function()
+					{
+						jQuery("#add_goal_form").fadeIn(500);
+						jQuery(".add_goal_link").hide();
+						return false;
+					});
 });
 

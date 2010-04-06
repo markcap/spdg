@@ -1,6 +1,10 @@
 class Project < ActiveRecord::Base
+  named_scope :by_position, :order => 'position'
+  named_scope :no_goal, :conditions => ["goal_header_id = ?", 0], :order => 'position'
+  
+  belongs_to :goal_header
   has_and_belongs_to_many :users
-  has_many :contacts
+  has_many :contacts, :dependent => :destroy
   has_many :surveys
   
   validates_presence_of       :name

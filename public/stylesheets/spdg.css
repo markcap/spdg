@@ -16,6 +16,11 @@ body a:hover{
 	text-decoration: underline;
 	color: blue;
 }
+
+h4{ 
+	font-size: 16px;
+	font-weight: bold;
+}
 .container{
 		font-size: 14px;
 		font-family:Georgia,serif;
@@ -189,13 +194,13 @@ min-height: 85px;
 
 #project-list {
 	list-style: none;
+	padding-left: 0px;
 }
 
 .admin-project-header {
 	height: 20px;
 	background-color: blue;
 	border: 1px solid black;
-	cursor: move;
 }
 
 .admin-project-body {
@@ -356,6 +361,10 @@ min-height: 85px;
 
 .resource-header, .resource-handle {
 	cursor: move;
+}
+
+#add_goal_form {
+	display: none;
 }
 /********************* Project Tabs ***********************/
 

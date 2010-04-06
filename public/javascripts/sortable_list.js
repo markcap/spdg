@@ -15,24 +15,6 @@ $(document).ready(function() {
     settings.data = settings.data || "";
     settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
   });
-  
-   $('#project-list').sortable(
-      {
-        axis: 'y', 
-        dropOnEmpty:false, 
-        handle: '.admin-project-header', 
-        cursor: 'move',
-        items: 'li',
-        opacity: 0.4,
-        scroll: true,
-        update: function(){
-          $.ajax({
-              type: 'post', 
-              data: $('#project-list').sortable('serialize') + '&id=<%=@project.id-%>', 
-              dataType: 'script',
-              url: '/admin/prioritize_projects'})
-          }
-        })
 
    $('#header-list').sortable(
       {

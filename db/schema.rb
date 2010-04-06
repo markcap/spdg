@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100310202236) do
+ActiveRecord::Schema.define(:version => 20100405150713) do
 
   create_table "answers", :force => true do |t|
     t.text     "content"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(:version => 20100310202236) do
     t.string   "title"
   end
 
+  create_table "goal_headers", :force => true do |t|
+    t.text     "description"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "goals", :force => true do |t|
     t.text     "body"
     t.datetime "created_at"
@@ -62,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20100310202236) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "position"
+    t.integer  "goal_header_id"
   end
 
   create_table "projects_contacts", :id => false, :force => true do |t|

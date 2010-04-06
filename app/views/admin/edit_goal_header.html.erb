@@ -1,0 +1,5 @@
+<%form_for @goal_header, :url => {:controller => 'admin', :action => 'update_goal_header', :id => @goal_header.id}  do |f| %>
+    Goal Name: <br>
+    <%= f.text_field :description%><br><br>
+    <%= f.submit "Submit"%>
+<%end%>

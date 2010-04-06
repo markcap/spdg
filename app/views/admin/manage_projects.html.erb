@@ -1,22 +1,76 @@
-<%=javascript_include_tag "sortable_list", "jquery-ui"%>
+<%= javascript_include_tag 'application'%>
+<%= javascript_include_tag :defaults%>
+
 <div class="span-21">
-    <%= spaces(14)%><%= link_to "New Project", new_project_path %><br><br>
-    <ul id="project-list">
-        <% @projects.each do |p| %>
-          <li id="project_<%= p.id -%>">
-            <div class="admin-project-header">
-            </div>
-            <div class="admin-project-body">
-                <div class="right">
-                <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p)%>
-                <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), 
-                                :confirm => 'Are you sure?', :method => :delete%>
-                </div>
+    <%= link_to "New Project", new_project_path %>
+    <%= spaces(10)%><%= link_to "New Goal", "#", :class => 'add_goal_link'%><br><br>
+
+    <div id="add_goal_form">
+        <%= render 'goal_header_form'%>
+        <br>
+    </div>
+    
+    <% @goals.each do |g|%>
+        <h4><%= g.description %>
+
+        <%=spaces(3)%> <%=link_to_remote(image_tag("../images/icons/arrow_up.png"), 
+                           :update => "full_page", :url => move_goal_path(:direction => "up", :id => g.id), :title => "Move Up")%>
+       <%=spaces(3)%> <%=link_to_remote(image_tag("../images/icons/arrow_down.png"), 
+                          :update => "full_page", :url => move_goal_path(:direction => "down", :id => g.id), :title => "Move Down")%>
+        <%=spaces(3)%> <%= link_to image_tag("../images/icons/edit.gif"), edit_goal_header_path(:id => g.id)%>
+        <%=spaces(3)%> <%=link_to image_tag("../images/icons/delete.gif"), {:action => :delete_goal_header, :id => g.id }, 
+                          :onclick => "return #{confirm_javascript_function("Are you sure you want to delete this?")};"%>
+        </h4>
+        
+        <% if !g.projects.empty?%>
+            <ul id="project-list">
+                <% g.projects.by_position.each do |p| %>
+                    <li id="project_<%= p.id -%>">
+                        <div class="admin-project-header">
+                        </div>
+                        <div class="admin-project-body">
+                            <div class="right">
+                                <%=spaces(3)%> <%=link_to_remote(image_tag("../images/icons/arrow_up.png"), 
+                                :update => "full_page", :url => move_project_path(:direction => "up", :id => p.id), :title => "Move Up")%>
+                                <%=spaces(5)%> <%=link_to_remote(image_tag("../images/icons/arrow_down.png"), 
+                                :update => "full_page", :url => move_project_path(:direction => "down", :id => p.id), 
+                                :title => "Move Down")%>
+                                 <%=spaces(5)%> <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p), :title => "Edit"%>
+                                 <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), :title => "Delete", 
+                                 :confirm => 'Are you sure?', :method => :delete%>
+                            </div>
                     
-                <%= render :partial => 'projects/project_info', :locals => {:p => p}%>
-                <br>
-            </div>
-          </li>
-        <% end %>
-    </ul>
-</div>
+                            <%= render :partial => 'projects/project_info', :locals => {:p => p}%>
+                            <br>
+                        </div>
+                    </li>
+                <% end %>
+            </ul>
+         <% end %>
+    <% end %>
+    <%if !@other_projects.empty?%>
+        <b> Other Projects </b><br><br>
+        <ul id="project-list">
+        <% @other_projects.each do |p|%>
+           <li id="project_<%= p.id -%>">
+               <div class="admin-project-header">
+               </div>
+               <div class="admin-project-body">
+                   <div class="right">
+                      <%=link_to image_tag("../images/icons/arrow_up.png"), 
+                                 move_project_path(:direction => "up", :id => p.id), :title => "Move Up"%>
+                       <%=spaces(5)%> <%=link_to image_tag("../images/icons/arrow_down.png"), 
+                                         move_project_path(:direction => "down", :id => p.id), :title => "Move Down"%>
+                       <%=spaces(5)%> <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p), :title => "Edit"%>
+                       <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), :title => "Delete", 
+                       :confirm => 'Are you sure?', :method => :delete%>
+                   </div>
+       
+                   <%= render :partial => 'projects/project_info', :locals => {:p => p}%>
+                   <br>
+               </div>
+           </li>
+       <% end %>
+       </ul>
+    <% end %>
+</div> 

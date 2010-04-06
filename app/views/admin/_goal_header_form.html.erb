@@ -1,0 +1,5 @@
+<%form_for @goal_header, :url => {:controller => 'admin', :action => 'create_goal_header'}  do |f| %>
+    Goal Name: <br>
+    <%= f.text_field :description%><br><br>
+    <%= f.submit "Submit"%>
+<%end%>

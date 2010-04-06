@@ -38,17 +38,61 @@ class AdminController < ApplicationController
   def manage_projects
     $menu_tab = 'admin'
     @projects = Project.all(:order => "position ASC")
+    @goals = GoalHeader.by_position
+    @other_projects = Project.no_goal
+    @goal_header = GoalHeader.new
   end
   
-  def prioritize_projects
-    if current_user.admin?
-      projects = Project.all
-      projects.each do |project|
-        project.position = params['project'].index(project.id.to_s) + 1
-        project.save
+  def move_project 
+    @project = Project.find(params[:id])
+    @projects = Project.find_all_by_goal_header_id(@project.goal_header_id, :order => 'position ASC')
+    @index = @projects.index(@project)
+    if params[:direction] == "up"
+      unless @index == 0
+        @previous_project = @projects[@index - 1]
+        @temp = @project.position
+        @project.position = @previous_project.position
+        @previous_project.position = @temp
+        @project.save
+        @previous_project.save
+      end  
+    else
+      unless @index == @projects.index(@projects.last)
+        @next_project = @projects[@index + 1]
+        @temp = @project.position
+        @project.position = @next_project.position
+        @next_project.position = @temp
+        @project.save
+        @next_project.save
       end
-      render :nothing => true
     end
+    redirect_to manage_projects_path
+  end
+  
+  def move_goal
+    @goal = GoalHeader.find(params[:id])
+    @goals = GoalHeader.by_position
+    @index = @goals.index(@goal)
+    if params[:direction] == "up"
+      unless @index == 0
+        @previous_goal = @goals[@index - 1]
+        @temp = @goal.position
+        @goal.position = @previous_goal.position
+        @previous_goal.position = @temp
+        @goal.save
+        @previous_goal.save
+      end  
+    else
+      unless @index == @goals.index(@goals.last)
+        @next_goal = @goals[@index + 1]
+        @temp = @goal.position
+        @goal.position = @next_goal.position
+        @next_goal.position = @temp
+        @goal.save
+        @next_goal.save
+      end
+    end
+    redirect_to manage_projects_path
   end
   
   def user_list
@@ -129,5 +173,37 @@ class AdminController < ApplicationController
       end
       render :nothing => true
     end
+  end
+  
+  def create_goal_header
+    @goal_header = GoalHeader.new(params[:goal_header])
+    GoalHeader.arrange_headers
+    @goal_header.position = 1
+    @goal_header.save
+    flash[:notice] = "Successfully added goal."
+    redirect_to manage_projects_path
+  end
+  
+  def delete_goal_header
+    gh = GoalHeader.find(params[:id])
+    @projects = Project.find_all_by_goal_header_id(gh.id)
+    @projects.each do |p|
+      p.goal_header_id = 0
+      p.save
+    end
+    gh.destroy
+    flash[:error] = "Goal deleted."
+    redirect_to manage_resources_path
+  end
+  
+  def edit_goal_header
+    @goal_header = GoalHeader.find(params[:id])
+  end
+  
+  def update_goal_header
+    @goal_header = GoalHeader.find(params[:id])
+    @goal_header.update_attributes(params[:goal_header])
+    flash[:notice] = "Successfully updated goal."
+    redirect_to manage_projects_path
   end
 end
