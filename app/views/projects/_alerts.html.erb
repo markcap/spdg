@@ -1,0 +1,8 @@
+<% if !current_user.all_survey_alerts.empty?%>
+   <% current_user.all_survey_alerts.each do |s| %>
+       <%= link_to s.name, current_survey_project_path(s.project, :survey_id => s.id)%><br>
+       <span class="alert_red">Due <%= print_days_remaining(s.days_remaining) %></span><br><br>
+    <%end%>
+<%else%>
+    None. <br>
+<%end%>

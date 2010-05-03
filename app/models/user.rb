@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   has_many :articles
-  has_one :profile
+  has_one :profile, :dependent => :destroy
   has_and_belongs_to_many :projects
   
   include Authentication
@@ -99,8 +99,23 @@ class User < ActiveRecord::Base
     @forgotten_password
   end
   
-  def iz_admin?
-    return (self.admin == 1)
+  def display_name
+    if (!self.profile.lastname.nil? && !self.profile.lastname.empty?) || (!self.profile.lastname.nil? && !self.profile.lastname.empty?)
+      return self.profile.firstname.to_s + " " +  self.profile.lastname.to_s
+    else
+      return self.email.to_s
+    end
+  end
+  
+  def all_survey_alerts
+    #returns all surveys alerts in all projects
+    surveys = []
+    self.projects.each do |p|
+      p.surveys.alert.each do |s|
+        surveys << s
+      end
+    end
+    return surveys
   end
 
   protected

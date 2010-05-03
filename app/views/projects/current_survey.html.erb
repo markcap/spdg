@@ -2,7 +2,7 @@
 
 <%= render "tabs"%>
 
-<div class="span-20 my_project_body">
+<div class="span-21 my_project_body">
     <% if @project.active_surveys.size > 1 && params[:survey_id].nil?%>
         You currently have <%= @project.active_surveys.size%> outstanding surveys.<br><br>
         <%@project.active_surveys.each do |s|%>

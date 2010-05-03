@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :templates
+
+  map.resources :events
+
   map.resources :resources,
     :member => [:download],
     :collection => [:add_resource_header]
@@ -18,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :projects,
     :has_many => [:users, :contacts],
-    :member => [ :information, :add_user, :add_user_commit, :current_survey, :past_surveys, :submitanswers]
+    :member => [ :information, :add_user, :add_user_commit, :current_survey, :past_surveys, :submitanswers, :other_projects, :all_activity]
 
   map.resources :profiles
 

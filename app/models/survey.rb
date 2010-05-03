@@ -13,6 +13,11 @@ class Survey < ActiveRecord::Base
   named_scope :incomplete, :conditions => ['completion < ?', 100], :order => 'ends_on DESC'
   named_scope :active, :conditions => ['ends_on > ?', Time.now], :order => 'ends_on DESC'
   named_scope :inactive, :conditions => ['ends_on < ?', Time.now], :order => 'ends_on DESC'
+  named_scope :alert, :conditions => ['ends_on <= ? AND ends_on >= ? AND completion < ?', 7.days.from_now, Time.now, 100], 
+                                      :order => 'ends_on DESC'
+  
+  
+  after_create :add_create_event
   
     
   def self.is_indexable_by(user, parent = nil)
@@ -39,4 +44,14 @@ class Survey < ActiveRecord::Base
     due_date = Date.new(y=ends_on.year, m=ends_on.month, d=ends_on.day)
     return (due_date - Date.today)
   end
+  
+  def add_create_event
+    @event = Event.new
+    @event.project_id = self.project_id
+    @event.event_type = 1
+    @event.message = "New survey added: " + self.name.to_s
+    @event.save
+  end 
+
+  
 end

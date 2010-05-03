@@ -157,14 +157,19 @@ min-height: 85px;
 }
 
 #projects_taskbar {
-	width: 25%;
-	background-color: #dce3f3;
+	width: 18%;
+/*	background-color: #dce3f3;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border: 1px solid #000;
+	border: 1px solid #000;*/
 	padding: 10px;
 	min-height: 125px;
 	float:right;
+	font-size: 12px;
+}
+
+#projects_taskbar input {
+	width: 135px;
 }
 
 #project_box{
@@ -233,6 +238,27 @@ min-height: 85px;
 	border: 2px solid #aabdd9;
 	min-height: 280px;
 	padding: 20px;
+	padding-left: 10px;
+}
+
+.my_project_section {
+	overflow: auto;
+	font-size: 13px;
+	padding-left: 10px;
+}
+
+.line-spaced {
+	line-height: 28px;
+}
+
+.event_date {
+	font-size: 10px;
+	font-weight: bold;
+	color: gray;
+}
+
+#add_user_form input{
+	width: 130px;
 }
 
 .small_form {
@@ -307,6 +333,10 @@ min-height: 85px;
 .red {
 	color: #c55d7d;
 	font-weight: bold;
+}
+
+.alert_red {
+	color: red;
 }
 
 #answer {

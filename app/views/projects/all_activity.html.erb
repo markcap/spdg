@@ -1,0 +1,15 @@
+<h3><%=@project.name%></h3>
+
+<%= render "tabs"%>
+
+<div class="span-21 my_project_body">
+    <b>All activity for <%= @project.name %></b><br><br>
+    <span class="line-spaced">
+        <% @events.each do |e|%>
+            <%= event_icon(e) %><%= spaces(3)%><%= e.message%> <%= spaces(2)%>
+            <span class="event_date"><%= time_elapsed(e.created_at)%> </span><br>
+        <%end%>
+    </span>
+    <br>
+    <%=link_to "<< Back to project home page", project_path(@project)%>
+</div>

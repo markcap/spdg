@@ -1,8 +1,9 @@
+<%= javascript_include_tag :defaults %>
 <h3><%=@project.name%></h3>
 
 <%= render "tabs"%>
 
-<div class="span-20 my_project_body">
+<div class="span-21 my_project_body">
     <div class="right">
     <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(@project)%>
     </div>
@@ -19,5 +20,28 @@
             </div>
 
     <%end%>
-        
+    
+    <br><br>
+    <hr>
+    <b>User List</b> 
+    <br><br>
+    <%@project.users.each do |u|%>        
+        <% if u.display_name != u.email%>
+            <%= u.display_name %>
+            <br>
+        <%end%>
+        <%=u.email%>
+        <br>
+        <%= link_to 'Remove', add_user_commit_project_path(@project, :user_id => u.id, :change => 'delete') %><br>
+        <br>
+    <%end%>
+
+
+        <%= link_to "Add user to this project", add_user_project_path(@project), :class => 'add_user_link' %>
+        <div id="add_user_form" style="display:none;">
+            <%= render 'add_user_form'%>
+        </div>
+
+    
+    </div>  
 </div>

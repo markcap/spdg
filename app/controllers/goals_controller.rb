@@ -1,6 +1,8 @@
 class GoalsController < ApplicationController
   
-
+  before_filter :login_required, :except => [:index]
+  before_filter :has_permission?, :except => [:index]
+  
   def index
     $menu_tab = 'goals'
     @goals = Goal.find(:first)

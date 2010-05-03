@@ -1,4 +1,4 @@
-<b> Add User</b><br><br>
+<b> Add User</b> <%= spaces(2)%>(just start typing below and user will appear.)<br><br>
     Search by name: <br>
     <%= text_field_with_auto_complete :profile, :lastname, {}, {:url=>{:action=>'auto_complete_for_profile_lastname', :project_id => @project.id}} %> <br><br>
 

@@ -18,13 +18,13 @@ module ApplicationHelper
     return d.strftime("%m/%d/%y")
   end
   
-  def print_days_remaining(d)
+  def print_days_remaining(d) #prints in words how long until something happens
     if d == 0
       return "Today"
     elsif d == 1
-      return "1 Day"
+      return "in 1 day"
     else
-      return d.to_s + " Days"
+      return "in " + d.to_s + " days"
     end
   end
   
@@ -57,6 +57,27 @@ module ApplicationHelper
       render(association.to_s.singularize + "_fields", :f => builder)
     end
     link_to_function(name, h("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")"))
+  end
+  
+  def time_elapsed(date) #tells in words when something happened
+    if date >= 7.days.ago
+      return time_ago_in_words(date).to_s + " ago"
+    else
+      return date.strftime("%b %d")
+    end
+  end
+  
+  def event_icon(e) #displays corresponding icon for events
+    case e.event_type
+      when 1 then return image_tag("/images/icons/book_add.png")
+      when 2 then return image_tag("/images/icons/book_edit.png")
+      when 3 then return image_tag("/images/icons/accept.png")
+      when 4 then return image_tag("/images/icons/user_add.png")
+      when 5 then return image_tag("/images/icons/user_delete.png")
+      when 6 then return image_tag("/images/icons/application_form_edit.png")
+      when 7 then return image_tag("/images/icons/application_form_add.png")
+      when 8 then return image_tag("/images/icons/application_form_delete.png")
+    end
   end
     
 end

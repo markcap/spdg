@@ -6,7 +6,7 @@
 	<% name = @new_names[i]%>
 	<% unless name.nil?%>
 	
-    <li class="autocomplete_item" onClick="window.location = '<%= add_user_commit_project_path(@project, :user_id => name.id, :change => 'add') %>'">
+    <li class="autocomplete_item" onClick="window.location = '<%= add_user_commit_project_path(@project, :user_id => name.user.id, :change => 'add') %>'">
 		
 		<b><%= name.lastname.to_s + ", " + name.firstname.to_s %></b><br>
 		

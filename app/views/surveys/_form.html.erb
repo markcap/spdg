@@ -22,14 +22,14 @@
         <%= f.calendar_date_select :ends_on, :class=> 'date'  %><br /><br />
       
       <hr>
-      
+      <div id="questions">
           <% f.fields_for :questions do |builder| %>
             <%= render "question_fields", :f => builder %>
           <% end %>
           <div id="add_question_here"></div>
           <%= link_to_add_fields "Add Question", f, :questions %>
           <br> <br>
-          
+       </div>   
 
       <p><%= f.submit "Submit" %></p>
     <% end %>

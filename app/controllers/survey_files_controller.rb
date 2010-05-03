@@ -1,4 +1,8 @@
 class SurveyFilesController < ApplicationController
+  
+  before_filter :login_required
+  before_filter :has_permission?
+  
   def index
     @survey_files = SurveyFile.find(:all)
   end

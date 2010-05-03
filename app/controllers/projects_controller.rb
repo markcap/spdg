@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @active_surveys = @project.active_surveys
     @last_survey = @project.surveys.inactive.first
+    @events = Event.find(:all, :conditions => ["project_id = ?", @project.id], :order => 'created_at DESC', :limit => 7)
   end
   
   def new
@@ -28,6 +29,8 @@ class ProjectsController < ApplicationController
     if @project.goal_header_id.nil?
       @project.goal_header_id = 0
     end
+    @last_position = Project.by_position.last.position
+    @project.position = @last_position + 1
     if @project.save
       flash[:notice] = "Successfully created project."
       redirect_to manage_projects_path
@@ -44,6 +47,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
       flash[:notice] = "Successfully updated project."
+      
+      @event = Event.new(:project_id => @project.id, :event_type => 6)
+      @event.message = "Updated this project's information."
+      @event.save
+      
       redirect_to information_project_path(@project)
     else
       render :action => 'edit'
@@ -71,24 +79,32 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @user = User.find(params[:user_id].to_i)
     @users = @project.users
+    @event = Event.new(:project_id => @project.id)
+     
     if params[:change] == 'add'
       if @project.users.include?(@user)
         flash[:error] = "Member is already in this project's user list."
         redirect_to @project and return
       else 
+        @event.message = @user.display_name + " has joined the project."
+        @event.event_type = 4
         @users << @user
-        flash[:notice] = "Successfully added " + @user.profile.firstname.to_s + " " + @user.profile.lastname.to_s
+        flash[:notice] = "Successfully added " + @user.display_name
+  
       end
     else
+      @event.message = @user.display_name + " has left the project."
+      @event.event_type = 5
       @users.delete(@user)
-      flash[:notice] = "Successfully removed " + @user.profile.firstname.to_s + " " + @user.profile.lastname.to_s
+      flash[:notice] = "Successfully removed " + @user.display_name
     end
     
     @project.users = @users
     if @project.save
-      redirect_to @project
+      @event.save
+      redirect_to information_project_path(@project)
     else
-      render :action => 'show'
+      render :action => 'information'
     end
   end
   
@@ -114,14 +130,28 @@ class ProjectsController < ApplicationController
     @surveys = @project.surveys.inactive
   end
   
+  def other_projects
+    @project_tab = "other_projects"
+    @project = Project.find(params[:id])
+    #this next variable is to subtract the current project from the projects array so it doesnt show up in the other projects tab.
+    @project_array = Project.find_all_by_id(params[:id])
+    if current_user.admin?
+      @projects = Project.by_name - @project_array
+    else
+      @projects = current_user.projects - @project_array
+    end
+  end
+  
   def submitanswers
     @project_tab = "current_survey"
     @project = Project.find(params[:id])
+    #this is to determine whether to put a check icon or update icon in the activity stream
+    @previous_completion = Survey.find(params[:survey_id]).completion
+
     params[:answer_hash].each do |e|
       answer = Answer.find(e[0].to_i)
       answer.content = e[1]
       answer.save
-      @survey =  answer.question.survey
     end
     
     #There's a better way to do this but time's a-ticking
@@ -138,6 +168,23 @@ class ProjectsController < ApplicationController
       @survey_file.save
     end
     
+    #survey needs to be defined after the answers are saved.
+    @survey = Survey.find(params[:survey_id])  
+    @event = Event.new(:project_id => @project.id)
+    if @survey.completion == 100 && @previous_completion != 100
+      @event.message = "Completed survey " + @survey.name.to_s
+      @event.event_type = 3
+    else
+      @event.message = "Updated survey " + @survey.name.to_s
+      @event.event_type = 2
+    end
+    @event.save
+
+  end
+  
+  def all_activity
+    @project = Project.find(params[:id])
+    @events = Event.find(:all, :conditions => ["project_id = ?", @project.id], :order => 'created_at DESC')
   end
   
   def auto_complete_for_profile_lastname

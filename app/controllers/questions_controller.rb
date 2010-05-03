@@ -1,5 +1,8 @@
 class QuestionsController < ApplicationController
   
+  before_filter :login_required
+  before_filter :has_permission?
+  
   def index
     @questions = Question.find(:all)
   end

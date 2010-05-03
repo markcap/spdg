@@ -1,63 +1,71 @@
-<%= javascript_include_tag :defaults %>
+
 
 <h3><%=@project.name%></h3>
 
 <%= render "tabs"%>
 
-<div class="span-20 my_project_body">    
+<div class="span-21 my_project_body">    
     
-    <div id="projects_taskbar">
-    User List: <br><br>
-    <%@project.users.each do |u|%>
-        <%=u.email%>
-        <% if (!u.profile.lastname.nil? && !u.profile.lastname.empty?) || (!u.profile.lastname.nil? && !u.profile.lastname.empty?)%>
-            <br>
-            (<%= u.profile.firstname.to_s%> <%= u.profile.lastname.to_s%>)
-        <%end%>
-        <% if current_user.admin?%>
-                <br>
-                <%= link_to 'Remove', add_user_commit_project_path(@project, :user_id => u.id, :change => 'delete') %><br>
-        <%end%>
-            <br>
-    <%end%>
-
-    <div class="span-10">
-        <%= link_to "Add user to this project", add_user_project_path(@project), :class => 'add_user_link' %>
-        <div id="add_user_form" style="display:none;">
-            <%= render 'add_user_form'%>
-        </div>
-    </div>
-    
-    </div>
-    
-    <% if !@active_surveys.empty?%>
-        You have <%=@active_surveys.size%> active surveys: <br><br>
-        <% @active_surveys.each do |s|%>
-            <%= link_to s.name, current_survey_project_path(@project, :survey_id => s.id)%><br>
+    <div class="span-6 append-1 my_project_section">
+        <b>Active surveys</b> <br><br>
+        <% if !@active_surveys.empty?%>
+            <% @active_surveys.each do |s|%>
+                <%= link_to s.name, current_survey_project_path(@project, :survey_id => s.id)%><br>
             
-            <% if s.completion < 100 %>
-                <div class="completion_bar">
-                    <div class="incomplete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% </div>
-                </div>
-                <span class="red"> Incomplete</span>
-            <%else%>
-                <div class="completion_bar">
-                    <div class="complete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% </div>
-                </div>
-                <span class="green"> Complete!</span>
-            <%end%>            
-            <br>
-            Due: <%=brief_date(s.ends_on)%> <%=spaces(2)%> ( <%= print_days_remaining(s.days_remaining) %>. )<br><br>
+                <% if s.completion < 100 %>
+                    <div class="completion_bar">
+                        <div class="incomplete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% </div>
+                    </div>
+                    <span class="red"> Incomplete</span>
+                <%else%>
+                    <div class="completion_bar">
+                        <div class="complete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% </div>
+                    </div>
+                    <span class="green"> Complete!</span>
+                <%end%>            
+                <br>
+                Due: <%=brief_date(s.ends_on)%> <%=spaces(2)%> ( <%= print_days_remaining(s.days_remaining) %>. )<br><br>
+            <%end%>
+        <%else%>
+            You have no active surveys at this time.
         <%end%>
-    <%else%>
-        You have no active surveys at this time.
-    <%end%>
-    <br><br>
+        <br><br>
     
-    <% if !@last_survey.nil?%>
-        Your last completed survey:<br>
-        <%= link_to @last_survey.name, survey_path(@last_survey) %>
-    <%end%>
+        <% if !@last_survey.nil?%>
+            Your last completed survey:<br>
+            <%= link_to @last_survey.name, survey_path(@last_survey) %>
+        <%end%>
+    </div>
     
+    <div class="span-13 my_project_section">
+        <!-- Alerts -->
+        <%if !@project.surveys.alert.empty?%>
+            <b>Alerts</b> <br><br>
+            <% @project.surveys.alert.each do |s| %>
+                <%= link_to s.name, current_survey_project_path(s.project, :survey_id => s.id)%> <%= spaces(2)%>
+                <span class="alert_red">Due <%= print_days_remaining(s.days_remaining) %></span><br>
+            <%end%>
+            <br>
+        <%end%>
+        
+        <!-- Recent Activity -->
+        <b>Recent Activity</b> <br><br>
+        <% if !@events.empty?%>
+            <span class="line-spaced">
+                <% @events.each do |e|%>
+                    <%= image_tag(e.icon) %><%= spaces(3)%><%= e.message%> <%= spaces(2)%>
+                    <span class="event_date"><%= time_elapsed(e.created_at)%> </span><br>
+                <%end%>
+                <% if @events.size == 7 %>
+                    <%= link_to "See All Activity", all_activity_project_path(@project)%>
+                    <br>
+                <%end%>
+            </span>
+        <%else%>
+            No recent activity.
+        <%end%>
+    </div>
+    
+
 
 </div>

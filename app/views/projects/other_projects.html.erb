@@ -1,0 +1,11 @@
+<h3><%=@project.name%></h3>
+
+<%= render "tabs"%>
+
+<div class="span-21 my_project_body">
+    <b> Other projects that you're involved in:</b><br><br>
+    <% (@projects).each do |p|%>
+        <%= link_to p.name, project_path(p)%><br><br>
+    <% end %>
+    
+</div>

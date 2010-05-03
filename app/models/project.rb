@@ -1,11 +1,13 @@
 class Project < ActiveRecord::Base
   named_scope :by_position, :order => 'position'
+  named_scope :by_name, :order => 'name'
   named_scope :no_goal, :conditions => ["goal_header_id = ? or goal_header_id IS ?", 0, nil], :order => 'position'
   
   belongs_to :goal_header
   has_and_belongs_to_many :users
   has_many :contacts, :dependent => :destroy
   has_many :surveys
+  has_many :events, :dependent => :destroy
   
   validates_presence_of       :name
   
@@ -33,6 +35,10 @@ class Project < ActiveRecord::Base
   def active_surveys
     #this returns a set of outstanding surveys where ends_on happens before the current time.
     self.surveys.sort_by{|x| x['ends_on']}.delete_if{|x| x.ends_on < Time.now }
+  end
+  
+  def recently_added_surveys
+    self.surveys.sort_by{|x| x['ends_on']}.delete_if{|x| x.created_at < Time.now }
   end
   
 end

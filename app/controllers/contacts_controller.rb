@@ -1,4 +1,8 @@
 class ContactsController < ApplicationController
+  
+  before_filter :login_required
+  before_filter :has_permission?
+  
   def index
     @contacts = Contact.find(:all)
   end
