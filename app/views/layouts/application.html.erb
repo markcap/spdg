@@ -80,8 +80,13 @@
             <%= link_to 'Resources', resources_path%>
           </li>
           
-          <% if logged_in? && !current_user.projects.empty?%>
-            <%my_project = current_user.projects.first%>
+          <% if logged_in? && (!current_user.projects.empty? || current_user.admin?)%>
+            <% if current_user.projects.empty? %>
+              <!-- This is to let admins without a project have a My Home tab -->
+              <%my_project = Project.first%>
+            <% else %>
+              <%my_project = current_user.projects.first%>
+            <% end %>
             <li class="span-3 <%if $menu_tab=='my home'%>current_tab<%end%>" onclick="location.href='<%= project_path(my_project) %>';">
               <%= link_to 'My Home', project_path(my_project)%>
             </li>

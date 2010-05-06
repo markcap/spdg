@@ -30,7 +30,7 @@
             <li <% if @project_tab=="other_projects"%> class="selected" <%end%> 
             onclick="location.href='<%=other_projects_project_path(@project)%>';">
                 <div class="left-tab-border">&nbsp;</div>
-                <div class="tab-content"><%= link_to "Other Projects", other_projects_project_path(@project)%></div>
+                <div class="tab-content"><%= link_to "My Other Projects", other_projects_project_path(@project)%></div>
                 <div class="right-tab-border">&nbsp;</div>
             </li>
         <%end%>
