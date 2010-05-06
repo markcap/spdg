@@ -1,0 +1,21 @@
+<% title "Survey Templates" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>User</th>
+    <th>Description</th>
+  </tr>
+  <% for survey_template in @survey_templates %>
+    <tr>
+      <td><%=h survey_template.name %></td>
+      <td><%=h survey_template.user_id %></td>
+      <td><%=h survey_template.description %></td>
+      <td><%= link_to "Show", survey_template %></td>
+      <td><%= link_to "Edit", edit_survey_template_path(survey_template) %></td>
+      <td><%= link_to "Destroy", survey_template, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Survey Template", new_survey_template_path %></p>

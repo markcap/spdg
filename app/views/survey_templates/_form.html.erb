@@ -1,0 +1,31 @@
+<%=javascript_include_tag "surveys"%>
+
+<div id="survey_form">
+
+<%= error_messages_for :survey_template %>
+<% form_for @survey_template do |f| %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :class => 'name' %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :cols => 49, :rows => 4 %>
+  </p>
+  <br /><br />
+
+<hr>
+    <div id="questions">
+        <% f.fields_for :questions do |builder| %>
+          <%= render "question_fields", :f => builder %>
+        <% end %>
+        <div id="add_question_here"></div>
+        <%= link_to_add_fields "Add Question", f, :questions %>
+        <br> <br>
+     </div>
+     
+     <%= f.hidden_field :id, :value => @next_id%>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+</div>

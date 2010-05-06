@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :templates
+  map.resources :survey_templates
 
   map.resources :events
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100503185840) do
+ActiveRecord::Schema.define(:version => 20100504152029) do
 
   create_table "answers", :force => true do |t|
     t.text     "content"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20100503185840) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "question_type"
+    t.integer  "survey_template_id"
   end
 
   create_table "reports", :force => true do |t|
@@ -147,6 +148,14 @@ ActiveRecord::Schema.define(:version => 20100503185840) do
     t.integer  "document_file_size"
   end
 
+  create_table "survey_templates", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "surveys", :force => true do |t|
     t.string   "name"
     t.integer  "project_id"
@@ -156,14 +165,6 @@ ActiveRecord::Schema.define(:version => 20100503185840) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "completion"
-  end
-
-  create_table "templates", :force => true do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

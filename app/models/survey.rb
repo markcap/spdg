@@ -8,6 +8,7 @@ class Survey < ActiveRecord::Base
   validates_presence_of       :name, :starts_on, :ends_on
   
   default_scope :order => 'ends_on DESC'
+  named_scope :by_id, :order => 'id'
   named_scope :by_end, :order => 'ends_on DESC'
   named_scope :complete, :conditions => ['completion = ?', 100], :order => 'ends_on DESC'
   named_scope :incomplete, :conditions => ['completion < ?', 100], :order => 'ends_on DESC'

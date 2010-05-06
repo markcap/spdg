@@ -20,8 +20,14 @@
       
         <%= f.label :ends_on, 'Ends On' %><br />
         <%= f.calendar_date_select :ends_on, :class=> 'date'  %><br /><br />
-      
+
       <hr>
+      
+      <!-- <div id="survey_template">
+            <%= render "survey_template", :id => 7, :f => f%>
+          <br>
+       </div> -->
+       
       <div id="questions">
           <% f.fields_for :questions do |builder| %>
             <%= render "question_fields", :f => builder %>
@@ -29,7 +35,11 @@
           <div id="add_question_here"></div>
           <%= link_to_add_fields "Add Question", f, :questions %>
           <br> <br>
-       </div>   
+       </div> 
+       
+       <hr>
+
+
 
       <p><%= f.submit "Submit" %></p>
     <% end %>

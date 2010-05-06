@@ -1,0 +1,20 @@
+<% title "Survey Template" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @survey_template.name %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @survey_template.user_id %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @survey_template.description %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_survey_template_path(@survey_template) %> |
+  <%= link_to "Destroy", @survey_template, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", survey_templates_path %>
+</p>

@@ -32,8 +32,11 @@ class Question < ActiveRecord::Base
   ]
   
   def create_answer
-    answer = Answer.new
-    answer.question_id = self.id
-    answer.save
+    #this is only for questions saved to a survey, not a template
+    if !self.survey_id.nil?
+      answer = Answer.new
+      answer.question_id = self.id
+      answer.save
+    end
   end
 end

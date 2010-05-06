@@ -21,12 +21,27 @@ class SurveysController < ApplicationController
   def new
     $menu_tab = 'admin'
     @survey = Survey.new
+    #I'm basically setting the template's id before I save it because I need it for the question forms that get generated.
+    @next_id = Survey.by_id.last.id + 1
   end
   
   def create
     @survey = Survey.new(params[:survey])
     @survey.user_id = current_user.id
     @survey.completion = 0
+    if !params[:template_questions].nil?
+      params[:template_questions].each do |q|
+        # this is to save the template formed questions. the data comes in this form: 
+        # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
+        # hence why it is formed with q.last, the 2nd part of the array.
+        unless q.last['destroy'].to_i == 1 
+          #deleting destroy value in order to save it
+          q.last.delete("destroy") 
+          question = Question.new(q.last)
+          question.save
+        end
+      end
+    end
     if @survey.save
       flash[:notice] = "Successfully created survey."
       redirect_to @survey
