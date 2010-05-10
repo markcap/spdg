@@ -23,6 +23,7 @@ class SurveysController < ApplicationController
     @survey = Survey.new
     #I'm basically setting the template's id before I save it because I need it for the question forms that get generated.
     @next_id = Survey.by_id.last.id + 1
+    @show_templates = true
   end
   
   def create

@@ -1,21 +1,19 @@
 <% title "Survey Templates" %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>User</th>
-    <th>Description</th>
-  </tr>
-  <% for survey_template in @survey_templates %>
-    <tr>
-      <td><%=h survey_template.name %></td>
-      <td><%=h survey_template.user_id %></td>
-      <td><%=h survey_template.description %></td>
-      <td><%= link_to "Show", survey_template %></td>
-      <td><%= link_to "Edit", edit_survey_template_path(survey_template) %></td>
-      <td><%= link_to "Destroy", survey_template, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<h3> Survey Templates </h3>
+<p><%= link_to "Add New Template", new_survey_template_path %></p>
+<hr>
 
-<p><%= link_to "New Survey Template", new_survey_template_path %></p>
+<% for st in @survey_templates %>
+    <%= link_to st.name, edit_survey_template_path(st)%><br>
+    <% if !st.description.nil?%>
+        <%= st.description%><br>
+    <%end%>
+    
+    <% if !st.user_id.nil?%>
+        Created by: <%= st.user.profile.firstname.to_s%> <%= st.user.profile.lastname.to_s%><br>
+    <%end%>
+    <%= link_to "Remove", st, :confirm => 'Are you sure you want to remove this template?', :method => :delete %><br> 
+
+    <br><hr>
+<%end%>

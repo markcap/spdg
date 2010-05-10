@@ -2,6 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   has_many :articles
+  has_many :survey_templates
   has_one :profile, :dependent => :destroy
   has_and_belongs_to_many :projects
   
