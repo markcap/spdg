@@ -5,7 +5,7 @@ class Survey < ActiveRecord::Base
   
   accepts_nested_attributes_for :questions, :reject_if => lambda { |a| a['content'].blank? }, :allow_destroy => true
   
-  validates_presence_of       :name, :starts_on, :ends_on
+  validates_presence_of       :name, :starts_on, :ends_on, :project_id
   
   default_scope :order => 'ends_on DESC'
   named_scope :by_id, :order => 'id'

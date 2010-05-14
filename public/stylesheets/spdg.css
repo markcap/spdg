@@ -524,8 +524,8 @@ tr:hover {
 }
 
 
-.fieldWithErrors {
-  display: inline;
+.fieldWithErrors input, .fieldWithErrors select, .fieldWithErrors textarea{
+	border: 1px solid red;
 }
 
 #errorExplanation {
