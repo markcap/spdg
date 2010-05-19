@@ -21,8 +21,6 @@ class SurveysController < ApplicationController
   def new
     $menu_tab = 'admin'
     @survey = Survey.new
-    #I'm basically setting the template's id before I save it because I need it for the question forms that get generated.
-    @next_id = Survey.by_id.last.id + 1
     @show_templates = true
   end
   
@@ -30,20 +28,21 @@ class SurveysController < ApplicationController
     @survey = Survey.new(params[:survey])
     @survey.user_id = current_user.id
     @survey.completion = 0
-    if !params[:template_questions].nil?
-      params[:template_questions].sort.each do |q|
-        # this is to save the template formed questions. the data comes in this form: 
-        # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
-        # hence why it is formed with q.last, the 2nd part of the array.
-        unless q.last['destroy'].to_i == 1 
-          #deleting destroy value in order to save it
-          q.last.delete("destroy") 
-          question = Question.new(q.last)
-          question.save
+    if @survey.save
+      if !params[:template_questions].nil?
+        params[:template_questions].sort.each do |q|
+          # this is to save the template formed questions. the data comes in this form: 
+          # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
+          # hence why it is formed with q.last, the 2nd part of the array.
+          unless q.last['destroy'].to_i == 1 
+            #deleting destroy value in order to save it
+            q.last.delete("destroy") 
+            question = Question.new(q.last)
+            question.survey = @survey
+            question.save
+          end
         end
       end
-    end
-    if @survey.save
       flash[:notice] = "Successfully created survey."
       redirect_to @survey
     else
@@ -54,25 +53,25 @@ class SurveysController < ApplicationController
   def edit
     $menu_tab = 'admin'
     @survey = Survey.find(params[:id])
-    @next_id = @survey.id
   end
   
   def update
     @survey = Survey.find(params[:id])
-    if !params[:template_questions].nil?
-      params[:template_questions].sort.each do |q|
-        # this is to save the template formed questions. the data comes in this form: 
-        # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
-        # hence why it is formed with q.last, the 2nd part of the array.
-        unless q.last['destroy'].to_i == 1 
-          #deleting destroy value in order to save it
-          q.last.delete("destroy") 
-          question = Question.new(q.last)
-          question.save
+    if @survey.update_attributes(params[:survey])
+      if !params[:template_questions].nil?
+        params[:template_questions].sort.each do |q|
+          # this is to save the template formed questions. the data comes in this form: 
+          # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
+          # hence why it is formed with q.last, the 2nd part of the array.
+          unless q.last['destroy'].to_i == 1 
+            #deleting destroy value in order to save it
+            q.last.delete("destroy") 
+            question = Question.new(q.last)
+            question.survey = @survey
+            question.save
+          end
         end
       end
-    end
-    if @survey.update_attributes(params[:survey])
       flash[:notice] = "Successfully updated survey."
       redirect_to edit_survey_path(@survey)
     else
@@ -92,7 +91,7 @@ class SurveysController < ApplicationController
   end
   
   def render_template
-      render :partial => 'survey_template', :locals => { :id => params[:template], :survey_id => params[:survey_id] }
+      render :partial => 'survey_template', :locals => { :id => params[:template]}
   end
   
 end

@@ -31,7 +31,7 @@
           <% SurveyTemplate.all.each do |st|%>
       		<%=link_to_remote( st.name,
       		    :update => 'template_div',
-      		    :url => {:action => 'render_template', :template => st, :survey_id => @next_id} )%><br>
+      		    :url => {:action => 'render_template', :template => st} )%><br>
           <%end%>
 
       </div>
