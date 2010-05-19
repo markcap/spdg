@@ -18,26 +18,27 @@
         <%= f.calendar_date_select :starts_on, :class=> 'date' %>
       </div>
       
-        <%= f.label :ends_on, 'Ends On' %><br />
-        <%= f.calendar_date_select :ends_on, :class=> 'date'  %><br /><br />
+      <%= f.label :ends_on, 'Ends On' %><br />
+      <%= f.calendar_date_select :ends_on, :class=> 'date'  %><br /><br />
 
-      <% if @show_templates%>
-          <%= link_to "Load Template", "#", :class => 'template_link' %>
-          <div id="templates">
-              <b>Choose a template to load</b><br><br>
-              <% SurveyTemplate.all.each do |st|%>
-                <%= link_to st.name, new_survey_path(:survey_template_id => st.id)%><br>
-              <%end%>
-          </div>
-          <br><br>
-          <hr>
-      
-          <% if !params[:survey_template_id].nil?%>
-            <div id="survey_template">
-                <%= render "survey_template", :id => params[:survey_template_id], :f => f%>
+
+      <%= link_to "Load Template", "#", :class => 'template_link' %>
+      <div id="templates">
+          <div class="close close_templates">
+              X
             </div>
+          <b>Choose a template to load</b><br><br>
+          <% SurveyTemplate.all.each do |st|%>
+      		<%=link_to_remote( st.name,
+      		    :update => 'template_div',
+      		    :url => {:action => 'render_template', :template => st, :survey_id => @next_id} )%><br>
           <%end%>
-      <%end%>
+
+      </div>
+      <br><br>
+      <hr>
+  
+      <div id="template_div"></div>
        
       <div id="questions">
           <% f.fields_for :questions do |builder| %>

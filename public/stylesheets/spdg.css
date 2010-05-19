@@ -566,3 +566,24 @@ tr:hover {
 .right {
 	float:right;
 }
+
+#templates {
+	width: 55%;
+	padding: 10px;
+	background-color: #DCE3F3;
+	border: 1px solid gray;
+}
+
+.close {
+	cursor: pointer;
+	font-size: 9px;
+	float: right;
+	border: 1px solid gray;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.close:hover {
+	background-color: gray;
+	color: white;
+}

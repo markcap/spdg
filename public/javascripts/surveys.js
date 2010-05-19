@@ -17,4 +17,11 @@ jQuery(document).ready(function() {
 			jQuery(".template_link").hide();
 			return false;
 		});
+		
+		jQuery(".close_templates").click(function()
+			{
+				jQuery("#templates").hide();
+				jQuery(".template_link").show();
+				return false;
+			});
 });
