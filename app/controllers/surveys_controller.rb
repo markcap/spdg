@@ -31,7 +31,7 @@ class SurveysController < ApplicationController
     @survey.user_id = current_user.id
     @survey.completion = 0
     if !params[:template_questions].nil?
-      params[:template_questions].each do |q|
+      params[:template_questions].sort.each do |q|
         # this is to save the template formed questions. the data comes in this form: 
         # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
         # hence why it is formed with q.last, the 2nd part of the array.
@@ -60,7 +60,7 @@ class SurveysController < ApplicationController
   def update
     @survey = Survey.find(params[:id])
     if !params[:template_questions].nil?
-      params[:template_questions].each do |q|
+      params[:template_questions].sort.each do |q|
         # this is to save the template formed questions. the data comes in this form: 
         # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
         # hence why it is formed with q.last, the 2nd part of the array.
