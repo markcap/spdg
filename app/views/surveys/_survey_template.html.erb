@@ -4,10 +4,10 @@
 <% template_questions.each_with_index do |q, index|%>
 
     <p class="fields">
-      <%= label :content, "Question" %> <%=spaces(3)%> 
-      <%= select "template_questions[#{index}]", :question_type, Question::QUESTION_TYPES, :selected => q.question_type%> <%=spaces(3)%> 
-      <%= link_to image_tag("/images/icons/help.png"), question_type_help_path, :popup => ['new_win', 'height=700,width=700,scrollbar="yes"']%> <%=spaces(3)%> 
-      <%= link_to_remove_template_fields "Remove", "template_questions[#{index}]"%><br />
+      # <%= text_field "template_questions[#{index}]", :position, :class => "position", :style => "width:20px", :value => q.position%>
+       <%=spaces(3)%> <%= select "template_questions[#{index}]", :question_type, Question::QUESTION_TYPES, :selected => q.question_type%>   
+       <%=spaces(3)%> <%= link_to image_tag("/images/icons/help.png"), question_type_help_path, :popup => ['new_win', 'height=700,width=700,scrollbar="yes"']%> 
+       <%=spaces(3)%> <%= link_to_remove_template_fields "Remove", "template_questions[#{index}]"%><br />
       <%= text_area "template_questions[#{index}]", :content, :rows => 2, :cols => 90, :value => q.content %><br />
     </p>
 <%end%>

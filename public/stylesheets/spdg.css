@@ -587,3 +587,13 @@ tr:hover {
 	background-color: gray;
 	color: white;
 }
+
+.tiny-button { font-family: "Lucida Grande", Lucida, Arial, sans_serif; background: url('/images/button_bg.png?1260299671') repeat-x bottom left; margin: 0; display: inline-block; cursor: pointer; text-decoration: none; border-style: solid; font-weight: bold; border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; padding: 2px 8px; font-size: 10px; line-height: 12px; border-width: 1px; color: #fff; background-color: #47e000; background: -webkit-gradient(linear, left top, left bottom, from(#b7e8a1), to(#5fc430), color-stop(0.1, #7fd657), color-stop(0.5, #51a729), color-stop(0.5, #4b9b26)); background: -moz-linear-gradient(left top, left bottom, from(#b7e8a1), to(#5fc430), color-stop(0.1, #7fd657), color-stop(0.5, #51a729), color-stop(0.5, #4b9b26)); text-shadow: #1f6100 1px 1px 1px; border-color: #479324; }
+.tiny-button::-moz-focus-inner { border: none; padding: 0; }
+.tiny-button:focus { outline: none; }
+.tiny-button:active { padding: 1px 7px; }
+.tiny-button.disabled:active { padding: 2px 8px; }
+.tiny-button:active { border-width: 2px; }
+.tiny-button.disabled:active { border-width: 1px; }
+.tiny-button:hover, .tiny-button:focus { cursor: pointer; color: #fff; background-color: #42d100; background: -webkit-gradient(linear, left top, left bottom, from(#aee595), to(#59b82d), color-stop(0.1, #76d34b), color-stop(0.5, #4b9b26), color-stop(0.5, #458f23)); background: -moz-linear-gradient(left top, left bottom, from(#aee595), to(#59b82d), color-stop(0.1, #76d34b), color-stop(0.5, #4b9b26), color-stop(0.5, #458f23)); text-shadow: #1a5200 1px 1px 1px; border-color: #418721; }
+.tiny-button:active { color: #fff; background-color: #3dc100; background: -webkit-gradient(linear, left top, left bottom, from(#a4e288), to(#53ab2a), color-stop(0.1, #6cd03e), color-stop(0.5, #458e23), color-stop(0.5, #3f8220)); background: -moz-linear-gradient(left top, left bottom, from(#a4e288), to(#53ab2a), color-stop(0.1, #6cd03e), color-stop(0.5, #458e23), color-stop(0.5, #3f8220)); text-shadow: #154200 1px 1px 1px; border-color: #3b7a1e; }

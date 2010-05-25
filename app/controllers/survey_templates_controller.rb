@@ -41,7 +41,7 @@ class SurveyTemplatesController < ApplicationController
     @survey_template = SurveyTemplate.find(params[:id])
     if @survey_template.update_attributes(params[:survey_template])
       flash[:notice] = "Successfully updated survey template."
-      redirect_to @survey_template
+      render :action => 'edit'
     else
       render :action => 'edit'
     end

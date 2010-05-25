@@ -3,7 +3,7 @@
 (You can go back and update this survey at any time until <%=nice_date(survey.ends_on)%>.)<br><br>
 
 <%form_tag submitanswers_project_path(@project, :survey_id => survey.id), :multipart => true do %>
-    <% survey.questions.each_with_index do |q, index|%>
+    <% survey.questions.by_position.each_with_index do |q, index|%>
         <b><%= q.content%></b> <br>
         <% if q.question_type == 2 %>
             <%= text_field :answer_hash, "#{q.answer.id}", :style => 'width:30px', :value => q.answer.content%><br><br>

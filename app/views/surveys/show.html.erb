@@ -25,7 +25,7 @@
 </table>
 
 <hr>
-<%@survey.questions.each do |q|%>
+<%@survey.questions.by_position.each do |q|%>
     <b><%=q.content%></b><br><br>
     <div id="answer">
         <%= q.answer.content%><br><br>
