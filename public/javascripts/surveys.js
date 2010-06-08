@@ -1,7 +1,7 @@
 function remove_fields(link) {
   jQuery(link).prev("input[type=hidden]").val("1");
   jQuery(link).closest(".fields").hide();
-	//this is for renumbering
+	//this is for renumbering. you need to remove the position class from deleted questions because they're actually just hidden and are still in the form.
 	jQuery(link).parent().find(".position").removeClass('position');
 }
 

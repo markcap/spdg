@@ -17,6 +17,9 @@ body a:hover{
 	color: blue;
 }
 
+h3.inline {
+	display:inline;
+}
 h4{ 
 	font-size: 16px;
 	font-weight: bold;
@@ -588,6 +591,17 @@ tr:hover {
 	color: white;
 }
 
+SPAN.tagMatches {
+    margin-left: 10px;
+}
+
+SPAN.tagMatches SPAN {
+    padding: 2px;
+    margin-right: 4px;
+    background-color: #0000AB;
+    color: #fff;
+    cursor: pointer;
+}
 .tiny-button { font-family: "Lucida Grande", Lucida, Arial, sans_serif; background: url('/images/button_bg.png?1260299671') repeat-x bottom left; margin: 0; display: inline-block; cursor: pointer; text-decoration: none; border-style: solid; font-weight: bold; border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; padding: 2px 8px; font-size: 10px; line-height: 12px; border-width: 1px; color: #fff; background-color: #47e000; background: -webkit-gradient(linear, left top, left bottom, from(#b7e8a1), to(#5fc430), color-stop(0.1, #7fd657), color-stop(0.5, #51a729), color-stop(0.5, #4b9b26)); background: -moz-linear-gradient(left top, left bottom, from(#b7e8a1), to(#5fc430), color-stop(0.1, #7fd657), color-stop(0.5, #51a729), color-stop(0.5, #4b9b26)); text-shadow: #1f6100 1px 1px 1px; border-color: #479324; }
 .tiny-button::-moz-focus-inner { border: none; padding: 0; }
 .tiny-button:focus { outline: none; }

@@ -36,6 +36,10 @@ module ApplicationHelper
     return string
   end
   
+  def no_spaces(s) #replaces spaces with underscores
+    return s.gsub(/ /, '_')
+  end
+  
   def fname(profile) #to print someone's full name
     name = ""
     name = profile.firstname.to_s + " " + profile.lastname.to_s

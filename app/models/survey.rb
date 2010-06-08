@@ -53,6 +53,34 @@ class Survey < ActiveRecord::Base
     @event.message = "New survey added: " + self.name.to_s
     @event.save
   end 
+  
+  def generate_excel
+ 
+    header_row = ["Project", "Survey", "Started on", "Ended on", "Attached Files", "Completion"]
+    self.questions.each do |q|
+      q.content ? header_row << q.content : add_blank_cells(1)
+    end
+    csv_file = FasterCSV.generate do |csv|
+      csv << header_row
+      csv_row = []
+      csv_row << self.project.name << name << starts_on.strftime('%m/%d/%Y') << ends_on.strftime('%m/%d/%Y') << self.survey_files.count 
+      csv_row << completion
+      
+      self.questions.each do |q|
+        q.answer.content ? csv_row << q.answer.content : add_blank_cells(1)
+      end
+      
+      csv << csv_row
+    end
+    return csv_file
+  end
 
+  def add_blank_cells(number_of_spaces)
+    return_array = []
+    (1..number_of_spaces).each do
+      return_array << " "
+    end
+    return return_array
+  end
   
 end

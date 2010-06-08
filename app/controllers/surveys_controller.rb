@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  include ApplicationHelper
   
   before_filter :login_required
   before_filter :has_permission?
@@ -15,7 +16,18 @@ class SurveysController < ApplicationController
   end
   
   def show
+
     @survey = Survey.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.csv do 
+        send_data @survey.generate_excel, :filename => @survey.name + "_" + @survey.ends_on.strftime('%b-%d-%Y') + '.csv'
+      end
+      format.pdf do 
+        prawnto :prawn => { :top_margin => 10, :left_margin => 50, :right_margin=> 50}
+        prawnto :filename => no_spaces(@survey.name) + "_" + @survey.ends_on.strftime('%b-%d-%Y') + '.pdf'
+      end
+    end
   end
   
   def new
