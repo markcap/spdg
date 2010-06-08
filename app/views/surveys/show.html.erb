@@ -1,8 +1,5 @@
 
-<h3 class="inline">  <%=h @survey.name %></h3> <%= spaces(5)%> 
-<%= link_to image_tag("icons/excel_icon.gif"), survey_path(@survey, :format => "csv"), :title => 'Download to Excel'%> <%= spaces(3)%>
-<%= link_to image_tag("icons/pdf_icon.gif"), survey_path(@survey, :format => "pdf"), :title => 'Download to PDF'%>
-<br><br>
+<h3>  <%=h @survey.name %></h3> 
 
 <table style="width: 600px">
     <tr>
@@ -26,6 +23,10 @@
       <td><%= render :partial => 'completion_bar', :locals => {:s => @survey}%></td>
     </tr>
 </table>
+<%= spaces(2)%><b>Download: </b><%= spaces(11)%>
+<%= link_to image_tag("icons/excel_icon.gif"), survey_path(@survey, :format => "csv"), :title => 'Download to Excel'%> <%= spaces(3)%>
+<%= link_to image_tag("icons/pdf_icon.gif"), survey_path(@survey, :format => "pdf"), :title => 'Download to PDF'%>
+<br><br>
 
 <hr>
 <%@survey.questions.by_position.each do |q|%>
