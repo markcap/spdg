@@ -34,27 +34,54 @@ class SurveysController < ApplicationController
     $menu_tab = 'admin'
     @survey = Survey.new
     @show_templates = true
+    @show_multiple = true
   end
   
   def create
-    @survey = Survey.new(params[:survey])
-    @survey.user_id = current_user.id
-    @survey.completion = 0
-    if @survey.save
-      if !params[:template_questions].nil?
-        params[:template_questions].sort.each do |q|
-          # this is to save the template formed questions. the data comes in this form: 
-          # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
-          # hence why it is formed with q.last, the 2nd part of the array.
-          unless q.last['destroy'].to_i == 1 
-            #deleting destroy value in order to save it
-            q.last.delete("destroy") 
-            question = Question.new(q.last)
-            question.survey = @survey
-            question.save
-          end
+
+    if params[:multiples]
+      #for multiple surveys
+      project_array = []
+      params[:multiples].each do |m|
+        if m.last != "0"
+          project_array << m.last.to_i
         end
       end
+      number_of_surveys = project_array.size
+    else
+      number_of_surveys = 1
+    end
+    
+    #save flag is so i don't have multiple redirects.
+    save_flag = true
+    number_of_surveys.times do |x|
+      @survey = Survey.new(params[:survey])
+      if !params[:survey][:project_id]
+        @survey.project_id = project_array[x]
+      end
+      @survey.user_id = current_user.id
+      @survey.completion = 0
+      if @survey.save
+        if !params[:template_questions].nil?
+          params[:template_questions].sort.each do |q|
+            # this is to save the template formed questions. the data comes in this form: 
+            # ["0", {"question_type"=>"1", "survey_id"=>"16", "content"=>"#1"}]
+            # hence why it is formed with q.last, the 2nd part of the array.
+            unless q.last['destroy'].to_i == 1 
+              #deleting destroy value in order to save it
+              q.last.delete("destroy") 
+              question = Question.new(q.last)
+              question.survey = @survey
+              question.save
+            end
+          end
+        end
+      else 
+        save_flag = false
+      end
+    end
+    
+    if save_flag
       flash[:notice] = "Successfully created survey."
       redirect_to @survey
     else
@@ -104,6 +131,10 @@ class SurveysController < ApplicationController
   
   def render_template
       render :partial => 'survey_template', :locals => { :id => params[:template]}
+  end
+  
+  def render_multiple_projects
+      render :partial => 'multiple_projects'
   end
   
 end

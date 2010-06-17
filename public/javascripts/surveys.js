@@ -47,4 +47,15 @@ jQuery(document).ready(function() {
 			 });
 			
 		});
+		
+		jQuery("#check_all").live("click", function()
+		{
+			jQuery("input[list_type='project_checkboxes']").attr('checked', true);
+		});
+
+		jQuery("#uncheck_all").live("click", function()
+		{
+			jQuery("input[list_type='project_checkboxes']").attr('checked', false);
+		});
+
 });

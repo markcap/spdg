@@ -51,7 +51,7 @@
             'tags' : null,
             'url' : null,
             'delay' : 0,
-            'separator' : ' '
+            'separator' : ', '
         };
 
         var i, tag, userTags = [], settings = $.extend({}, defaults, options);
@@ -61,6 +61,7 @@
         } else {
             userTags = globalTags;
         }
+				
 
         return this.each(function () {
             var tagsElm = $(this);
@@ -164,8 +165,13 @@
                         break;
                     }
                 }
-
-                if (index == workingTags.length - 1) tag = tag + settings.separator;
+								
+                if (index == workingTags.length - 1) {
+									if ($(this).val() == "")
+										tag = tag;
+									else 
+										tag = settings.separator + tag + " ";
+								}
 
                 workingTags[i] = tag;
 
@@ -262,10 +268,78 @@
 
             // initialise
             setSelection();
+
+						// populating the lower boxes
+						$("input.tagSuggest").after("<div id='lower_tags'>");
+						for (var tag in userTags.sort())
+						{
+							$(".lower_tags").append('<div id="' + userTags[tag] + '" class="lower_tag_link">' + userTags[tag]);
+							$(".lower_tags").append("&nbsp;&nbsp;");
+						}
+
+						$("#lower_tags").append("</div>");
+
         });
+			
     };
 })(jQuery);
 
 jQuery(document).ready(function() {
 
+	$(".lower_tag_link").click(function()
+		{
+			if ($(this).hasClass("tag_selected")) {
+				$('input.tagSuggest').val($('input.tagSuggest').val().replace((", " + $(this).attr("id")), "")) //getting all 3 cases of tag positions (beginning, middle, end)
+				$('input.tagSuggest').val($('input.tagSuggest').val().replace(($(this).attr("id") + ", "), "")) 
+				$('input.tagSuggest').val($('input.tagSuggest').val().replace($(this).attr("id"), ""))
+				$(this).removeClass("tag_selected")
+			}
+			else {
+				if ($('input.tagSuggest').val() == "")
+					$('input.tagSuggest').val($('input.tagSuggest').val() + $(this).attr("id"));
+				else
+					$('input.tagSuggest').val($('input.tagSuggest').val() + ", " + $(this).attr("id"));
+				$(this).addClass("tag_selected")
+			}
+		});
+		
+		$("input.tagSuggest").observe_field(.01, function() {
+			var tags = $(this).val().replace(/, /gi, ",").split(",");
+			$.each($(".lower_tag_link"), function(index, value) {
+				if (($.inArray($(value).attr("id"), tags) == -1) && $(value).hasClass("tag_selected"))
+					$(this).removeClass("tag_selected")
+				if (($.inArray($(value).attr("id"), tags) != -1) && !($(value).hasClass("tag_selected")))
+					$(this).addClass("tag_selected");
+				});
+		});
+
+	
 });
+
+// jquery.observe_field.js
+//
+
+jQuery.fn.observe_field = function(frequency, callback) {
+
+  return this.each(function(){
+    var element = $(this);
+    var prev = element.val();
+
+    var chk = function() {
+      var val = element.val();
+      if(prev != val){
+        prev = val;
+        element.map(callback); // invokes the callback on the element
+      }
+    };
+    chk();
+    frequency = frequency * 1000; // translate to milliseconds
+    var ti = setInterval(chk, frequency);
+    // reset counter after user interaction
+    element.bind('keyup', function() {
+      ti && clearInterval(ti);
+      ti = setInterval(chk, frequency);
+    });
+  });
+
+};

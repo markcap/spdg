@@ -1,0 +1,12 @@
+<b> Select Projects: </b> <%=spaces(3)%>
+<span id="check_all" class="faux_link">Check All</span> <%=spaces(3)%>
+<span id="uncheck_all" class="faux_link">Uncheck All</span>
+
+<br>
+<% Project.by_name.each do |p|%>
+  <%= check_box :multiples, "#{p.id}", {:list_type => 'project_checkboxes'}, p.id, 0%> 
+  <%= p.name%><br>
+<%end%>
+
+
+

@@ -8,15 +8,15 @@ class Contact < ActiveRecord::Base
   end
 
   def self.is_creatable_by(user, parent = nil)
-    user.admin? || self.survey.project.users.include?(user)
+    user.admin? || self.project.users.include?(user)
   end
 
   def is_updatable_by(user, parent = nil)
-    user.admin? || self.survey.project.users.include?(user)
+    user.admin? || self.project.users.include?(user)
   end
 
   def is_deletable_by(user, parent = nil)
-    user.admin? || self.survey.project.users.include?(user)
+    user.admin? || self.project.users.include?(user)
   end
 
   def is_readable_by(user, parent = nil)

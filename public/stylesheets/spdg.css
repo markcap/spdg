@@ -591,6 +591,28 @@ tr:hover {
 	color: white;
 }
 
+#choose_project {
+	line-height: 25px;
+}
+
+.faux_link {
+	color: #000099;
+	cursor: pointer;
+}
+
+.lower_tag_link {
+	display: inline;
+	cursor: pointer;
+	background: #6d7aa6;
+	color: white;
+	padding: 2px;
+	line-height: 29px;
+}
+
+.tag_selected {
+	background: blue;
+}
+
 SPAN.tagMatches {
     margin-left: 10px;
 }

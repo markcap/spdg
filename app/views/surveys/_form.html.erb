@@ -9,10 +9,18 @@
         <%= f.label :name %><br />
         <%= f.text_field :name, :class => 'name'%>
       </p>
-      <p>
+      
+        <div id="choose_project">
         <%= f.label :project_id, 'Project' %><br />
-        <%= f.select :project_id, Project.all.map {|p| [p.name, p.id]}, :prompt => 'Select...' %>
-      </p>
+        <%= f.select :project_id, Project.all.map {|p| [p.name, p.id]}, :prompt => 'Select...' %><%= spaces(3)%>
+        <% if @show_multiple%>
+          <%=link_to_remote( 'Choose multiple projects',
+      		    :update => 'choose_project',
+      		    :url => {:action => 'render_multiple_projects'} )%>
+
+          </div>
+        <%end%>
+      <br><br>
       <div class="span-7">
         <%= f.label :starts_on, 'Starts On' %><br />
         <%= f.calendar_date_select :starts_on, :class=> 'date' %>
