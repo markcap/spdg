@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
 		"aoColumns": [ 
 			{ "sType": "html" },
 			{ "sType": "html" },
-			{ "sWidth": "20%" },
+			{ "sWidth": "14%" },
 			{ "sType": "numeric",
 			 	"sClass" : "center" }
 			],
