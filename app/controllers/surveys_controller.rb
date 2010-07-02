@@ -7,11 +7,11 @@ class SurveysController < ApplicationController
   def index
     $menu_tab = 'admin'
     if current_user.survey_view_type == 1 #all surveys
-      @surveys = Survey.all
+      @surveys = Survey.complete
     elsif current_user.survey_view_type == 2 #incomplete surveys
-      @surveys = Survey.incomplete.paginate(:per_page => 20, :page => params[:page])
+      @surveys = Survey.incomplete
     else
-      @surveys = Survey.by_end.paginate(:per_page => 20, :page => params[:page])
+      @surveys = Survey.all
     end
   end
   

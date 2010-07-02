@@ -1,0 +1,28 @@
+
+<table id="surveys_table" class="display">
+    <thead>
+        <tr>
+        <th>Survey</th>
+        <th>Project</th>
+        <th>End Date</th>
+        <th>Completion</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        
+  <% for survey in @surveys %>
+    <% if survey.completion != 100%>
+      <tr class="incomplete">
+    <%else%>
+      <tr class="complete">
+    <%end%>
+          <td> <%=link_to survey.name, survey_path(survey)%> </td>
+          <td> <%=survey.project.nil? ? "None" : (link_to survey.project.name, project_path(survey.project))%> </td>
+          <td> <%=nice_date(survey.ends_on)%> </td>
+          <td> <%=survey.completion%> </td>
+      </tr>
+  <%end%>
+  </tbody>
+</table>
+<br>

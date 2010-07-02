@@ -26,7 +26,7 @@ h4{
 }
 .container{
 		font-size: 14px;
-		font-family:Georgia,serif;
+		font-family:Georgia
 }
 
 .container input[type=text], input[type=password], input[type=file]{
@@ -326,6 +326,9 @@ min-height: 85px;
 	min-width: 22px;
 	background-color: #cecdcd;
 	width: 200px;
+	height: 22px;
+	font-size: 12px;
+	font-family:Arial;
 }
 
 .green {
@@ -343,7 +346,24 @@ min-height: 85px;
 }
 
 #answer {
-	padding-left: 20px;
+	border: 2px solid white;
+	border-left: 2px solid #4487C9;
+	margin: 10px 10px 20px 0;
+	margin-left: 10px;
+	padding: 0px 10px 0px 20px;
+	line-height: 27px;
+}
+
+#answer:hover {
+	border: 2px solid #4487C9;
+	background-color: #f3f1f1;
+	margin: 5px 10px 15px 0;
+	margin-left: 10px;
+	padding: 5px 10px 5px 20px;
+}
+
+#blank_answer {
+	min-height: 45px;
 }
 
 .pagination .current{
@@ -498,9 +518,6 @@ textarea{
 	padding: 5px;
 	}
 	
-tr:hover {
-	background-color: #d4e0ef;
-}
 /**********************************************************************************************************************/
 
 #flash_notice, #flash_error {
@@ -609,9 +626,20 @@ tr:hover {
 	line-height: 29px;
 }
 
+.highlighted_link {
+	color: white;
+	background-color: #4487C9;
+	padding:5px;
+}
+
+.highlighted_link:hover {
+	color: white;
+	text-decoration: none;
+}
 .tag_selected {
 	background: blue;
 }
+
 
 SPAN.tagMatches {
     margin-left: 10px;

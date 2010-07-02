@@ -1,34 +1,26 @@
+<%= javascript_include_tag 'dataTables', 'survey_table'%>
+<%= stylesheet_link_tag 'data_table'%>
+
 <%= link_to "New Survey", new_survey_path %><%= spaces(18)%>
 View Styles: <%= spaces(4)%>
-<%= link_to "Default View", change_view_type_user_path(current_user, :type => 0)%><%= spaces(4)%>|<%= spaces(4)%>
-<%= link_to "All Surveys", change_view_type_user_path(current_user, :type => 1)%><%= spaces(4)%>|<%= spaces(4)%>
-<%= link_to "Incomplete Only", change_view_type_user_path(current_user, :type => 2)%>
+
+<%= link_to "All Surveys", change_view_type_user_path(current_user, :type => 0), :class => 'surveys_all'%><%= spaces(4)%>|<%= spaces(4)%>
+<%= link_to "Complete Only", change_view_type_user_path(current_user, :type => 1), :class => 'surveys_com'%><%= spaces(4)%>|<%= spaces(4)%>
+<%= link_to "Incomplete Only", change_view_type_user_path(current_user, :type => 2), :class => 'surveys_inc'%>
 <br><br>
 
-<% unless current_user.survey_view_type == 1%>
-    <%= will_paginate @surveys %>
-<%end%>	
 
-<%@surveys.each do |s|%>
-    <%if !s.completion.nil? && s.completion < 100%>
-        <div class="survey_box incomplete">
-    <%else%>
-        <div class="survey_box complete">
-    <%end%>
-        <div class="right">
-            <%=link_to image_tag("../images/icons/edit.gif"), edit_survey_path(s)%>
-            <%=spaces(5)%>
-            <%=link_to image_tag("../images/icons/delete.gif"), survey_path(s),
-             :confirm => 'Are you sure you want to delete this survey?', :method => :delete%>
-        </div>
-        <b><%= link_to s.name, survey_path(s)%></b><br><br>
-        
-        <%if !s.project.nil?%>
-            Project: <%=s.project.name.to_s%><br>
-        <%else%>
-            Project: None <br>
-        <%end%>
-        Due Date: <%= nice_date(s.ends_on)%><br>
-        Status: <b><%=s.completion%>%</b> Complete
-    </div>
-<%end%>
+  <%if current_user.survey_view_type && current_user.survey_view_type == 1 %>
+    <script type='text/javascript'>
+      jQuery(".surveys_com").addClass("highlighted_link")
+    </script>
+  <%elsif current_user.survey_view_type && current_user.survey_view_type == 2%>
+  <script type='text/javascript'>
+    jQuery(".surveys_inc").addClass("highlighted_link")
+  </script>
+  <%else%>
+  <script type='text/javascript'>
+    jQuery(".surveys_all").addClass("highlighted_link")
+  </script>
+  <%end%>
+<%= render 'survey_table'%>

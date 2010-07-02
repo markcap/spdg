@@ -1,43 +1,44 @@
 
-<h3>  <%=h @survey.name %></h3> 
-
-<table style="width: 600px">
-    <tr>
-        <td width="110px"><strong>Project:</strong></td>
-        <td><%=h @survey.project.name%></td>
-    </tr>
-    <tr>
-      <td><strong>Started On:</strong></td>
-      <td><%=h brief_date(@survey.starts_on) %></td>
-    </tr>
-    <tr>
-      <td><strong>Ended On:</strong></td>
-      <td><%=h brief_date(@survey.ends_on) %></td>
-    </tr>
-    <tr>
-      <td><strong>Attached Files:</strong></td>
-      <td><%=h @survey.survey_files.count %></td>
-    </tr>
-    <tr>
-      <td><strong>Completion:</strong></td>
-      <td><%= render :partial => 'completion_bar', :locals => {:s => @survey}%></td>
-    </tr>
-</table>
-<%= spaces(2)%><b>Download: </b><%= spaces(11)%>
-<%= link_to image_tag("icons/excel_icon.gif"), survey_path(@survey, :format => "csv"), :title => 'Download to Excel'%> <%= spaces(3)%>
-<%= link_to image_tag("icons/pdf_icon.gif"), survey_path(@survey, :format => "pdf"), :title => 'Download to PDF'%>
+<h3 style="display:inline">  <%=h @survey.name %></h3>
+ <%= spaces(4)%> <%=link_to image_tag("../images/icons/edit.gif"), edit_survey_path(@survey), :title => "Edit"%>
+ <%= spaces(4)%> <%=link_to image_tag("../images/icons/delete.gif"), survey_path(@survey), :title => "Delete", 
+ :confirm => 'Are you sure?', :method => :delete%>
 <br><br>
+
+<div class="survey_info">
+  <% if @survey.project %>
+    <%= link_to @survey.project.name, project_path(@survey.project)%><br>
+  <%end%>
+  <%=h nice_date(@survey.starts_on) %> - <%=h nice_date(@survey.ends_on) %><br> 
+  <% if @survey.survey_files.count == 0%>
+    0 attached files
+  <%else%>
+    <%= link_to  "#{@survey.survey_files.count} attached files", "#attached_files"%>
+  <%end%>
+  <br>
+  <%= render :partial => 'completion_bar', :locals => {:s => @survey}%>
+  Download:<%= spaces(3)%>
+  <%= link_to image_tag("icons/excel_icon.gif"), survey_path(@survey, :format => "csv"), :title => 'Download to Excel'%> <%= spaces(3)%>
+  <%= link_to image_tag("icons/pdf_icon.gif"), survey_path(@survey, :format => "pdf"), :title => 'Download to PDF'%>
+</div>
+<br>
 
 <hr>
 <%@survey.questions.by_position.each do |q|%>
-    <b><%=q.content%></b><br><br>
-    <div id="answer">
-        <%= q.answer.content%><br><br>
+    <b><%=q.content%></b><br>
+    
+    <% if q.answer.content && !q.answer.content.blank?%>
+      <div id="answer">
+    <%else%>
+      <div id="blank_answer">
+    <%end%>
+        <%= q.answer.content%>
     </div>
 <%end%>
 
 <%if !@survey.survey_files.empty?%>
     <hr>
+    <a name="attached_files"></a>
     Attached Files: <br><br>
     <% @survey.survey_files.each do |sf|%>
         <%= link_to image_tag("/images/icons/folder.gif"), sf.document.url%><%=spaces(2)%>
