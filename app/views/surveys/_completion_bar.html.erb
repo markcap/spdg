@@ -1,9 +1,11 @@
 <% if s.completion < 100 %>
      <div class="completion_bar">
-         <div class="incomplete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% Completed </div>
+         <div class="incomplete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>%</div>
      </div>
+      <span class="red"> Incomplete</span>
  <%else%>
      <div class="completion_bar">
-         <div class="complete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% Completed</div>
+         <div class="complete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>%</div>
      </div>
+      <span class="green"> Complete</span>
  <%end%>
