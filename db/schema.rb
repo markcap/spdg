@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100524154246) do
+ActiveRecord::Schema.define(:version => 20100729210143) do
 
   create_table "answers", :force => true do |t|
     t.text     "content"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(:version => 20100524154246) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+  end
+
+  create_table "devlogs", :force => true do |t|
+    t.text     "message"
+    t.string   "section"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", :force => true do |t|
@@ -166,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20100524154246) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "completion"
+    t.boolean  "email"
   end
 
   create_table "users", :force => true do |t|
@@ -183,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20100524154246) do
     t.integer  "first_login",               :limit => 1
     t.date     "last_login"
     t.integer  "survey_view_type"
+    t.integer  "default_project"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

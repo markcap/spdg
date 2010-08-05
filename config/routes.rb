@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :devlogs
+
   map.resources :survey_templates
 
   map.resources :events
@@ -22,7 +24,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :projects,
     :has_many => [:users, :contacts],
-    :member => [ :information, :add_user, :add_user_commit, :current_survey, :past_surveys, :submitanswers, :other_projects, :all_activity]
+    :member => [ :information, :add_user, :add_user_commit, :current_survey, :past_surveys, :submitanswers, :other_projects, :all_activity],
+    :collection => [:set_default_project]
 
   map.resources :profiles
 

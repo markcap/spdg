@@ -45,8 +45,8 @@
     $.fn.tagSuggest = function (options) {
         var defaults = { 
             'matchClass' : 'tagMatches', 
-            'tagContainer' : 'span', 
-            'tagWrap' : 'span', 
+            'tagContainer' : 'class', 
+            'tagWrap' : 'class', 
             'sort' : true,
             'tags' : null,
             'url' : null,
@@ -270,15 +270,14 @@
             setSelection();
 
 						// populating the lower boxes
-						$("input.tagSuggest").after("<div id='lower_tags'>");
+						$("#content").append("<div id='lower_tags'>");
 						for (var tag in userTags.sort())
 						{
-							$(".lower_tags").append('<div id="' + userTags[tag] + '" class="lower_tag_link">' + userTags[tag]);
-							$(".lower_tags").append("&nbsp;&nbsp;");
+							$("#lower_tags").append('<div id="' + userTags[tag] + '" class="lower_tag_link">' + userTags[tag]);
 						}
 
 						$("#lower_tags").append("</div>");
-
+							
         });
 			
     };

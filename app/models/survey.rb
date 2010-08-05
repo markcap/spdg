@@ -20,6 +20,7 @@ class Survey < ActiveRecord::Base
   
   
   after_create :add_create_event
+  after_create :send_email
   
     
   def self.is_indexable_by(user, parent = nil)
@@ -54,6 +55,14 @@ class Survey < ActiveRecord::Base
     @event.message = "New survey added: " + self.name.to_s
     @event.save
   end 
+  
+  def send_email
+    if email
+      self.project.users.each do |u|
+        UserNotifier.deliver_survey_notification(u, self.project, self)
+      end
+    end
+  end
   
   def generate_excel
  

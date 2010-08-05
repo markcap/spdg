@@ -206,4 +206,7 @@ class AdminController < ApplicationController
     flash[:notice] = "Successfully updated goal."
     redirect_to manage_projects_path
   end
+  
+  def tag_test
+  end
 end

@@ -1,0 +1,15 @@
+<%= javascript_include_tag 'tag'%>
+<%= stylesheet_link_tag 'tags'%>
+
+<%= text_field :tagit, :tagz, :class => 'tagSuggest', :style => 'width:500px'%><br><br><br>
+
+
+<script type='text/javascript'>
+var tag_array = new Array();
+<%Survey.all.each do |p|%>
+  tag_array.push("<%=p.name%>");
+<%end%>
+$('input.tagSuggest').tagSuggest({
+    tags: tag_array
+});
+</script>

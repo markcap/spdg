@@ -28,7 +28,10 @@
       
       <%= f.label :ends_on, 'Ends On' %><br />
       <%= f.calendar_date_select :ends_on, :class=> 'date'  %><br /><br />
-
+      
+      <%= f.label :email, 'Email users upon creation?'%> <br>
+      <%= f.select :email, [["Yes", 1], ["No", 0]]%><br /><br />
+      
 
       <%= link_to "Load Template", "#", :class => 'template_link' %>
       <div id="templates">

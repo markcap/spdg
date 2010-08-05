@@ -85,7 +85,11 @@
               <!-- This is to let admins without a project have a My Home tab -->
               <%my_project = Project.first%>
             <% else %>
-              <%my_project = current_user.projects.first%>
+              <% if current_user.default_project%>
+                <%my_project = Project.find(current_user.default_project)%>
+              <%else%>
+                <%my_project = current_user.projects.first%>
+              <%end%>
             <% end %>
             <li class="span-3 <%if $menu_tab=='my home'%>current_tab<%end%>" onclick="location.href='<%= project_path(my_project) %>';">
               <%= link_to 'My Home', project_path(my_project)%>

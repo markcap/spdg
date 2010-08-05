@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   
   before_filter :login_required, :except => :index
-  before_filter :has_permission?, :except => :index
+  before_filter :has_permission?, :except => {:index, :set_default_project}
   
   
   def index
@@ -187,6 +187,18 @@ class ProjectsController < ApplicationController
     @events = Event.find(:all, :conditions => ["project_id = ?", @project.id], :order => 'created_at DESC')
   end
   
+  def set_default_project
+    @user = current_user
+    @project = Project.find(params[:project_id])
+    @user.default_project = @project.id
+    if @user.save
+      flash[:notice] = "Project set as default."
+    else
+      flash[:notice] = "There was an error with your request."
+    end
+    redirect_to project_path(@project)
+  end
+       
   def auto_complete_for_profile_lastname
     #This takes in the value of the autocomplete field
     name = params[:profile][:lastname] 

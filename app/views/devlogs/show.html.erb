@@ -1,0 +1,16 @@
+<% title "Devlog" %>
+
+<p>
+  <strong>Message:</strong>
+  <%=h @devlog.message %>
+</p>
+<p>
+  <strong>Section:</strong>
+  <%=h @devlog.section %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_devlog_path(@devlog) %> |
+  <%= link_to "Destroy", @devlog, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", devlogs_path %>
+</p>
