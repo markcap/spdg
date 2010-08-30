@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if validate_recap(params, @user.errors) && @user.update_attributes(params[:user])
         flash[:notice] = 'Login information was successfully updated.'
         format.html { redirect_to(profile_path(@user.profile)) }
         format.xml  { head :ok }

@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="<%=APP_CONFIG[:domain]%>/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="<%=APP_CONFIG[:domain]%>/stylesheets/blueprint/print.css" type="text/css" media="print">	
     <!--[if lt IE 8]><link rel="stylesheet" href="<%=APP_CONFIG[:domain]%>stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
-      <%= stylesheet_link_tag 'spdg' %>
-    
-    <%=javascript_include_tag "jquery", "application"%>
+    <%= stylesheet_link_tag 'spdg' %>
+    <%= javascript_include_tag "jquery", "application" %>
 
     <%= yield(:head) %>
   </head>
@@ -136,7 +135,7 @@
     <div id="footer" class=" span-22 last">
         <br>
       	&copy; <%=Time.now.year%> Kansas State Personnel Development Grant <%= spaces(10)%> <br>
-      	Question or Comment? <%=link_to "Contact Us", "mailto:help@spdgkansas.net"%>.
+      	Question or Comment? <%=link_to "Contact Us", help_form_path, :popup => ['new_window_name', 'height=650,width=500']%>.
       	<br><br>
     </div>
   </div>

@@ -6,6 +6,10 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+#recaptcha keys
+ENV['RCC_PUB']  = '6LevYbwSAAAAAKoPWXXpQY-AC_m23uunSmqMKP8f'
+ENV['RCC_PRIV'] = '6LevYbwSAAAAAMdNqw-AgjJOgU0IyoT5rWHic1g7'
+
 Rails::Initializer.run do |config|
   config.gem 'fastercsv'
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
@@ -14,6 +18,8 @@ Rails::Initializer.run do |config|
   config.gem "mdarby-restful_acl", :lib => 'restful_acl_controller', :source => "http://gems.github.com"
   config.gem "calendar_date_select"
   config.gem "acts_as_archive"
+  config.gem 'ruby-recaptcha'
+
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

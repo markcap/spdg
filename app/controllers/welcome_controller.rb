@@ -32,4 +32,23 @@ class WelcomeController < ApplicationController
     flash[:error] = 'You do not have proper permission to access this page.'
     redirect_to root_path
   end
+  
+  def help_form
+    render :layout => 'popup'
+  end
+  
+  def send_email
+    if validate_recap(params, current_user.errors)
+      flash[:notice] = "Your comment has been submitted."
+      UserNotifier.deliver_help_email(params[:name], params[:email], params[:message])
+      redirect_to :action => "thank_you"
+    else
+      flash[:error] = "Invalid captcha phrase."
+      redirect_to help_form_path
+    end
+  end
+  
+  def thank_you
+    render :layout => 'popup'
+  end
 end

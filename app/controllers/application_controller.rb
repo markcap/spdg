@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password").
   include ExceptionNotifiable
   include AuthenticatedSystem
+  include ReCaptcha::AppHelper
+  
+  
+  ReCaptcha::ViewHelper::RCC_PUB  = '6LevYbwSAAAAAKoPWXXpQY-AC_m23uunSmqMKP8f'
+  ReCaptcha::ViewHelper::RCC_PRIV = '6LevYbwSAAAAAMdNqw-AgjJOgU0IyoT5rWHic1g7'
+  ReCaptcha::AppHelper::RCC_PUB  = '6LevYbwSAAAAAKoPWXXpQY-AC_m23uunSmqMKP8f'
+  ReCaptcha::AppHelper::RCC_PRIV = '6LevYbwSAAAAAMdNqw-AgjJOgU0IyoT5rWHic1g7'
   
   def is_admin?
     unless current_user.admin?

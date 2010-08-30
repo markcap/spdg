@@ -1,0 +1,29 @@
+<!-- example of a popup form layout -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title><%= h(yield(:title) || "SPDG Kansas") %></title>
+    <%= stylesheet_link_tag 'popup' %>
+    <%= javascript_include_tag 'jquery', 'application'%>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div id="logo">
+      <%= image_tag("/images/spdg_logo_new.jpg", :size => "100x80")%>
+    </div>
+    <div id="popup_body">
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%- end -%>
+      
+      <%- if show_title? -%>
+        <h3><%=h yield(:title) %></h3>
+      <%- end -%>
+      
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

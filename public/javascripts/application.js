@@ -1,4 +1,5 @@
 jQuery(document).ready(function() {
+	
 	if (document.referrer.indexOf('spdg') == -1 || document.referrer.indexOf('spdg') == null) {
 		// jQuery(".logo-top").hide();
 		jQuery(".slogan-top").hide();

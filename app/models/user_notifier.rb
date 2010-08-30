@@ -24,8 +24,23 @@ class UserNotifier < ActionMailer::Base
     @body[:project] = project
     @body[:survey] = survey
   end
+  
+  def help_email(name, email, message)
+    setup_help_email(email)
+    @subject    += "SPDG Help Request from #{name}"
+    @body[:email] = email 
+    @body[:name] = name
+    @body[:message] = message
+  end
     
   protected
+  def setup_help_email(email)
+    @recipients  = "mark.desuu@gmail.com"
+    @from        = email.nil? ? "help@spdgkansas.net" : "#{email}"
+    @subject     = ""
+    @sent_on     = Time.now
+  end
+  
   def setup_email(user)
     @recipients  = "#{user.email}"
     @from        = "help@spdgkansas.net"

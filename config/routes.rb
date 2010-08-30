@@ -59,6 +59,8 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_goal_header '/admin/edit_goal_header', :controller => 'admin', :action => 'edit_goal_header'
   map.user_list '/admin/user_list', :controller => 'admin', :action => 'user_list'
   map.question_type_help '/question_type_help', :controller => 'surveys', :action => 'question_type_help'
+  map.help_form '/help_form', :controller => 'welcome', :action => 'help_form'
+  
   # map.add_resource_header 'resources/add_resource_header', :controller => 'resources', :action => 'add_resource_header'
   
   map.connect ':controller/:action/:id'
