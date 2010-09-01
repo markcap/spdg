@@ -18,7 +18,7 @@ Rails::Initializer.run do |config|
   config.gem "mdarby-restful_acl", :lib => 'restful_acl_controller', :source => "http://gems.github.com"
   config.gem "calendar_date_select"
   config.gem "acts_as_archive"
-  # config.gem 'ruby-recaptcha'
+  config.gem 'ruby-recaptcha'
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
