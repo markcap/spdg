@@ -38,7 +38,7 @@ class WelcomeController < ApplicationController
   end
   
   def send_email
-    if validate_recap(params, current_user.errors)
+    if validate_recap(params, Article.first.errors)
       flash[:notice] = "Your comment has been submitted."
       UserNotifier.deliver_help_email(params[:name], params[:email], params[:message])
       redirect_to :action => "thank_you"
