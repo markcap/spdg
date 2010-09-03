@@ -44,7 +44,7 @@ class WelcomeController < ApplicationController
       redirect_to :action => "thank_you"
     else
       flash[:error] = "Invalid captcha phrase."
-      redirect_to help_form_path
+      render :action => 'help_form', :layout => 'popup'
     end
   end
   
