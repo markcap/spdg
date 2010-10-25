@@ -60,6 +60,7 @@ ActionController::Routing::Routes.draw do |map|
   map.user_list '/admin/user_list', :controller => 'admin', :action => 'user_list'
   map.question_type_help '/question_type_help', :controller => 'surveys', :action => 'question_type_help'
   map.help_form '/help_form', :controller => 'welcome', :action => 'help_form'
+  map.chat '/chat', :controller => 'welcome', :action => 'chat'
   
   # map.add_resource_header 'resources/add_resource_header', :controller => 'resources', :action => 'add_resource_header'
   

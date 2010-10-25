@@ -89,5 +89,27 @@ module ApplicationHelper
       when 8 then return image_tag("/images/icons/application_form_delete.png")
     end
   end
+  
+  def create_tags_js(input_field)
+      html = ""
+      html  = <<HTML
+      <script type='text/javascript'>
+        $('#{input_field}').tagSuggest({
+          tags: "#{populate_tags()}".split(",")
+      });
+      </script>
+HTML
+  end
+  
+  def populate_tags()
+    tags = ""
+    Survey.all.each do |s|
+      tags << s.name
+      unless s == Survey.last
+        tags << ","
+      end
+    end
+    return tags
+  end
     
 end

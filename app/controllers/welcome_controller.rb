@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  before_filter :login_required, :only => [:chat]
   $menu_tab = 'none'
   
   def index
@@ -34,6 +35,15 @@ class WelcomeController < ApplicationController
   end
   
   def help_form
+    if defined?(current_user) && !current_user.nil?
+      @name = current_user.profile.firstname.to_s + " " + current_user.profile.lastname.to_s
+      @email = current_user.email
+    end
+    @message = ""
+    params[:name] ? @name = params[:name] : ""
+    params[:email] ? @email = params[:email] : ""
+    params[:message] ? @message = params[:message] : ""
+    
     render :layout => 'popup'
   end
   
@@ -44,11 +54,14 @@ class WelcomeController < ApplicationController
       redirect_to :action => "thank_you"
     else
       flash[:error] = "Invalid captcha phrase."
-      render :action => 'help_form', :layout => 'popup'
+      redirect_to help_form_path(:name => params[:name], :email => params[:email], :message => params[:message])
     end
   end
   
   def thank_you
     render :layout => 'popup'
+  end
+  
+  def chat
   end
 end

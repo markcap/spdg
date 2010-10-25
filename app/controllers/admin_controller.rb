@@ -209,4 +209,24 @@ class AdminController < ApplicationController
   
   def tag_test
   end
+  
+  def chat_test
+  end
+  
+  def meebo_chat
+    render :layout => 'popup'
+  end
+  
+  def google_chat
+    render :layout => 'popup'
+  end
+  
+  def validate_google
+    if validate_recap(params, Article.first.errors)
+       redirect_to "http://www.google.com/talk/service/badge/Start?tk=z01q6amlqqjdru8lboqd2fu2nt9uac048qbodvvffuf0d2bargob53va2jfqosf5koslrcoc6kcu394161pdnv6hlaq9ke70jg4s7rqpnkesepbrfoukr877f8qth0okskp48ko5k5cu5behm5cj4c6nhuses8c8u4o4vsr0j"
+     else
+       flash[:error] = "Invalid captcha phrase."
+       redirect_to :action => :google_chat
+     end
+  end
 end

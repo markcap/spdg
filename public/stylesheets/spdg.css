@@ -130,6 +130,7 @@ h4{
 	margin-top: -90px;
 	padding-right: 17px;
 	font-size: 12px;
+	text-align: right;
 }
 
 .login input[type="text"], .login input[type="password"] {

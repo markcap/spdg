@@ -3,8 +3,9 @@
 
 <%= text_field :tagit, :tagz, :class => 'tagSuggest', :style => 'width:500px'%><br><br><br>
 
+<%= create_tags_js("input.tagSuggest") %>
 
-<script type='text/javascript'>
+<!-- <script type='text/javascript'>
 var tag_array = new Array();
 <%Survey.all.each do |p|%>
   tag_array.push("<%=p.name%>");
@@ -12,4 +13,4 @@ var tag_array = new Array();
 $('input.tagSuggest').tagSuggest({
     tags: tag_array
 });
-</script>
+</script> -->

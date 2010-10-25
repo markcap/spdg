@@ -1,11 +1,11 @@
 <% title "Help Form"%>
 <% form_tag url_for(:action => :send_email) do %>
   <b>Name: <span class="small"></b> (optional) </span><br>
-  <%= text_field_tag :helpform, :name%><br><br>
+  <%= text_field_tag :name, @name%><br><br>
   <b>Email: <span class="small"></b> (if you would like a reply.) </span><br>
-  <%= text_field_tag :helpform, :email%><br><br>
+  <%= text_field_tag :email, @email%><br><br>
   <b>Message:</b><br>
-  <%= text_area_tag :helpform, :message %><br><br>
+  <%= text_area_tag :message, @message %><br><br>
   <%=get_captcha(:options => {:theme => 'clean'})%><br>
   <%= submit_tag "Submit"%>
 <%end%>
