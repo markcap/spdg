@@ -2,7 +2,6 @@ $.ajaxSetup({
   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
 })
 
-
 $(document).ready(function() {
 	// UJS authenticity token fix: add the authenticy_token parameter
   // expected by any Rails POST request.

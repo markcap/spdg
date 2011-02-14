@@ -1,3 +1,9 @@
+//Rails 2.3.11 security fix
+$(document).ajaxSend(function(e, xhr, options) {
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+});
+
 jQuery(document).ready(function() {
 	
 	if (document.referrer.indexOf('spdg') == -1 || document.referrer.indexOf('spdg') == null) {

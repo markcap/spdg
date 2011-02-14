@@ -628,7 +628,7 @@ textarea{
 	cursor: pointer;
 }
 
-.highlighted_link:hover {
+.highlighted_link {
 	color: white;
 	text-decoration: none;
 }
