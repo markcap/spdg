@@ -21,6 +21,8 @@ Rails::Initializer.run do |config|
   config.gem "acts_as_archive"
   config.gem 'ruby-recaptcha'
   config.gem 'prawn'
+  config.gem "rack", :version => "1.1.0"
+  
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

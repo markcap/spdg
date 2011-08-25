@@ -1,0 +1,7 @@
+.DS_Store
+*.gem
+coverage
+pkg
+spec/config/database.yml
+spec/log
+tmp
