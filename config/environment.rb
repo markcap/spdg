@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'ruby-recaptcha'
   config.gem 'prawn'
   config.gem "rack", :version => "1.1.0"
+  config.gem 'mysql'
   
 
   # Settings in config/environments/* take precedence over those specified here.
