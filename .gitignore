@@ -10,3 +10,5 @@ test/*
 public/blank_iframe.html
 public/images/icons/Rakefile
 tmp/restart.txt
+.rvmrc
+config/setup_load_paths.rb

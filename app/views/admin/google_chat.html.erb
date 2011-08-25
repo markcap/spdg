@@ -1,0 +1,5 @@
+<br><br>
+<% form_tag url_for(:action => :validate_google) do %>
+  <%=get_captcha(:options => {:theme => 'clean'})%><br>
+    <%= submit_tag "Submit"%>
+  <%end%>
