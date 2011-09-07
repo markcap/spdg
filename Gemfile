@@ -12,7 +12,7 @@ gem "calendar_date_select"
 gem "acts_as_archive"
 gem 'ruby-recaptcha'
 gem 'prawn'
-# gem 'mysql2', '< 0.3'
+gem 'mysql'
 gem 'exception_notification_rails3', :require => 'exception_notifier'
 gem 'paperclip'
 gem "ckeditor", "~> 3.6.0"
