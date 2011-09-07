@@ -5,7 +5,7 @@ class GoalsController < ApplicationController
   
   def index
     $menu_tab = 'goals'
-    @goals = Goal.find(:first)
+    @goals = Goal.first
   end
   
   def show

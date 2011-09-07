@@ -2,7 +2,7 @@ class DevlogsController < ApplicationController
   
   $menu_tab = 'admin'
   def index
-    @devlogs = Devlog.find(:all, :order => 'updated_at DESC').paginate(:per_page => 15, :page => params[:page])
+    @devlogs = Devlog.order('updated_at DESC').paginate(:per_page => 15, :page => params[:page])
   end
   
   def show

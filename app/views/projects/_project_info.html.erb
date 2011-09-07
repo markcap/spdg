@@ -1,9 +1,9 @@
 
 <h3><%=link_to p.name, project_path(p) -%></h3>
- <%= p.info%>
+ <%= raw p.info%>
  <% if !p.website.nil? && !p.website.blank?%>
      <br><br>
-     Official Website: <%=spaces(2)%><%= link_to p.website, p.website%><br>
+     Official Website: <%= link_to p.website, p.website%><br>
  <%end%>
  <% if !p.contacts.empty?%>
      <br><br><hr>
@@ -23,12 +23,12 @@
       <div class="nothing">
     <%end%>
  <%end%>
-     <%= contact.name.empty? ? "" : "<b>#{contact.name}</b> <br>"%>
-     <i><%= contact.title.empty? ? "" : "#{contact.title} <br>"%></i>
-     <%= contact.address.empty? ? "" : "#{line_break(contact.address)} <br>"%>
-     <%= contact.email.empty? ? "" : "#{contact.email} <br>"%>
-     <%= contact.phone.empty? ? "" : "#{contact.phone} <br>"%>
-     <%= link_to "Edit", edit_contact_path(contact, :project_id => params[:id])%> <%=spaces(2)%>
+     <%= raw contact.name.empty? ? "" : "<b>#{contact.name}</b> <br>"%>
+     <i><%= raw contact.title.empty? ? "" : "#{contact.title} <br>"%></i>
+     <%= raw contact.address.empty? ? "" : "#{line_break(contact.address)} <br>"%>
+     <%= raw contact.email.empty? ? "" : "#{contact.email} <br>"%>
+     <%= raw contact.phone.empty? ? "" : "#{contact.phone} <br>"%>
+     <%= link_to "Edit", edit_contact_path(contact, :project_id => params[:id])%>
      <%= link_to "Delete", contact_path(contact), :confirm => 'Are you sure?', :method => :delete%>
 
      </div>   

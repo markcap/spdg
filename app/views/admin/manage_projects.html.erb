@@ -1,9 +1,8 @@
-<%= javascript_include_tag 'application'%>
-<%= javascript_include_tag :defaults%>
+
 
 <div class="span-21">
-    <%= link_to "New Project", new_project_path %>
-    <%= spaces(10)%><%= link_to "New Goal", "#", :class => 'add_goal_link'%><br><br>
+    <%= link_to "New Project", new_project_path %> | 
+    <%= link_to "New Goal", "#", :class => 'add_goal_link'%><br><br>
 
     <div id="add_goal_form">
         <%= render 'goal_header_form'%>
@@ -13,13 +12,11 @@
     <% @goals.each do |g|%>
         <h4><%= g.description %>
 
-        <%=spaces(3)%> <%=link_to_remote(image_tag("../images/icons/arrow_up.png"), 
-                           :update => "full_page", :url => move_goal_path(:direction => "up", :id => g.id), :title => "Move Up")%>
-       <%=spaces(3)%> <%=link_to_remote(image_tag("../images/icons/arrow_down.png"), 
-                          :update => "full_page", :url => move_goal_path(:direction => "down", :id => g.id), :title => "Move Down")%>
-        <%=spaces(3)%> <%= link_to image_tag("../images/icons/edit.gif"), edit_goal_header_path(:id => g.id)%>
-        <%=spaces(3)%> <%=link_to image_tag("../images/icons/delete.gif"), {:action => :delete_goal_header, :id => g.id }, 
-                          :onclick => "return #{confirm_javascript_function("Are you sure you want to delete this?")};"%>
+       <%=link_to(image_tag("../images/icons/arrow_up.png"), admin_move_goal_path(:direction => "up", :id => g.id), :title => "Move Up")%>
+       <%=link_to(image_tag("../images/icons/arrow_down.png"), admin_move_goal_path(:direction => "down", :id => g.id), :title => "Move Down")%>
+       <%= link_to image_tag("../images/icons/edit.gif"), admin_edit_goal_header_path(:id => g.id)%>
+       <%=link_to image_tag("../images/icons/delete.gif"), admin_delete_goal_header_path(:id => g.id), 
+                          :confirm => ("Are you sure you want to delete this?")%>
         </h4>
         
         <% if !g.projects.empty?%>
@@ -30,13 +27,11 @@
                         </div>
                         <div class="admin-project-body">
                             <div class="right">
-                                <%=spaces(3)%> <%=link_to_remote(image_tag("../images/icons/arrow_up.png"), 
-                                :update => "full_page", :url => move_project_path(:direction => "up", :id => p.id), :title => "Move Up")%>
-                                <%=spaces(5)%> <%=link_to_remote(image_tag("../images/icons/arrow_down.png"), 
-                                :update => "full_page", :url => move_project_path(:direction => "down", :id => p.id), 
+                                 <%=link_to(image_tag("../images/icons/arrow_up.png"), admin_move_project_path(:direction => "up", :id => p.id), :title => "Move Up")%>
+                                 <%=link_to(image_tag("../images/icons/arrow_down.png"), admin_move_project_path(:direction => "down", :id => p.id), 
                                 :title => "Move Down")%>
-                                 <%=spaces(5)%> <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p), :title => "Edit"%>
-                                 <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), :title => "Delete", 
+                                  <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p), :title => "Edit"%>
+                                 <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), :title => "Delete", 
                                  :confirm => 'Are you sure?', :method => :delete%>
                             </div>
                     
@@ -57,13 +52,11 @@
                </div>
                <div class="admin-project-body">
                    <div class="right">
-                       <%=spaces(3)%> <%=link_to_remote(image_tag("../images/icons/arrow_up.png"), 
-                       :update => "full_page", :url => move_project_path(:direction => "up", :id => p.id), :title => "Move Up")%>
-                       <%=spaces(5)%> <%=link_to_remote(image_tag("../images/icons/arrow_down.png"), 
-                       :update => "full_page", :url => move_project_path(:direction => "down", :id => p.id), 
+                       <%=link_to(image_tag("../images/icons/arrow_up.png"), admin_move_project_path(:direction => "up", :id => p.id), :title => "Move Up")%>
+                       <%=link_to(image_tag("../images/icons/arrow_down.png"), admin_move_project_path(:direction => "down", :id => p.id), 
                        :title => "Move Down")%>
-                       <%=spaces(5)%> <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p), :title => "Edit"%>
-                       <%=spaces(5)%> <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), :title => "Delete", 
+                       <%=link_to image_tag("../images/icons/edit.gif"), edit_project_path(p), :title => "Edit"%>
+                       <%=link_to image_tag("../images/icons/delete.gif"), project_path(p), :title => "Delete", 
                        :confirm => 'Are you sure?', :method => :delete%>
                    </div>
        

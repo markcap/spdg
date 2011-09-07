@@ -27,11 +27,11 @@ class AdminController < ApplicationController
       flash[:notice] = "Created user " + @user.email.to_s + " and sent an invite email."
       @user.forgot_password
       @user.save
-      UserNotifier.deliver_invite(@user)
-      redirect_to invite_path
+      UserMailer.invite(@user).deliver
+      redirect_to admin_invite_path
     else
       flash[:error]  = "You have entered an invalid email address. Please try again."
-      redirect_to invite_path
+      redirect_to admin_invite_path
     end
   end
 
@@ -66,7 +66,7 @@ class AdminController < ApplicationController
         @next_project.save
       end
     end
-    redirect_to manage_projects_path
+    redirect_to admin_manage_projects_path
   end
   
   def move_goal
@@ -92,7 +92,7 @@ class AdminController < ApplicationController
         @next_goal.save
       end
     end
-    redirect_to manage_projects_path
+    redirect_to admin_manage_projects_path
   end
   
   def user_list
@@ -127,7 +127,7 @@ class AdminController < ApplicationController
     @resource_header.position = 1
     @resource_header.save
     flash[:notice] = "Successfully added header."
-    redirect_to manage_resources_path
+    redirect_to admin_manage_resources_path
   end
   
   def update_header_position
@@ -143,13 +143,13 @@ class AdminController < ApplicationController
   
   def delete_header
     rh = ResourceHeader.find(params[:id])
-    resources = Resource.find_by_resource_header_id(rh.id)
+    resources = Resource.find_all_by_resource_header_id(rh.id)
     resources.each do |r|
       r.destroy
     end
     rh.destroy
     flash[:error] = "Header deleted."
-    redirect_to manage_resources_path
+    redirect_to admin_manage_resources_path
   end
   
   def edit_resource_header
@@ -160,7 +160,7 @@ class AdminController < ApplicationController
     @resource_header = ResourceHeader.find(params[:id])
     @resource_header.update_attributes(params[:resource_header])
     flash[:notice] = "Successfully updated resource."
-    redirect_to manage_resources_path
+    redirect_to admin_manage_resources_path
   end
   
   def update_resource_position
@@ -181,7 +181,7 @@ class AdminController < ApplicationController
     @goal_header.position = 1
     @goal_header.save
     flash[:notice] = "Successfully added goal."
-    redirect_to manage_projects_path
+    redirect_to admin_manage_projects_path
   end
   
   def delete_goal_header
@@ -193,7 +193,7 @@ class AdminController < ApplicationController
     end
     gh.destroy
     flash[:error] = "Goal deleted."
-    redirect_to manage_projects_path
+    redirect_to admin_manage_projects_path
   end
   
   def edit_goal_header
@@ -204,7 +204,7 @@ class AdminController < ApplicationController
     @goal_header = GoalHeader.find(params[:id])
     @goal_header.update_attributes(params[:goal_header])
     flash[:notice] = "Successfully updated goal."
-    redirect_to manage_projects_path
+    redirect_to admin_manage_projects_path
   end
   
   def tag_test

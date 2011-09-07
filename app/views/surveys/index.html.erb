@@ -1,11 +1,11 @@
 <%= javascript_include_tag 'dataTables', 'survey_table'%>
 <%= stylesheet_link_tag 'data_table'%>
 
-<%= link_to "New Survey", new_survey_path %><%= spaces(18)%>
-View Styles: <%= spaces(4)%>
+<%= link_to "New Survey", new_survey_path %>
+View Styles: 
 
-<%= link_to "All Surveys", change_view_type_user_path(current_user, :type => 0), :class => 'surveys_all'%><%= spaces(4)%>|<%= spaces(4)%>
-<%= link_to "Complete Only", change_view_type_user_path(current_user, :type => 1), :class => 'surveys_com'%><%= spaces(4)%>|<%= spaces(4)%>
+<%= link_to "All Surveys", change_view_type_user_path(current_user, :type => 0), :class => 'surveys_all'%>|
+<%= link_to "Complete Only", change_view_type_user_path(current_user, :type => 1), :class => 'surveys_com'%>|
 <%= link_to "Incomplete Only", change_view_type_user_path(current_user, :type => 2), :class => 'surveys_inc'%>
 <br><br>
 

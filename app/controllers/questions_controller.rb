@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_filter :has_permission?
   
   def index
-    @questions = Question.find(:all)
+    @questions = Question.all
   end
   
   def show

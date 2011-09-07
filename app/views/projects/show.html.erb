@@ -10,17 +10,17 @@
             
                 <% if s.completion < 100 %>
                     <div class="completion_bar">
-                        <div class="incomplete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% </div>
+                        <div class="incomplete" style="width:<%=(s.completion.to_i * 2)%>px"><%= s.completion%>% </div>
                     </div>
                     <span class="red"> Incomplete</span>
                 <%else%>
                     <div class="completion_bar">
-                        <div class="complete" style="width:<%=(s.completion.to_i * 2)%>px"><%=spaces(2)%><%= s.completion%>% </div>
+                        <div class="complete" style="width:<%=(s.completion.to_i * 2)%>px"><%= s.completion%>% </div>
                     </div>
                     <span class="green"> Complete!</span>
                 <%end%>            
                 <br>
-                Due: <%=brief_date(s.ends_on)%> <%=spaces(2)%> ( <%= print_days_remaining(s.days_remaining) %>. )<br><br>
+                Due: <%=brief_date(s.ends_on)%>  ( <%= print_days_remaining(s.days_remaining) %>. )<br><br>
             <%end%>
         <%else%>
             You have no active surveys at this time.
@@ -38,7 +38,7 @@
         <%if !@project.surveys.alert.empty?%>
             <b>Alerts</b> <br><br>
             <% @project.surveys.alert.each do |s| %>
-                <%= link_to s.name, current_survey_project_path(s.project, :survey_id => s.id)%> <%= spaces(2)%>
+                <%= link_to s.name, current_survey_project_path(s.project, :survey_id => s.id)%>
                 <span class="alert_red">Due <%= print_days_remaining(s.days_remaining) %></span><br>
             <%end%>
             <br>
@@ -49,7 +49,7 @@
         <% if !@events.empty?%>
             <span class="line-spaced">
                 <% @events.each do |e|%>
-                    <%= image_tag(e.icon) %><%= spaces(3)%><%= e.message%> <%= spaces(2)%>
+                    <%= image_tag(e.icon) %><%= e.message%>
                     <span class="event_date"><%= time_elapsed(e.created_at)%> </span><br>
                 <%end%>
                 <% if @events.size == 7 %>

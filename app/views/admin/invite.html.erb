@@ -4,9 +4,9 @@
 
 <%= error_messages_for :user, :header_message => " ", :message => "We had some problems creating your account:" %>
 
-<% form_for :user, :url => {:action => 'send_invite'} do |f| -%>
+<%= form_for :user, :url => {:action => 'send_invite'} do |f| -%>
 
-    <p><%= label_tag 'email' %> <%=spaces(4)%> (This will also be their user name. Required.)<br/>
+    <p><%= label_tag 'email' %>(This will also be their user name. Required.)<br/>
     <%= f.text_field :email %></p>
     <b>The following information is optional:</b><br><br>
     <div class="span-5">

@@ -4,7 +4,7 @@
     <b>All activity for <%= @project.name %></b><br><br>
     <span class="line-spaced">
         <% @events.each do |e|%>
-            <%= event_icon(e) %><%= spaces(3)%><%= e.message%> <%= spaces(2)%>
+            <%= event_icon(e) %><%= e.message%>
             <span class="event_date"><%= time_elapsed(e.created_at)%> </span><br>
         <%end%>
     </span>

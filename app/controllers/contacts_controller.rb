@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   before_filter :has_permission?
   
   def index
-    @contacts = Contact.find(:all)
+    @contacts = Contact.all
   end
   
   def show

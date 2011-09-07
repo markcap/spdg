@@ -4,7 +4,7 @@
 
 <div id="survey_form">
     <%= error_messages_for :survey %>
-    <% form_for @survey do |f| %>
+    <%= form_for @survey do |f| %>
       <p>
         <%= f.label :name %><br />
         <%= f.text_field :name, :class => 'name'%>
@@ -12,7 +12,7 @@
       
         <div id="choose_project">
         <%= f.label :project_id, 'Project' %><br />
-        <%= f.select :project_id, Project.all.map {|p| [truncate(p.name,100), p.id]}, :prompt => 'Select...' %><%= spaces(3)%>
+        <%= f.select :project_id, Project.all.map {|p| [truncate(p.name,100), p.id]}, :prompt => 'Select...' %>
         <% if @show_multiple%>
           <%=link_to_remote( 'Choose multiple projects',
       		    :update => 'choose_project',
@@ -54,7 +54,7 @@
       <div id="template_div"></div>
        
       <div id="questions">
-          <% f.fields_for :questions do |builder| %>
+          <%= f.fields_for :questions do |builder| %>
             <%= render "question_fields", :f => builder %>
           <% end %>
           <div id="add_question_here"></div>

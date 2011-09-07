@@ -3,7 +3,7 @@
 <div id="survey_form">
 
 <%= error_messages_for :survey_template %>
-<% form_for @survey_template do |f| %>
+<%= form_for @survey_template do |f| %>
 
   <p>
     <%= f.label :name %><br />
@@ -17,7 +17,7 @@
     <div class="renumber tiny-button">Renumber</div><br><br>
     
     <div id="questions">
-        <% f.fields_for :questions do |builder| %>
+        <%= f.fields_for :questions do |builder| %>
           <%= render "question_fields", :f => builder %>
         <% end %>
         <div id="add_question_here"></div>

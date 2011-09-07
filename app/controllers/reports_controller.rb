@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
   before_filter :has_permission?
   
   def index
-    @reports = Report.find(:all)
+    @reports = Report.all
   end
   
   def show

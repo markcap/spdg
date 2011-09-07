@@ -8,7 +8,7 @@
     <div class="admin_box_content">
         <%= link_to "Manage News Posts", articles_path%><br>
         <%= link_to "Edit Goals Page", edit_goal_path(Goal.first)%><br>     
-        <%= link_to "Manage Resources", manage_resources_path%><br>
+        <%= link_to "Manage Resources", admin_manage_resources_path%><br>
         <%= link_to "Website Change Log", devlogs_path%>
     </div>
 </div>
@@ -18,7 +18,7 @@
         Manage Projects
     </div>
     <div class="admin_box_content">
-        <%= link_to "Manage Projects", manage_projects_path%><br>
+        <%= link_to "Manage Projects", admin_manage_projects_path%><br>
         <%= link_to "New Survey", new_survey_path%><br>
         <%= link_to "Manage Surveys", surveys_path%><br>
         <%= link_to "Manage Templates", survey_templates_path%>
@@ -30,7 +30,7 @@
         Manage Users
     </div>
     <div class="admin_box_content">
-        <%= link_to "User List", user_list_path %><br>
-        <%= link_to "Invite Users", invite_path %>
+        <%= link_to "User List", admin_user_list_path %><br>
+        <%= link_to "Invite Users", admin_invite_path %>
     </div>
 </div>

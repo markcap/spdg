@@ -65,7 +65,6 @@ module AuthenticatedSystem
       respond_to do |format|
         format.html do
           store_location
-          flash[:error] = "Please log in first."
           redirect_to new_session_path
         end
         # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
@@ -89,8 +88,8 @@ module AuthenticatedSystem
     # to the passed default.  Set an appropriately modified
     #   after_filter :store_location, :only => [:index, :new, :show, :edit]
     # for any controller you want to be bounce-backable.
-    def redirect_back_or_default(default)
-      redirect_to(session[:return_to] || default)
+    def redirect_back_or_default(default, options = {})
+      redirect_to((session[:return_to] || default), options)
       session[:return_to] = nil
     end
 
@@ -123,7 +122,7 @@ module AuthenticatedSystem
     # Called from #current_user.  Finaly, attempt to login by an expiring token in the cookie.
     # for the paranoid: we _should_ be storing user_token = hash(cookie_token, request IP)
     def login_from_cookie
-      user = cookies[:auth_token] && User.find_by_remember_token(cookies[:auth_token])
+      user = cookies[:auth_token] && User.find_by_remember_token(cookies[:auth_token].value)
       if user && user.remember_token?
         self.current_user = user
         handle_remember_cookie! false # freshen cookie token (keeping date)

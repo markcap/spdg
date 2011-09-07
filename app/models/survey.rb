@@ -7,16 +7,16 @@ class Survey < ActiveRecord::Base
   
   validates_presence_of       :name, :starts_on, :ends_on
   
-  default_scope :order => 'ends_on DESC'
-  named_scope :by_id, :order => 'id'
-  named_scope :by_name, :order => 'name'
-  named_scope :by_end, :order => 'ends_on DESC'
-  named_scope :complete, :conditions => ['completion = ?', 100], :order => 'ends_on DESC'
-  named_scope :incomplete, :conditions => ['completion < ?', 100], :order => 'ends_on DESC'
-  named_scope :active, :conditions => ['ends_on > ?', Time.now], :order => 'ends_on DESC'
-  named_scope :inactive, :conditions => ['ends_on < ?', Time.now], :order => 'ends_on DESC'
-  named_scope :alert, :conditions => ['ends_on <= ? AND ends_on >= ? AND completion < ?', 7.days.from_now, Time.now, 100], 
-                                      :order => 'ends_on DESC'
+  default_scope order('ends_on DESC')
+  scope :by_id, order('id')
+  scope :by_name, order('name')
+  scope :by_end, order('ends_on DESC')
+  scope :complete, where('completion = ?', 100).order('ends_on DESC')
+  scope :incomplete, where('completion < ?', 100).order('ends_on DESC')
+  scope :active, where('ends_on > ?', Time.now).order('ends_on DESC')
+  scope :inactive, where('ends_on < ?', Time.now).order('ends_on DESC')
+  scope :alert, where('ends_on <= ? AND ends_on >= ? AND completion < ?', 7.days.from_now, Time.now, 100).
+  order('ends_on DESC')
   
   
   after_create :add_create_event
@@ -59,7 +59,7 @@ class Survey < ActiveRecord::Base
   def send_email
     if email
       self.project.users.each do |u|
-        UserNotifier.deliver_survey_notification(u, self.project, self)
+        UserMailer.survey_notification(u, self.project, self).deliver
       end
     end
   end

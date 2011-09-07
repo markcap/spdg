@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
-  named_scope :by_position, :order => 'position'
-  named_scope :by_name, :order => 'name'
-  named_scope :no_goal, :conditions => ["goal_header_id = ? or goal_header_id IS ?", 0, nil], :order => 'position'
+  scope :by_position, order('position')
+  scope :by_name, order('name')
+  scope :no_goal, where("goal_header_id = ? or goal_header_id IS ?", 0, nil).order('position')
   
   belongs_to :goal_header
   has_and_belongs_to_many :users

@@ -1,0 +1,11 @@
+A new survey has been created for you on the SPDG Kansas website.
+<br><br>
+Name: <%= @survey.name%><br>
+Project: <%= @project.name %><br>
+Due Date: <%= @survey.ends_on.strftime("%B %e, %Y")%>
+<br><br>
+Please visit the following URL to access it: <br>
+<%= @url%> 
+<br><br>
+Thank you for your time!<br>
+-SPDG Kansas<br>

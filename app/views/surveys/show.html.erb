@@ -1,7 +1,7 @@
 
 <h3 style="display:inline">  <%=h @survey.name %></h3>
- <%= spaces(4)%> <%=link_to image_tag("../images/icons/edit.gif"), edit_survey_path(@survey), :title => "Edit"%>
- <%= spaces(4)%> <%=link_to image_tag("../images/icons/delete.gif"), survey_path(@survey), :title => "Delete", 
+<%=link_to image_tag("../images/icons/edit.gif"), edit_survey_path(@survey), :title => "Edit"%>
+<%=link_to image_tag("../images/icons/delete.gif"), survey_path(@survey), :title => "Delete", 
  :confirm => 'Are you sure?', :method => :delete%>
 <br><br>
 
@@ -18,8 +18,8 @@
   <br>
   <%= render :partial => 'completion_bar', :locals => {:s => @survey}%>
   <br>  <br>
-  Download:<%= spaces(3)%>
-  <%= link_to image_tag("icons/excel_icon.gif"), survey_path(@survey, :format => "csv"), :title => 'Download to Excel'%> <%= spaces(3)%>
+  Download:
+  <%= link_to image_tag("icons/excel_icon.gif"), survey_path(@survey, :format => "csv"), :title => 'Download to Excel'%>
   <%= link_to image_tag("icons/pdf_icon.gif"), survey_path(@survey, :format => "pdf"), :title => 'Download to PDF'%>
 </div>
 <br>
@@ -42,8 +42,8 @@
     <a name="attached_files"></a>
     Attached Files: <br><br>
     <% @survey.survey_files.each do |sf|%>
-        <%= link_to image_tag("/images/icons/folder.gif"), sf.document.url%><%=spaces(2)%>
-        <%= link_to sf.document_file_name, sf.document.url%><%=spaces(2)%>
+        <%= link_to image_tag("/images/icons/folder.gif"), sf.document.url%>
+        <%= link_to sf.document_file_name, sf.document.url%>
         <% if !sf.comment.nil? && !sf.comment.blank?%>    
             <br><%= sf.comment%>
         <%end%>

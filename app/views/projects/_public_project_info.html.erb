@@ -1,7 +1,7 @@
-<%= p.info%>
+<%= raw p.info%>
 <% if !p.website.nil? && !p.website.blank?%>
     <br><br>
-    Official Website: <%=spaces(2)%><%= link_to p.website, p.website%><br>
+    Official Website: <%= link_to p.website, p.website%><br>
 <%end%>
 
  <% if !p.contacts.empty?%>
@@ -22,11 +22,11 @@
           <div class="nothing">
         <%end%>
      <%end%>
-     <%= contact.name.empty? ? "" : "<b>#{contact.name} </b><br>"%>
-     <i><%= contact.title.empty? ? "" : "#{contact.title} <br>"%></i>
-     <%= contact.email.empty? ? "" : "#{contact.email} <br>"%>
-     <%= contact.phone.empty? ? "" : "#{contact.phone} <br>"%>
-     <%= contact.address.empty? ? "" : "#{line_break(contact.address)} <br>"%>
+     <%= raw contact.name.empty? ? "" : "<b>#{contact.name} </b><br>"%>
+     <i><%= raw contact.title.empty? ? "" : "#{contact.title} <br>"%></i>
+     <%= raw contact.email.empty? ? "" : "#{contact.email} <br>"%>
+     <%= raw contact.phone.empty? ? "" : "#{contact.phone} <br>"%>
+     <%= raw contact.address.empty? ? "" : "#{line_break(contact.address)} <br>"%>
      </div>   
  <%end%>
 <br>

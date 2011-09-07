@@ -1,5 +1,4 @@
 <h3 class="inline"><%=@project.name%></h3>
-<%= spaces(4)%>
 <%if (current_user.projects.size > 1) && (@project.id != current_user.default_project)%>
   <%= link_to "Set as Default", {:action => :set_default_project, :project_id => @project}, :class => 'tiny-button'%>
 <%end%>

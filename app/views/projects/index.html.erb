@@ -2,7 +2,7 @@
 
 <div class="span-22">
     <% @goals.each do |g|%>
-        <h4><%=spaces(2)%><%= g.description %></h4>
+        <h4><%= g.description %></h4>
         
         <% if !g.projects.empty?%>
             <%g.projects.by_position.each do |p|%>
@@ -13,7 +13,7 @@
                     <div id="project_body">
                         <br>
                         <%= render :partial => 'public_project_info', :locals => {:p => p}%>
-                                    <br>
+                        <br>
                     </div>
 
                 </div>    
@@ -22,7 +22,7 @@
         <%end%>
     <%end%>
     <%if !@other_projects.empty?%>
-        <h4><%=spaces(2)%>Other Projects</h4>
+        <h4>Other Projects</h4>
         <% @other_projects.each do |p|%>
             <div id="project_box">
                 <div id="project_header">

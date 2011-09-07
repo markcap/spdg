@@ -5,7 +5,7 @@ class ResourcesController < ApplicationController
   
   def index
     $menu_tab = 'resources'
-    @resources = Resource.find(:all)
+    @resources = Resource.all
     @resource_header = ResourceHeader.new
     @headers = ResourceHeader.by_position
   end
@@ -29,7 +29,7 @@ class ResourcesController < ApplicationController
     end
     if @resource.save
       flash[:notice] = "Successfully created resource."
-      redirect_to manage_resources_path
+      redirect_to admin_manage_resources_path
     else
       render :action => 'new'
     end
@@ -43,7 +43,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
     if @resource.update_attributes(params[:resource])
       flash[:notice] = "Successfully updated resource."
-      redirect_to manage_resources_path
+      redirect_to admin_manage_resources_path
     else
       render :action => 'edit'
     end
@@ -53,7 +53,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
     @resource.destroy
     flash[:notice] = "Successfully destroyed resource."
-    redirect_to resources_url
+    redirect_to admin_manage_resources_path
   end
   
   def download

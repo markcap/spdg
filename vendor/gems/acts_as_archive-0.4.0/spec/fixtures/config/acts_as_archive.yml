@@ -1,3 +1,0 @@
-Record:
-  - class: Record::Archive
-    table: archived_records

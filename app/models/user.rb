@@ -1,29 +1,34 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  
   has_many :articles
   has_many :survey_templates
   has_one :profile, :dependent => :destroy
   has_and_belongs_to_many :projects
   
+  scope :is_admin, where('admin = ?', 1)
+  scope :is_not_admin, where('admin = ? OR admin IS ?', 0, nil)
+  
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
 
-  validates_presence_of     :login
-  validates_length_of       :login,    :within => 3..40
-  validates_length_of       :password, :within => 6..40, :if => :password_required?
-  validates_uniqueness_of   :login
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
-  validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :name,     :maximum => 100
-  validates_presence_of     :email
-  validates_length_of       :email,    :within => 6..100 #r@a.wk
-  validates_uniqueness_of   :email
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
-  
-  named_scope :is_admin, :conditions => ['admin = ?', 1]
-  named_scope :is_not_admin, :conditions => ['admin = ? OR admin IS ?', 0, nil]
+
+
+  validates :login, :presence   => true,
+                    :uniqueness => true,
+                    :length     => { :within => 3..40 },
+                    :format     => { :with => Authentication.login_regex, :message => Authentication.bad_login_message }
+
+  validates :name,  :format     => { :with => Authentication.name_regex, :message => Authentication.bad_name_message },
+                    :length     => { :maximum => 100 },
+                    :allow_nil  => true
+
+  validates :email, :presence   => true,
+                    :uniqueness => true,
+                    :format     => { :with => Authentication.email_regex, :message => Authentication.bad_email_message },
+                    :length     => { :within => 6..100 }
 
   
 
@@ -31,6 +36,8 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation
+
+
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
@@ -51,7 +58,6 @@ class User < ActiveRecord::Base
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
   end
-  
   def remember_token?
     remember_token_expires_at && Time.now.utc < remember_token_expires_at 
   end
@@ -134,5 +140,7 @@ class User < ActiveRecord::Base
     def make_password_reset_code
       self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
     end
+    
+
 
 end

@@ -4,7 +4,7 @@ class SurveyFilesController < ApplicationController
   before_filter :has_permission?
   
   def index
-    @survey_files = SurveyFile.find(:all)
+    @survey_files = SurveyFile.all
   end
   
   def show

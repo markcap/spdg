@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
     if @user = User.find_by_email(params[:email])
       @user.forgot_password
       @user.save
-      UserNotifier.deliver_forgot_password(@user)
+      UserMailer.forgot_password(@user).deliver
       redirect_to(login_path)
       flash[:notice] = "A password reset link has been sent to your email address." 
     else
@@ -50,7 +50,7 @@ class WelcomeController < ApplicationController
   def send_email
     if validate_recap(params, Article.first.errors)
       flash[:notice] = "Your comment has been submitted."
-      UserNotifier.deliver_help_email(params[:name], params[:email], params[:message])
+      UserMailer.help_email(params[:name], params[:email], params[:message]).deliver
       redirect_to :action => "thank_you"
     else
       flash[:error] = "Invalid captcha phrase."

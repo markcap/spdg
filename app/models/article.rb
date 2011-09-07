@@ -1,7 +1,7 @@
 class Article < ActiveRecord::Base
   belongs_to :user
-  named_scope :by_date, :order => 'created_at DESC'
-  named_scope :by_edit, :order => 'updated_at DESC'
+  scope :by_date, order('created_at DESC')
+  scope :by_edit, order('updated_at DESC')
   
   def self.is_indexable_by(user, parent = nil)
     return true

@@ -22,8 +22,8 @@
     <%if !survey.survey_files.empty?%>
         Attached Files: <br><br>
         <% survey.survey_files.each do |sf|%>
-            <%= link_to image_tag("/images/icons/folder.gif"), sf.document.url%><%=spaces(2)%>
-            <%= link_to sf.document_file_name, sf.document.url%><%=spaces(2)%>
+            <%= link_to image_tag("/images/icons/folder.gif"), sf.document.url%>
+            <%= link_to sf.document_file_name, sf.document.url%>
             <span class="small">
             (<%= link_to "Remove", survey_file_path(sf), :confirm => 'Are you sure you want to remove this?', :method => :delete%>)
             </span>

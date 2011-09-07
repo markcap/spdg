@@ -1,6 +1,0 @@
-test:
-  adapter: mysql
-  database: mover
-  username: root
-  password: 
-  host: localhost

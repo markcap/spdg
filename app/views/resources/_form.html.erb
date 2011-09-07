@@ -1,5 +1,5 @@
 <%= error_messages_for :resource %>
-<% form_for @resource, :html => { :multipart => true } do |f| %>
+<%= form_for @resource, :html => { :multipart => true } do |f| %>
   <p>
      <%= f.label :resource_header_id, "Header"%><br />
      <%= f.select :resource_header_id, ResourceHeader.all.map {|r| [r.description, r.id]} %>

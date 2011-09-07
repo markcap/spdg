@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   before_filter :has_permission?
   
   def index
-    @profiles = Profile.find(:all)
+    @profiles = Profile.all
   end
   
   def show

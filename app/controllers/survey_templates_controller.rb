@@ -4,7 +4,7 @@ class SurveyTemplatesController < ApplicationController
   before_filter :has_permission?
   
   def index
-    @survey_templates = SurveyTemplate.find(:all)
+    @survey_templates = SurveyTemplate.all
     $menu_tab = 'admin'
   end
   

@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   
   def index
     $menu_tab = 'projects'
-    @goals = GoalHeader.find(:all, :order => 'position ASC')
+    @goals = GoalHeader.order('position ASC')
     @other_projects = Project.no_goal
   end
   
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @active_surveys = @project.active_surveys
     @last_survey = @project.surveys.inactive.first
-    @events = Event.find(:all, :conditions => ["project_id = ?", @project.id], :order => 'created_at DESC', :limit => 7)
+    @events = Event.where("project_id = ?", @project.id).order('created_at DESC').limit(7)
   end
   
   def new
@@ -184,7 +184,7 @@ class ProjectsController < ApplicationController
   
   def all_activity
     @project = Project.find(params[:id])
-    @events = Event.find(:all, :conditions => ["project_id = ?", @project.id], :order => 'created_at DESC')
+    @events = Event.where("project_id = ?", @project.id).order('created_at DESC')
   end
   
   def set_default_project
@@ -205,11 +205,9 @@ class ProjectsController < ApplicationController
     
     #Search for all matching first and last names
     @names = 
-    Profile.find(:all, 
-      :conditions => [ 'LOWER(lastname) LIKE ? OR LOWER(firstname) LIKE ?',
-      name.downcase + '%', name.downcase + '%' ], 
-      :order => 'lastname ASC',
-      :limit => 100) unless name.blank?
+    Profile.where('LOWER(lastname) LIKE ? OR LOWER(firstname) LIKE ?', name.downcase + '%', name.downcase + '%').
+    order('lastname ASC').
+    limit(100) unless name.blank?
       
     #The following iterations make a new array with people who had the search value in their last name first, followed by
     #people who have it in their first name.
@@ -236,11 +234,9 @@ class ProjectsController < ApplicationController
     
     #Search for all matching first and last names
     @names = 
-    Profile.find(:all, 
-      :conditions => [ 'LOWER(email) LIKE ?',
-      name.downcase + '%'], 
-      :order => 'email ASC',
-      :limit => 100) unless name.blank?
+    Profile.where('LOWER(email) LIKE ?', name.downcase + '%').
+      order('email ASC').
+      limit(100) unless name.blank?
 
     @new_names = @names
   

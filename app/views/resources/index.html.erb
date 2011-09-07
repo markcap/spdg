@@ -3,7 +3,7 @@
 <ul id="header-list">
     <% @headers.each do |h|%>
       <li id="header_<%= h.id -%>">
-        <b><%= h.description%></b> <%=spaces(2)%><br><br>
+        <b><%= h.description%></b><br><br>
 
         <div class="resource-body">
             <% resources = Resource.find_all_by_resource_header_id(h.id, :order => 'position ASC')%>
@@ -12,10 +12,10 @@
                 <%resources.each do |r|%>
                     <li id="resource_<%= r.id -%>">
                     <% if r.url.nil? || r.url.blank?%>
-                        <%= image_tag("/images/icons/disk.png")%><%= spaces(2)%>
+                        <%= image_tag("/images/icons/disk.png")%>
                         <%= link_to r.description, r.document.url, :target => '_blank'%>
                     <%else%>
-                        <%= image_tag("/images/icons/world.png")%><%= spaces(2)%>
+                        <%= image_tag("/images/icons/world.png")%>
                         <%= link_to r.description, r.url, :target => '_blank'%>
                     <%end%>
                     <%if !r.subtext.nil? && !r.subtext.blank?%>

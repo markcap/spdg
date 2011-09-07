@@ -1,6 +1,0 @@
-test:
-  adapter: mysql
-  database: also_migrate
-  username: root
-  password: 
-  host: localhost

@@ -1,18 +1,13 @@
-<%= javascript_include_tag 'fckeditor/fckeditor' %>
+<%= javascript_include_tag :ckeditor %>
+
 <%= error_messages_for :article %>
-<% form_for @article do |f| %>
+<%= form_for @article do |f| %>
 
 
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title, :size => 70 %>
   </p>
-  
-  <div class="text_editor">
-      <div id="<%= fckeditor_div_id('article', 'body') %>">
-          <%= fckeditor_textarea( "article", "body", :width => 650, :height => 500, :toolbarSet => "Basic" ) %>
-      </div>
-  </div>
- <br>
+    <%= cktext_area_tag("article[body]", "#{@article.body}")%>
   <p><%= f.submit "Submit" %></p>
 <% end %>

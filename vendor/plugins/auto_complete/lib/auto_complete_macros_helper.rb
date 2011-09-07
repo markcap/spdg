@@ -117,7 +117,6 @@ module AutoCompleteMacrosHelper
         div.auto_complete {
           width: 350px;
           background: #fff;
-          
         }
         div.auto_complete ul {
           border:1px solid #888;
@@ -130,7 +129,6 @@ module AutoCompleteMacrosHelper
           line-height: 140%
           margin:0;
           padding:3px;
-          cursor: pointer
         }
         div.auto_complete ul li.selected {
           background-color: #ffb;

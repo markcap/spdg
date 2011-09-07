@@ -1,6 +1,6 @@
 class ResourceHeader < ActiveRecord::Base
   
-  named_scope :by_position, :order => 'position'
+  scope :by_position, order('position')
   has_many :resources
   
   def self.is_indexable_by(user, parent = nil)

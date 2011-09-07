@@ -1,5 +1,5 @@
 <%= error_messages_for :resource %>
-<% form_for @resource, :html => { :multipart => true } do |f| %>
+<%= form_for @resource, :html => { :multipart => true } do |f| %>
 
   <%= f.hidden_field :resource_header_id, :value => header_id %>
   

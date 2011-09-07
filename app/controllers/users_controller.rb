@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-
-  # before_filter :login_required, :except => :reset_password
+  # Be sure to include AuthenticationSystem in Application Controller instead
+  include AuthenticatedSystem
+  
 
   # render new.rhtml
-  
   def new
     @user = User.new
   end
@@ -13,19 +13,18 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     success = @user && @user.save
     if success && @user.errors.empty?
-      # Protects against session fixation attacks, causes request forgery
+            # Protects against session fixation attacks, causes request forgery
       # protection if visitor resubmits an earlier form using back
       # button. Uncomment if you understand the tradeoffs.
       # reset session
       self.current_user = @user # !! now logged in
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      redirect_back_or_default('/', :notice => "Thanks for signing up!  We're sending you an email with your activation code.")
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again."
+      flash.now[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
     end
   end
-  
+
   def edit
     @user = current_user
   end
@@ -72,6 +71,7 @@ class UsersController < ApplicationController
             redirect_to(profile_path(current_user.profile))
           else
             flash[:notice] = "Your password has been reset!" 
+            redirect_to root_path
           end
         else 
           flash[:notice] = "Your password was not reset. Please make sure that your password is at least 6 characters long."
@@ -97,4 +97,5 @@ class UsersController < ApplicationController
         flash[:notice] = "Unable to change to that view."
       end
     end
+    
 end

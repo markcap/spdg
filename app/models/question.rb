@@ -3,8 +3,8 @@ class Question < ActiveRecord::Base
   has_one :answer, :dependent => :destroy
   after_create :create_answer
   
-  default_scope :order => 'position'
-  named_scope :by_position, :order => 'position'
+  default_scope, order('position')
+  scope :by_position, order('position')
   
   def self.is_indexable_by(user, parent = nil)
     user.admin?

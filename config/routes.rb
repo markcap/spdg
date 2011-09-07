@@ -1,69 +1,102 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :devlogs
+Spdg::Application.routes.draw do
+  resources :devlogs
 
-  map.resources :survey_templates
+  resources :survey_templates
 
-  map.resources :events
+  resources :events
 
-  map.resources :resources,
-    :member => [:download],
-    :collection => [:add_resource_header]
+  resources :resources do
+    member do
+      get :download
+    end
+    collection do
+      get :add_resource_header
+    end
+  end
 
-  map.resources :survey_files,
-    :member => [:download]
+  resources :survey_files do
+    member do 
+      get :download
+    end
+  end
 
-  map.resources :questions
+  resources :questions
 
-  map.resources :surveys
+  resources :surveys
 
-  map.resources :contacts
+  resources :contacts
 
-  map.resources :goals
+  resources :goals
 
-  map.resources :reports
+  resources :reports
 
-  map.resources :projects,
-    :has_many => [:users, :contacts],
-    :member => [ :information, :add_user, :add_user_commit, :current_survey, :past_surveys, :submitanswers, :other_projects, :all_activity],
-    :collection => [:set_default_project]
+  resources :projects do
+    resources :users, :contacts
+    
+    member do 
+      get :information
+      get :add_user
+      post :add_user_commit
+      get :current_survey
+      get :past_surveys
+      post :submitanswers
+      get :other_projects
+      get :all_activity
+    end
+    
+    collection do 
+      post :set_default_project
+    end
+  end
 
-  map.resources :profiles
+  resources :profiles
 
-  map.resources :articles
+  resources :articles
   
-  map.resources :users,
-    :member => [:change_view_type]
+  resources :users do
+    member do 
+      post :change_view_type
+    end
+  end
   
-  map.resource :session
+  resource :session
 
-  map.root :controller => 'welcome'
+  root :to => 'welcome#index'
 
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.register '/register', :controller => 'users', :action => 'create'
-  map.signup '/signup', :controller => 'users', :action => 'new'
-  map.forgot_password '/forgot_password', :controller => 'welcome', :action => 'forgot_password'
-  map.error '/error', :controller => 'welcome', :action => 'error'
-  map.denied '/denied', :controller => 'welcome', :action => 'denied'
+  match '/logout', :to => 'sessions#destroy'
+  match '/login', :to => 'sessions#new'
+  match '/register', :to => 'users#create'
+  match '/signup', :to => 'users#new'
+  match '/forgot_password', :to => 'welcome#forgot_password'
+  match '/send_password_link', :to => 'welcome#send_password_link'
+  match '/error', :to => 'welcome#error'
+  match '/denied', :to => 'welcome#denied'
+  match '/users/reset_password/:id', :to => 'users#reset_password'
 
-  map.admin '/admin', :controller => 'admin', :action => 'index'
-  map.invite '/admin/invite', :controller => 'admin', :action => 'invite'
-  map.manage_projects '/admin/manage_projects', :controller => 'admin', :action => 'manage_projects'
-  map.move_project '/admin/move_project', :controller => 'admin', :action => 'move_project'
-  map.move_goal '/admin/move_goal', :controller => 'admin', :action => 'move_goal'
-  map.prioritize_projects '/admin/prioritize_projects', :controller => 'admin', :action => 'prioritize_projects'
-  map.update_header_position '/admin/update_header_position', :controller => 'admin', :action => 'update_header_position'
-  map.update_resource_position '/admin/update_resource_position', :controller => 'admin', :action => 'update_resource_position'
-  map.manage_resources '/admin/manage_resources', :controller => 'admin', :action => 'manage_resources'
-  map.edit_resource_header '/admin/edit_resource_header', :controller => 'admin', :action => 'edit_resource_header'
-  map.edit_goal_header '/admin/edit_goal_header', :controller => 'admin', :action => 'edit_goal_header'
-  map.user_list '/admin/user_list', :controller => 'admin', :action => 'user_list'
-  map.question_type_help '/question_type_help', :controller => 'surveys', :action => 'question_type_help'
-  map.help_form '/help_form', :controller => 'welcome', :action => 'help_form'
-  map.chat '/chat', :controller => 'welcome', :action => 'chat'
+  match '/admin', :to => 'admin#index'
+  match '/admin/invite', :to => 'admin#invite'
+  match '/admin/manage_projects', :to => 'admin#manage_projects'
+  match '/admin/move_project', :to => 'admin#move_project'
+  match '/admin/move_goal', :to => 'admin#move_goal'
+  match '/admin/prioritize_projects', :to => 'admin#prioritize_projects'
+  match '/admin/update_header_position', :to => 'admin#update_header_position'
+  match '/admin/update_resource_position', :to => 'admin#update_resource_position'
+  match '/admin/manage_resources', :to => 'admin#manage_resources'
+  match '/admin/create_resource_header', :to => 'admin#create_resource_header'
+  match '/admin/edit_resource_header', :to => 'admin#edit_resource_header'
+  match '/admin/update_resource_header', :to => 'admin#update_resource_header'
+  match '/admin/delete_header', :to => 'admin#delete_header'
+  match '/admin/create_goal_header', :to => 'admin#create_goal_header'
+  match '/admin/edit_goal_header', :to => 'admin#edit_goal_header'
+  match '/admin/delete_goal_header', :to => 'admin#delete_goal_header'
+  match '/admin/move_project', :to => 'admin#move_project'
+  match '/admin/user_list', :to => 'admin#user_list'
+  match '/question_type_help', :to => 'surveys#question_type_help'
+  match '/help_form', :to => 'welcome#help_form'
+  match '/chat', :to => 'welcome#chat'
   
-  # map.add_resource_header 'resources/add_resource_header', :controller => 'resources', :action => 'add_resource_header'
+  match ':controller/auto_complete_for_profile_lastname', :to => ':controller#auto_complete_for_profile_lastname'
+  match ':controller/auto_complete_for_profile_email', :to => ':controller#auto_complete_for_profile_email'
   
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  
 end

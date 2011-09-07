@@ -1,5 +1,5 @@
 <%= error_messages_for :survey_file %>
-<% form_for @survey_file, :html => { :multipart => true } do |f| %>
+<%= form_for @survey_file, :html => { :multipart => true } do |f| %>
   <p>
     <%= f.label :survey_id %><br />
     <%= f.text_field :survey_id %>

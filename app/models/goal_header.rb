@@ -1,5 +1,5 @@
 class GoalHeader < ActiveRecord::Base
-    named_scope :by_position, :order => 'position'
+    scope :by_position, order('position')
     has_many :projects
     
     def self.is_indexable_by(user, parent = nil)

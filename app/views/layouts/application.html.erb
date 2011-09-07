@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<%=APP_CONFIG[:domain]%>/stylesheets/blueprint/print.css" type="text/css" media="print">	
     <!--[if lt IE 8]><link rel="stylesheet" href="<%=APP_CONFIG[:domain]%>stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <%= stylesheet_link_tag 'spdg' %>
-    <%= javascript_include_tag "jquery", "application" %>
+    <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
 
     <%= yield(:head) %>
@@ -46,7 +46,7 @@
           <%else%>
             
             <div id="login_form">
-              <% form_tag session_path do -%>
+              <%= form_tag session_path do -%>
                 Username: &nbsp;
                 <%= text_field_tag 'login', @login %>&nbsp;&nbsp;
 
@@ -60,7 +60,7 @@
               <% end -%>
             </div>
               <div id="login_start">
-                Registered Users: <%=spaces(3)%><button type="button" class="login_link">Log In</button><br>
+                Registered Users: <button type="button" class="login_link">Log In</button><br>
                 <%=link_to "Forgot Password?", forgot_password_path%>
               </div>
             
@@ -137,8 +137,10 @@
     
     <div id="footer" class=" span-22 last">
         <br>
-      	&copy; <%=Time.now.year%> Kansas State Personnel Development Grant <%= spaces(10)%> <br>
-      	Question or Comment? <%=link_to "Contact Us", help_form_path, :popup => ['new_window_name', 'height=650,width=500']%>.
+      	&copy; <%=Time.now.year%> Kansas State Personnel Development Grant <br>
+      	<div class="search_help">
+      		<%= link_to "Help", "#", :class => 'search_help_popup'%><br />
+      	</div>
       	<br><br>
     </div>
   </div>

@@ -15,7 +15,12 @@ jQuery(document).ready(function() {
 		jQuery(".slogan-bottom").delay(1300).fadeIn(600);
 	}
 
-	
+	jQuery('.search_help_popup').click(function() {
+    newwindow=window.open('http://spdgkansas.net/help_form','strat_window','height=500,width=500');
+  	if (window.focus) {newwindow.focus()}
+  	return false;
+  });
+  
 	jQuery("#login_form").hide();
 	jQuery(".login_link").click(function()
 	 		{
