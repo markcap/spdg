@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
 	}
 
 	jQuery('.search_help_popup').click(function() {
-    newwindow=window.open('http://spdgkansas.net/help_form','strat_window','height=500,width=500');
+    newwindow=window.open('http://spdgkansas.net/help_form','strat_window','height=700,width=500');
   	if (window.focus) {newwindow.focus()}
   	return false;
   });
