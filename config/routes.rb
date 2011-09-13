@@ -71,6 +71,7 @@ Spdg::Application.routes.draw do
   match '/send_password_link', :to => 'welcome#send_password_link'
   match '/error', :to => 'welcome#error'
   match '/denied', :to => 'welcome#denied'
+  match '/thankyou', :to => 'welcome#thank_you'
   match '/users/reset_password/:id', :to => 'users#reset_password'
 
   match '/admin', :to => 'admin#index'

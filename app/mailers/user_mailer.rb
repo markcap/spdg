@@ -39,7 +39,7 @@ class UserMailer < ActionMailer::Base
     @email = email 
     @name = name
     @message = message
-    mail(:to => user.email,
+    mail(:to => "mark.desuu@gmail.com",
          :subject => "SPDG Help Request from #{name}")
   end
 

@@ -6,6 +6,6 @@
   <%= text_field_tag :email, @email%><br><br>
   <b>Message:</b><br>
   <%= text_area_tag :message, @message %><br><br>
-  <%=get_captcha(:options => {:theme => 'clean'})%><br>
+  <%= raw get_captcha(:options => {:theme => 'clean'})%><br>
   <%= submit_tag "Submit"%>
 <%end%>

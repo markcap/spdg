@@ -51,7 +51,7 @@ class WelcomeController < ApplicationController
     if validate_recap(params, Article.first.errors)
       flash[:notice] = "Your comment has been submitted."
       UserMailer.help_email(params[:name], params[:email], params[:message]).deliver
-      redirect_to :action => "thank_you"
+      redirect_to thankyou_path
     else
       flash[:error] = "Invalid captcha phrase."
       redirect_to help_form_path(:name => params[:name], :email => params[:email], :message => params[:message])

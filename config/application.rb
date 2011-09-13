@@ -5,8 +5,6 @@ require 'rails/all'
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
-ENV['RCC_PUB']  = '6LevYbwSAAAAAKoPWXXpQY-AC_m23uunSmqMKP8f'
-ENV['RCC_PRIV'] = '6LevYbwSAAAAAMdNqw-AgjJOgU0IyoT5rWHic1g7'
 
 module Spdg
   class Application < Rails::Application
