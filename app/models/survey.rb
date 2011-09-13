@@ -7,7 +7,7 @@ class Survey < ActiveRecord::Base
   
   validates_presence_of       :name, :starts_on, :ends_on
   
-  default_scope order('ends_on DESC')
+  default_scope :order => 'ends_on DESC'
   scope :by_id, order('id')
   scope :by_name, order('name')
   scope :by_end, order('ends_on DESC')
