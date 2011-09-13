@@ -1,5 +1,5 @@
 <% title "Help Form"%>
-<%= form_tag url_for(:action => :send_email) do %>
+<%= form_tag url_for('/send_email') do %>
   <b>Name: <span class="small"></b> (optional) </span><br>
   <%= text_field_tag :name, @name%><br><br>
   <b>Email: <span class="small"></b> (if you would like a reply.) </span><br>

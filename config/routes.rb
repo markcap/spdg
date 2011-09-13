@@ -93,6 +93,7 @@ Spdg::Application.routes.draw do
   match '/admin/user_list', :to => 'admin#user_list'
   match '/question_type_help', :to => 'surveys#question_type_help'
   match '/help_form', :to => 'welcome#help_form'
+  match '/send_email', :to => 'welcome#send_email'
   match '/chat', :to => 'welcome#chat'
   
   match ':controller/auto_complete_for_profile_lastname', :to => ':controller#auto_complete_for_profile_lastname'
