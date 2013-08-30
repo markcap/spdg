@@ -46,9 +46,5 @@ Spdg::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
-  config.middleware.use ExceptionNotifier,
-    :email_prefix => "[SPDG] ",
-    :sender_address => %{"Application Error" <mark.desuu@gmail.com>},
-    :exception_recipients => %w{mark.desuu@gmail.com}
+
 end
