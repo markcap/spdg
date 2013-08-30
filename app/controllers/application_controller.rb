@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password").
-  include ReCaptcha::AppHelper
+  # include ReCaptcha::AppHelper
   require File.join(Rails.root, 'lib', 'authenticated_system.rb')
   include AuthenticatedSystem
   
