@@ -201,9 +201,9 @@ ActiveRecord::Schema.define(:version => 20110901094254) do
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
-    t.integer  "admin",                     :limit => 1
+    t.integer  "admin"
     t.string   "password_reset_code"
-    t.integer  "first_login",               :limit => 1
+    t.integer  "first_login"
     t.date     "last_login"
     t.integer  "survey_view_type"
     t.integer  "default_project"

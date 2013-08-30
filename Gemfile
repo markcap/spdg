@@ -17,5 +17,6 @@ gem 'exception_notification_rails3', :require => 'exception_notifier'
 gem 'paperclip'
 gem "ckeditor", "~> 3.6.0"
 gem 'will_paginate', '>=3.0.pre'
+gem "sqlite3"
 
 

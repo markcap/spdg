@@ -2,7 +2,6 @@
 log/*.log
 tmp/**/*
 features/**/*
-config/database.yml
 db/*.sqlite3
 media/*
 spec/*
