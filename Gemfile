@@ -9,7 +9,7 @@ gem 'ruby-openid'
 gem 'factory_girl'
 gem "restful_acl"
 gem "calendar_date_select"
-gem "acts_as_archive"
+# gem "acts_as_archive"
 gem 'ruby-recaptcha'
 gem 'prawn'
 gem 'mysql2', '< 0.3'

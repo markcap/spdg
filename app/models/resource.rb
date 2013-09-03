@@ -1,11 +1,13 @@
+require 'paperclip'
+
 class Resource < ActiveRecord::Base
   
   belongs_to :resource_header
   scope :by_position, order('position')
   
-  # has_attached_file :document, 
-  #   :path => ":rails_root/media/resources/:id/:basename.:extension",
-  #   :url => "/resources/:id/download"
+  has_attached_file :document, 
+    :path => ":rails_root/media/resources/:id/:basename.:extension",
+    :url => "/resources/:id/download"
     
     def self.is_indexable_by(user, parent = nil)
       return true

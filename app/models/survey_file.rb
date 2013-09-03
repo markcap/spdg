@@ -2,9 +2,9 @@ class SurveyFile < ActiveRecord::Base
   
   belongs_to :survey
   
-  # has_attached_file :document, 
-  #   :path => ":rails_root/media/:class/:id/:basename.:extension",
-  #   :url => "/survey_files/:id/download"
+  has_attached_file :document, 
+    :path => ":rails_root/media/:class/:id/:basename.:extension",
+    :url => "/survey_files/:id/download"
     
   def self.is_indexable_by(user, parent = nil)
     user.admin?
