@@ -41,9 +41,10 @@
             </div>
           <b>Choose a template to load</b><br><br>
           <% SurveyTemplate.all.each do |st|%>
-      		<%=link_to_remote( st.name,
+      		<%=link_to( st.name,
       		    :update => 'template_div',
-      		    :url => {:action => 'render_template', :template => st} )%><br>
+      		    :url => {:action => 'render_template', :template => st},
+							:remote => true )%><br>
           <%end%>
 
       </div>
