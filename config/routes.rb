@@ -78,6 +78,7 @@ Spdg::Application.routes.draw do
   match '/admin/invite', :to => 'admin#invite'
   match '/admin/manage_projects', :to => 'admin#manage_projects'
   match '/admin/move_project', :to => 'admin#move_project'
+  match '/admin/change_admin', :to => 'admin#change_admin'
   match '/admin/move_goal', :to => 'admin#move_goal'
   match '/admin/prioritize_projects', :to => 'admin#prioritize_projects'
   match '/admin/update_header_position', :to => 'admin#update_header_position'
