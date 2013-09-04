@@ -8,7 +8,7 @@ gem 'whenever'
 gem 'ruby-openid'
 gem 'factory_girl'
 gem "restful_acl"
-gem "calendar_date_select"
+gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git'
 # gem "acts_as_archive"
 gem 'ruby-recaptcha'
 gem 'prawn'

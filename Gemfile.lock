@@ -1,3 +1,9 @@
+GIT
+  remote: http://github.com/paneq/calendar_date_select.git
+  revision: 977048211b94599fe0f08eb37a481f3d69df48f6
+  specs:
+    calendar_date_select (1.16.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -32,7 +38,6 @@ GEM
     activesupport (3.0.3)
     arel (2.0.10)
     builder (2.1.2)
-    calendar_date_select (1.16.3)
     chronic (0.6.2)
     ckeditor (3.6.1)
       mime-types (~> 1.16)
@@ -101,7 +106,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  calendar_date_select
+  calendar_date_select!
   chronic
   ckeditor (~> 3.6.0)
   exception_notification_rails3
