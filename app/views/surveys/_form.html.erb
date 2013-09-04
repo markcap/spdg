@@ -14,9 +14,10 @@
         <%= f.label :project_id, 'Project' %><br />
         <%= f.select :project_id, Project.all.map {|p| [truncate(p.name, :length => 100), p.id]}, :prompt => 'Select...' %>
         <% if @show_multiple%>
-          <%=link_to_remote( 'Choose multiple projects',
+          <%=link_to('Choose multiple projects',
       		    :update => 'choose_project',
-      		    :url => {:action => 'render_multiple_projects'} )%>
+      		    :url => {:action => 'render_multiple_projects'},
+							:remote => true )%>
 
           </div>
         <%end%>
